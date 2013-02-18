@@ -1,0 +1,4 @@
+Django==1.4.3
+argparse==1.2.1
+fpdf==1.7
+wsgiref==0.1.2
