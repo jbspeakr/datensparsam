@@ -20,6 +20,8 @@ Hiermit widerspreche ich
 
 + Der Erteilung von einfachen Melderegisterauskünften mittels automatisierten Abrufs über das Internet gem. § 28a Abs. 2 Meldegesetz.
 
+Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.
+
 <br />
 <br />
 <br />

@@ -29,6 +29,7 @@ Nach Maßgabe des Meldegesetzes beantrage ich die Einrichtung folgender Übermit
 
 + Hiermit widerspreche ich der Weitergabe meiner Daten an das Bundesamt für Wehrverwaltung für Zwecke der Übersendung von Informationsmaterial über den freiwilligen Wehrdienst (§ 58 WPflG i.V.m. § 21 Abs. 7 MRRG).
 
+Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.
 
 <br />
 <br />

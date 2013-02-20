@@ -27,6 +27,7 @@ Ich beantrage hiermit, im Melderegister über meine persönlichen Daten folgende
 
 + Auskunftssperre gemäß § 32 a MG gegen die automatisierte Erteilung von Melderegisteranfragen
 
+Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.
 
 <br />
 <br />

@@ -30,6 +30,8 @@ Hiermit widerspreche ich
 
 + Gegen die Datenübermittlung an das Bundesamt für Wehrverwaltung gemäß § 18 Absatz 7 Melderechtsrahmengesetz.
 
+Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.
+
 <br />
 <br />
 <br />
