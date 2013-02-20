@@ -1,0 +1,8 @@
+*.pyc
+*.py~
+*.DS_Store
+*.vim
+*.db
+*.mo
+dist/
+django_db
