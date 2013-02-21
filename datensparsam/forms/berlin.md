@@ -1,16 +1,3 @@
-Absender:<br />
-{sender_name}{sender_firstname}{sender_birthday}<br />
-{sender_address}<br />
-{sender_zip}{sender_city}<br />
-{date}
-
-Empfänger:<br />
-{recipient_name}{recipient_firstname}{recipient_birthday}<br />
-{recipient_address}<br />
-{recipient_zip}{recipient_city}
-<br />
-<br />
-
 ### Widerspruch zur Datenübermittlung
 
 Hiermit widerspreche ich
@@ -21,9 +8,5 @@ Hiermit widerspreche ich
 + Der Erteilung von einfachen Melderegisterauskünften mittels automatisierten Abrufs über das Internet gem. § 28a Abs. 2 Meldegesetz.
 
 Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.
-
-<br />
-<br />
-<br />
 
 (Unterschrift der/des Antragstellerin/-stellers)

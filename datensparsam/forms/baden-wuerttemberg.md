@@ -1,16 +1,3 @@
-Absender:<br />
-{sender_name}{sender_firstname}{sender_birthday}<br />
-{sender_address}<br />
-{sender_zip}{sender_city}<br />
-{date}
-
-Empfänger:<br />
-{recipient_name}{recipient_firstname}{recipient_birthday}<br />
-{recipient_address}<br />
-{recipient_zip}{recipient_city}
-<br />
-<br />
-
 ### Antrag auf Einrichtung einer Übermittlungssperre nach § 34 MG bzw. § 32 a MG Auskunftssperre gegen automatisierte Erteilung von Melderegisteranfragen Weitergabe von Daten Direktwerbung (§ 9 MG)
 
 Ich beantrage hiermit, im Melderegister über meine persönlichen Daten folgende Sperrvermerke einzurichten:
@@ -28,9 +15,5 @@ Ich beantrage hiermit, im Melderegister über meine persönlichen Daten folgende
 + Auskunftssperre gemäß § 32 a MG gegen die automatisierte Erteilung von Melderegisteranfragen
 
 Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.
-
-<br />
-<br />
-<br />
 
 (Unterschrift der/des Antragstellerin/-stellers)

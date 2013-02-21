@@ -1,16 +1,3 @@
-Absender:<br />
-{sender_name}{sender_firstname}{sender_birthday}<br />
-{sender_address}<br />
-{sender_zip}{sender_city}<br />
-{date}
-
-Empfänger:<br />
-{recipient_name}{recipient_firstname}{recipient_birthday}<br />
-{recipient_address}<br />
-{recipient_zip}{recipient_city}
-<br />
-<br />
-
 ### Antrag auf Einrichtung einer Übermittlungssperre
 
 Nach Maßgabe des Meldegesetzes beantrage ich die Einrichtung folgender Übermittlungssperren:
@@ -30,9 +17,5 @@ Nach Maßgabe des Meldegesetzes beantrage ich die Einrichtung folgender Übermit
 + Hiermit widerspreche ich der Weitergabe meiner Daten an das Bundesamt für Wehrverwaltung für Zwecke der Übersendung von Informationsmaterial über den freiwilligen Wehrdienst (§ 58 WPflG i.V.m. § 21 Abs. 7 MRRG).
 
 Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.
-
-<br />
-<br />
-<br />
 
 (Unterschrift der/des Antragstellerin/-stellers)

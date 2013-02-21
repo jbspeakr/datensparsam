@@ -1,16 +1,3 @@
-Absender:<br />
-{sender_name}{sender_firstname}{sender_birthday}<br />
-{sender_address}<br />
-{sender_zip}{sender_city}<br />
-{date}
-
-Empfänger:<br />
-{recipient_name}{recipient_firstname}{recipient_birthday}<br />
-{recipient_address}<br />
-{recipient_zip}{recipient_city}
-<br />
-<br />
-
 ### Weitergabe meiner Meldedaten über das Internet, zur Wahlwerbung, an Religionsgesellschaften, zum Zwecke der Direktwerbung u.a.
 
 Hiermit widerspreche ich der Weitergabe meiner Daten
@@ -30,10 +17,5 @@ Hiermit widerspreche ich der Weitergabe meiner Daten
 + an Adressbuchverlage zum Zweck der Herausgabe von Adressbüchern (§ 50 Abs. 5 i. V. m. Abs. 3 MeldFortG).
 
 Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.
-
-
-<br />
-<br />
-<br />
 
 (Unterschrift der/des Antragstellerin/-stellers)
