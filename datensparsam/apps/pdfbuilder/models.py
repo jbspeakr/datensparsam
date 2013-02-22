@@ -1,9 +1,14 @@
 from django.db import models
 
 
+class MunicipalityManager(models.Manager):
+    def get_by_natural_key(self, key):
+        return self.get(key=key)
+
+
 class Municipality(models.Model):
     ''' Gemeinde '''
-    key = models.CharField(max_length=16, primary_key=True)
+    key = models.CharField(max_length=16)
     kind = models.CharField(max_length=48)
     district = models.CharField(max_length=48)
     zipcode = models.CharField(max_length=6)
@@ -16,7 +21,7 @@ class Municipality(models.Model):
 
 
 class Recordsection(models.Model):
-    id = models.AutoField(primary_key=True)
+    ''' Meldestelle '''
     key = models.ForeignKey(Municipality)
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=48)
