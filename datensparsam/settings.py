@@ -120,6 +120,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'datensparsam.apps.pdfbuilder',
+    'datensparsam.apps.frontpage',
 )
 
 # A sample logging configuration. The only tangible logging
