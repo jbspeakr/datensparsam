@@ -1,15 +1,21 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 # Fall back to StringIO in environments where cStringIO is not available
 try:
     from cStringIO import StringIO
 except ImportError:
     from StringIO import StringIO
 
+from reportlab.lib.enums import TA_JUSTIFY
 from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.units import inch
 from django.http import HttpResponse
 
 from datensparsam.apps.pdfbuilder import models
 from datensparsam.apps.pdfbuilder.helpers import user as helper
+from datensparsam.apps.pdfbuilder.helpers import pdf
 from datensparsam.apps.pdfbuilder.forms import requestform
 
 
@@ -17,19 +23,20 @@ def get_pdf(request):
     if request.method == 'POST':
         form = requestform.RequestForm(request.POST)
         if form.is_valid():
-            municipalityZip = request.POST['municipalityZipcode']
-            municipalityState = request.POST['municipalityState']
+            municipalityZip = request.POST['zipcode']
+            municipalityState = request.POST['state']
 
             user = helper.User(
-                request.POST['userName'],
-                request.POST['userFirstname'],
-                request.POST['userAddress'],
-                request.POST['userZipcode'],
-                request.POST['userCity']
+                request.POST['name'],
+                request.POST['firstname'],
+                request.POST['address'],
+                request.POST['zipcode'],
+                request.POST['city']
                 )
 
-            recordsection = query_recordsection(municipalityZip, municipalityState)
-            return create_pdf_response(recordsection, user)
+            FormQuerySet = models.Form.objects.filter(id=municipalityState)
+            recordsection = query_recordsection(municipalityZip, FormQuerySet[0].state)
+            return create_pdf_response(recordsection, user, FormQuerySet[0])
 
 
 def query_recordsection(municipalityZip, municipalityState):
@@ -51,39 +58,76 @@ def query_recordsection(municipalityZip, municipalityState):
             return recordsectionuerySet[0]
 
 
-def create_pdf_response(recordsection, user):
+def create_pdf_response(recordsection, user, form):
+    address_sender = [user.name + ', ' + user.firstname, user.address, user.zip + ' ' + user.city]
+    address_recipient = [recordsection.address, recordsection.street, recordsection.zipcode + ' ' + recordsection.city]
+
     # Create the HttpResponse object with the appropriate PDF headers.
     response = HttpResponse(mimetype='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="uebermittlungssperre.pdf"'
 
-    buffer = StringIO()
+    buff = StringIO()
 
-    # Create the PDF object, using the StringIO object as its "file."
-    form = canvas.Canvas(buffer, pagesize=letter)
-    width, height = letter
+    doc = pdf.Pdf(buff)
 
-    # Setup Canvas Settings
-    form.setFont('Helvetica', 12)
+    doc.add_address(address_sender)
+    doc.add_address(address_recipient)
+    doc.add_heading(form.heading)
+    doc.add_paragraph('Hiermit widerspreche ich:')
 
-    # Draw things on the PDF. Here's where the PDF generation happens.
-    # See the ReportLab documentation for the full list of functionality.
+    doc.add_paragraph(form.religionclause)
+    doc.add_paragraph(form.partyclause)
+    doc.add_paragraph(form.autoqueryclause)
+    doc.add_paragraph(form.jubileeclause)
+    doc.add_paragraph(form.directoryclause)
+    doc.add_paragraph(form.directmarketingclause)
+    doc.add_paragraph(form.militaryclause)
+    doc.add_paragraph(form.miscellaneousclause)
 
-    # Create Recipient
-    form.drawString(30, 705, recordsection.address)
-    form.drawString(30, 690, recordsection.street)
-    form.drawString(30, 675, recordsection.zipcode + ' ' + recordsection.city)
+    doc.add_paragraph('Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.')
+    doc.add_paragraph('(Unterschrift der/des Antragstellerin/-stellers)')
 
-    # Create Sender
-    form.drawString(500, 750, user.name + ', ' + user.firstname)
-    form.drawString(500, 735, user.address)
-    form.drawString(500, 720, user.zip + ' ' + user.city)
-
-    # Close the PDF object cleanly.
-    form.showPage()
-    form.save()
-
-    # Get the value of the StringIO buffer and write it to the response.
-    pdf = buffer.getvalue()
-    buffer.close()
-    response.write(pdf)
+    doc.make()
+    response.write(buff.getvalue())
+    buff.close()
     return response
+
+    # doc = SimpleDocTemplate(buff, pagesize=letter,
+    #                     rightMargin=72, leftMargin=72,
+    #                     topMargin=72, bottomMargin=18)
+
+    # Story = []
+
+    # styles = getSampleStyleSheet()
+    # styles.add(ParagraphStyle(name='Justify', alignment=TA_JUSTIFY))
+
+    # address_recipient = [recordsection.address, recordsection.street, recordsection.zipcode + ' ' + recordsection.city]
+    # address_sender = [user.name + ', ' + user.firstname, user.address, user.zip + ' ' + user.city]
+
+    # for part in address_sender:
+    #     ptext = '<font size=12>%s</font>' % part.strip()
+    #     Story.append(Paragraph(ptext, styles["Normal"]))
+
+    # Story.append(Spacer(1, 12))
+
+    # for part in address_recipient:
+    #     ptext = '<font size=12>%s</font>' % part.strip()
+    #     Story.append(Paragraph(ptext, styles["Normal"]))
+
+    # Story.append(Spacer(1, 12))
+
+    # ptext = form.heading
+    # Story.append(Paragraph(ptext, styles["Normal"]))
+
+    # Story.append(Spacer(1, 12))
+
+    # ptext = 'Hiermit widerspreche ich'
+    # Story.append(Paragraph(ptext, styles["Normal"]))
+
+    # ptext = form.religionclause
+    # Story.append(Paragraph(ptext, styles["Normal"]))
+
+    # doc.build(Story)
+    # response.write(buff.getvalue())
+    # buff.close()
+    # return response
