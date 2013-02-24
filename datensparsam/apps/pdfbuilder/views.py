@@ -51,26 +51,52 @@ def get_pdf(request):
     })
 
 
-def query_recordsection(municipalityZip, municipalityState):
+def query_recordsection(zipcode, state):
     municipalityQuerySet = models.Municipality.objects.filter(
-        zipcode=municipalityZip,
-        state=municipalityState
-        )
+        zipcode=zipcode,
+        state=state
+    )
+
     if not municipalityQuerySet:
-        # return error message
-        return "No Municipality available"
+        recordsectionuerySet = models.Recordsection.objects.filter(
+            city=state
+        )
+
     else:
         recordsectionuerySet = models.Recordsection.objects.filter(
             municipality=municipalityQuerySet[0].key
             )
-        if not recordsectionuerySet:
-            # return error message
-            return "No Recordsection available"
-        else:
-            return recordsectionuerySet[0]
+
+    if not recordsectionuerySet:
+        # return error message
+        return "No Recordsection available"
+    else:
+        return recordsectionuerySet[0]
 
 
 def create_pdf_response(recordsection, user, form):
+    ''' Returns PDF Response. '''
+    # Create the HttpResponse object with the appropriate PDF headers.
+    response = HttpResponse(mimetype='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="uebermittlungssperre.pdf"'
+
+    # Create Buffer
+    buff = StringIO()
+
+    # Setup PDF
+    doc = setup_pdf_content(buff, form, user, recordsection)
+    doc.make()
+
+    # Create Response and close Buffer
+    response.write(buff.getvalue())
+    buff.close()
+    return response
+
+
+def setup_pdf_content(buff, form, user, recordsection):
+    ''' Adds content to a new PDF using SimplePdf class. '''
+    now = datetime.datetime.now()
+
     address_sender = [
         user.name + ', ' + user.firstname,
         user.address,
@@ -83,14 +109,7 @@ def create_pdf_response(recordsection, user, form):
         recordsection.zipcode + ' ' + recordsection.city
     ]
 
-    # Create the HttpResponse object with the appropriate PDF headers.
-    response = HttpResponse(mimetype='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="uebermittlungssperre.pdf"'
-
-    now = datetime.datetime.now()
-    buff = StringIO()
     doc = pdf.SimplePdf(buff)
-
     doc.add_address(address_sender)
     doc.add_address(address_recipient)
     doc.add_heading(form.heading)
@@ -109,7 +128,4 @@ def create_pdf_response(recordsection, user, form):
     doc.add_paragraph('Unterschrift der/des Antragstellerin/-stellers', 48)
     doc.add_paragraph(user.city + ', den ' + now.strftime("%d.%m.%Y"), 0)
 
-    doc.make()
-    response.write(buff.getvalue())
-    buff.close()
-    return response
+    return doc
