@@ -1,12 +1,10 @@
-from reportlab.lib.enums import TA_JUSTIFY
 from reportlab.lib.pagesizes import letter
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.units import inch
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+from reportlab.lib.styles import getSampleStyleSheet
 
 
-class Pdf(object):
-
+class SimplePdf(object):
+    ''' Provides functionality to create simple PDF documents '''
     __story = []
     __styles = getSampleStyleSheet()
     __doc = None
@@ -24,22 +22,29 @@ class Pdf(object):
         for part in address:
             ptext = '<font size=12>%s</font>' % part.strip()
             self.__story.append(Paragraph(ptext, self.__styles["Normal"]))
-        self.add_spacer(24)
-
-    def add_spacer(self, height):
-        self.__story.append(Spacer(1, height))
+        self._add_spacer(24)
 
     def add_heading(self, heading):
-        self.add_spacer(48)
+        self._add_spacer(48)
         self.__story.append(Paragraph(heading, self.__styles["Heading1"]))
-        self.add_spacer(24)
+        self._add_spacer(24)
 
-    def add_paragraph(self, paragraph):
+    def add_bulleted_paragraph(self, paragraph):
         if paragraph:
+            self._add_spacer(12)
+            self.__story.append(Paragraph(paragraph, self.__styles["Normal"], bulletText='-'))
+        else:
+            pass
+
+    def add_paragraph(self, paragraph, spacer):
+        if paragraph:
+            self._add_spacer(spacer)
             self.__story.append(Paragraph(paragraph, self.__styles["Normal"]))
-            self.add_spacer(12)
         else:
             pass
 
     def make(self):
         self.__doc.build(self.__story)
+
+    def _add_spacer(self, height):
+        self.__story.append(Spacer(1, height))

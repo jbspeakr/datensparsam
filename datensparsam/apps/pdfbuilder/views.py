@@ -6,11 +6,8 @@ try:
 except ImportError:
     from StringIO import StringIO
 
-from reportlab.lib.enums import TA_JUSTIFY
-from reportlab.lib.pagesizes import letter
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.units import inch
+import datetime
+from django.shortcuts import render
 from django.http import HttpResponse
 
 from datensparsam.apps.pdfbuilder import models
@@ -19,12 +16,21 @@ from datensparsam.apps.pdfbuilder.helpers import pdf
 from datensparsam.apps.pdfbuilder.forms import requestform
 
 
+def index(request):
+    form = requestform.RequestForm()  # An unbound form
+    return render(
+        request,
+        'frontpage/index.html',
+        {'form': form, }
+        )
+
+
 def get_pdf(request):
     if request.method == 'POST':
         form = requestform.RequestForm(request.POST)
         if form.is_valid():
-            municipalityZip = request.POST['zipcode']
-            municipalityState = request.POST['state']
+            zipcode = request.POST['zipcode']
+            stateID = request.POST['state']
 
             user = helper.User(
                 request.POST['name'],
@@ -32,11 +38,17 @@ def get_pdf(request):
                 request.POST['address'],
                 request.POST['zipcode'],
                 request.POST['city']
-                )
+            )
 
-            FormQuerySet = models.Form.objects.filter(id=municipalityState)
-            recordsection = query_recordsection(municipalityZip, FormQuerySet[0].state)
-            return create_pdf_response(recordsection, user, FormQuerySet[0])
+            form = models.Form.objects.get(id=stateID)
+            recordsection = query_recordsection(zipcode, form.state)
+            return create_pdf_response(recordsection, user, form)
+    else:
+        form = requestform.RequestForm()  # An unbound form
+
+    return render(request, 'frontpage/index.html', {
+        'form': form,
+    })
 
 
 def query_recordsection(municipalityZip, municipalityState):
@@ -59,75 +71,45 @@ def query_recordsection(municipalityZip, municipalityState):
 
 
 def create_pdf_response(recordsection, user, form):
-    address_sender = [user.name + ', ' + user.firstname, user.address, user.zip + ' ' + user.city]
-    address_recipient = [recordsection.address, recordsection.street, recordsection.zipcode + ' ' + recordsection.city]
+    address_sender = [
+        user.name + ', ' + user.firstname,
+        user.address,
+        user.zip + ' ' + user.city
+    ]
+
+    address_recipient = [
+        recordsection.address,
+        recordsection.street,
+        recordsection.zipcode + ' ' + recordsection.city
+    ]
 
     # Create the HttpResponse object with the appropriate PDF headers.
     response = HttpResponse(mimetype='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="uebermittlungssperre.pdf"'
 
+    now = datetime.datetime.now()
     buff = StringIO()
-
-    doc = pdf.Pdf(buff)
+    doc = pdf.SimplePdf(buff)
 
     doc.add_address(address_sender)
     doc.add_address(address_recipient)
     doc.add_heading(form.heading)
-    doc.add_paragraph('Hiermit widerspreche ich:')
+    doc.add_paragraph('Hiermit widerspreche ich:', 0)
 
-    doc.add_paragraph(form.religionclause)
-    doc.add_paragraph(form.partyclause)
-    doc.add_paragraph(form.autoqueryclause)
-    doc.add_paragraph(form.jubileeclause)
-    doc.add_paragraph(form.directoryclause)
-    doc.add_paragraph(form.directmarketingclause)
-    doc.add_paragraph(form.militaryclause)
-    doc.add_paragraph(form.miscellaneousclause)
+    doc.add_bulleted_paragraph(form.religionclause)
+    doc.add_bulleted_paragraph(form.partyclause)
+    doc.add_bulleted_paragraph(form.autoqueryclause)
+    doc.add_bulleted_paragraph(form.jubileeclause)
+    doc.add_bulleted_paragraph(form.directoryclause)
+    doc.add_bulleted_paragraph(form.directmarketingclause)
+    doc.add_bulleted_paragraph(form.militaryclause)
+    doc.add_bulleted_paragraph(form.miscellaneousclause)
 
-    doc.add_paragraph('Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.')
-    doc.add_paragraph('(Unterschrift der/des Antragstellerin/-stellers)')
+    doc.add_paragraph('Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.', 36)
+    doc.add_paragraph('Unterschrift der/des Antragstellerin/-stellers', 48)
+    doc.add_paragraph(user.city + ', den ' + now.strftime("%d.%m.%Y"), 0)
 
     doc.make()
     response.write(buff.getvalue())
     buff.close()
     return response
-
-    # doc = SimpleDocTemplate(buff, pagesize=letter,
-    #                     rightMargin=72, leftMargin=72,
-    #                     topMargin=72, bottomMargin=18)
-
-    # Story = []
-
-    # styles = getSampleStyleSheet()
-    # styles.add(ParagraphStyle(name='Justify', alignment=TA_JUSTIFY))
-
-    # address_recipient = [recordsection.address, recordsection.street, recordsection.zipcode + ' ' + recordsection.city]
-    # address_sender = [user.name + ', ' + user.firstname, user.address, user.zip + ' ' + user.city]
-
-    # for part in address_sender:
-    #     ptext = '<font size=12>%s</font>' % part.strip()
-    #     Story.append(Paragraph(ptext, styles["Normal"]))
-
-    # Story.append(Spacer(1, 12))
-
-    # for part in address_recipient:
-    #     ptext = '<font size=12>%s</font>' % part.strip()
-    #     Story.append(Paragraph(ptext, styles["Normal"]))
-
-    # Story.append(Spacer(1, 12))
-
-    # ptext = form.heading
-    # Story.append(Paragraph(ptext, styles["Normal"]))
-
-    # Story.append(Spacer(1, 12))
-
-    # ptext = 'Hiermit widerspreche ich'
-    # Story.append(Paragraph(ptext, styles["Normal"]))
-
-    # ptext = form.religionclause
-    # Story.append(Paragraph(ptext, styles["Normal"]))
-
-    # doc.build(Story)
-    # response.write(buff.getvalue())
-    # buff.close()
-    # return response
