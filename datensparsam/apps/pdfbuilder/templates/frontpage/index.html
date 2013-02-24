@@ -1,0 +1,15 @@
+{% load url from future %}
+<!DOCTYPE html>
+<html lang="en_GB">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Datensparsam</title>
+    </head>
+    <body>
+        <form action="/pdfbuilder/" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit" />
+        </form>
+    </body>
+</html>
