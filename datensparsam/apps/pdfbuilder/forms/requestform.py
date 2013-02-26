@@ -19,8 +19,10 @@ class RequestForm(forms.Form):
         return self.cleaned_data
 
     def is_valid_zipcode(self, zipcode, state):
-        zipcode_exists = Zipcode.objects.get(zipcode=zipcode)
-        if not zipcode_exists:
+        try:
+            Zipcode.objects.get(zipcode=zipcode, state=state)
+            return True
+        except Zipcode.MultipleObjectsReturned:
+            return True
+        except Zipcode.DoesNotExist:
             return False
-
-        return True
