@@ -51,7 +51,7 @@
         "pk": 4, 
         "model": "pdfbuilder.form", 
         "fields": {
-            "partyclause": "Der Weitergabe meiner Daten an Parteien, politische Vereinigungen, W\u00e4hlergruppen, Listenvereinigungen und andere Tr\u00e4ger von Wahlvorschl\u00e4gen im Zusammenhang mit Wahlen zum Europ\u00e4ischen Parlament, zum Deutschen Bundestag, zum Landtag und im Zusammenhang mit Kommunalwahlen (\u00a7 33 Abs. 1 BbgMeldG). Der Weitergabe meiner Daten an Parteien, politische Vereinigungen und Listenvereinigungen im Zusammenhang mit Volksbegehren und Volksentscheiden (\u00a7 33 Abs. 2 BbgMeldG). Der Weitergabe meiner Daten an Parteien, politische Vereinigungen, W\u00e4hlergruppen, Listenvereinigungen und Vertreter im Zusammenhang mit B\u00fcrgerentscheiden (\u00a7 33 Abs. 3 BbgMeldG).", 
+            "partyclause": "Der Weitergabe meiner Daten an Parteien, politische Vereinigungen, W\u00e4hlergruppen, Listenvereinigungen und andere Tr\u00e4ger von Wahlvorschl\u00e4gen im Zusammenhang mit Wahlen zum Europ\u00e4ischen Parlament, zum Deutschen Bundestag, zum Landtag und im Zusammenhang mit Kommunalwahlen (\u00a7 33 Abs. 1 BbgMeldG) sowie im Zusammenhang mit Volksbegehren und Volksentscheiden (\u00a7 33 Abs. 2 BbgMeldG) und mit B\u00fcrgerentscheiden (\u00a7 33 Abs. 3 BbgMeldG).", 
             "militaryclause": "Gegen die Daten\u00fcbermittlung an das Bundesamt f\u00fcr Wehrverwaltung gem\u00e4\u00df \u00a7 18 Absatz 7 Melderechtsrahmengesetz.", 
             "directoryclause": "Der Weitergabe meines Namens und meiner Anschrift an Adressbuchverlage nach (\u00a7 33 Abs. 5 BbgMeldG).", 
             "autoqueryclause": "Der einfachen Melderegisterauskunft mittels automatisiertem Abruf \u00fcber das Internet (\u00a7 32a Abs. 2 BbgMeldG).", 
@@ -99,7 +99,7 @@
         "pk": 7, 
         "model": "pdfbuilder.form", 
         "fields": {
-            "partyclause": "Der Auskunftserteilung \u00fcber meine Meldedaten an Parteien, W\u00e4hlergruppen und andere Tr\u00e4ger von Wahlvorschl\u00e4gen im Zusammenhang mit Wahlen zu parlamentarischen und kommunalen Vertretungsk\u00f6rperschaften (z.B. bei Landtagswahlen) (\u00a7 35 Abs. 1 HMG). Der Auskunftserteilung \u00fcber meine Meldedaten an Tr\u00e4ger f\u00fcr Abstimmungen, B\u00fcrger- und Volksbegehren (\u00a7 35 Abs.2 HMG).", 
+            "partyclause": "Der Auskunftserteilung \u00fcber meine Meldedaten an Parteien, W\u00e4hlergruppen und andere Tr\u00e4ger von Wahlvorschl\u00e4gen im Zusammenhang mit Wahlen zu parlamentarischen und kommunalen Vertretungsk\u00f6rperschaften (z.B. bei Landtagswahlen) (\u00a7 35 Abs. 1 HMG) sowie im Zusammenhang mit Abstimmungen, B\u00fcrger- und Volksbegehren (\u00a7 35 Abs.2 HMG).", 
             "militaryclause": "", 
             "directoryclause": "Der Auskunftserteilung \u00fcber meine Meldedaten an Adressbuchverlage und Herausgeber \u00e4hnlichen Nachschlagewerke ( \u00a7 35 Abs. 4 HMG).", 
             "autoqueryclause": "Der Erteilung der Einfachen Melderegisterauskunft im Wege des automatisierten Abrufes \u00fcber das Internet (\u00a7 34a Abs. 2 HMG).", 
@@ -147,7 +147,7 @@
         "pk": 10, 
         "model": "pdfbuilder.form", 
         "fields": {
-            "partyclause": "Der Weitergabe meiner Daten an Parteien, W\u00e4hlergruppen und anderen Tr\u00e4gern von Wahlvorschl\u00e4gen im Zusammenhang mit Parlaments- und Kommunalwahlen (\u00a7 35 Abs.1 MG NRW). Der Weitergabe meiner Daten an Antragsteller und Parteien im Zusammenhang mit Volksbegehren und Volksentscheiden sowie mit B\u00fcrgerentscheiden (\u00a7 35 Abs.2 MG NRW).", 
+            "partyclause": "Der Weitergabe meiner Daten an Parteien, W\u00e4hlergruppen und anderen Tr\u00e4gern von Wahlvorschl\u00e4gen im Zusammenhang mit Parlaments- und Kommunalwahlen (\u00a7 35 Abs.1 MG NRW), mit Volksbegehren und Volksentscheiden sowie mit B\u00fcrgerentscheiden (\u00a7 35 Abs.2 MG NRW).", 
             "militaryclause": "", 
             "directoryclause": "", 
             "autoqueryclause": "Der Weitergabe meiner Daten im Wege des automatisierten Abrufs \u00fcber das Internet (\u00a7 34 Abs.1b MG NRW).", 
@@ -169,7 +169,7 @@
             "autoqueryclause": "Der Weitergabe meiner Daten im Rahmen einer Internetauskunft (\u00a7 34 Abs. 3 Satz 4 MG).", 
             "state": "Rheinland-Pfalz", 
             "religionclause": "Der Weitergabe meiner Daten an die Religionsgesellschaft meines Ehegatten, da ich nicht der Religionsgesellschaft meines Ehegatten angeh\u00f6re (\u00a7 32 Abs. 2 Meldgesetz).", 
-            "jubileeclause": "Der Weitergabe meiner Daten, wenn ich ein Altersjubil\u00e4um begehe und bitte um Einrichtung einer \u00dcbermittlungssperre nach \u00a7 35 Abs. 3 Meldegesetz. Der Weitergabe meiner Daten, wenn wir ein Ehejubil\u00e4um begehen und bitten um Einrichtung einer \u00dcbermittlungssperre nach \u00a7 35 Abs. 3 Meldegesetz.", 
+            "jubileeclause": "Der Weitergabe meiner Daten, wenn ich ein Alters- oder Ehejubil\u00e4um begehe und bitte um Einrichtung einer \u00dcbermittlungssperre nach \u00a7 35 Abs. 3 Meldegesetz.", 
             "miscellaneousclause": "", 
             "heading": "Antrag auf Einrichtung von \u00dcbermittlungssperren", 
             "directmarketingclause": ""
@@ -216,7 +216,7 @@
             "directoryclause": "Der Ver\u00f6ffentlichung meiner Daten in Adressb\u00fcchern und \u00e4hnlichen Nachschlagewerken oder der \u00dcbermittlung meiner Daten an Andere zum Zwecke der Herausgabe solcher Werke (\u00a7 33 Abs. 3 i.V.m. \u00a7 33 Abs. 4 S\u00e4chsMG).", 
             "autoqueryclause": "Der Weitergabe meiner Daten im Wege des automatisierten Abrufes \u00fcber das Internet (\u00a7 32 Abs. 4 S\u00e4chsMG).", 
             "state": "Sachsen", 
-            "religionclause": "Der Weitergabe meiner Daten an \u00f6ffentlich-rechtliche Religionsgesellschaften, der mein Ehepartner / Ehepartnerin / mein minderj\u00e4hriges Kind, meine Eltern (nur im Falle der Minderj\u00e4hrigkeit der/des Antragstellenden) angeh\u00f6ren \u2013 w\u00e4hrend ich diesen nicht angeh\u00f6re (\u00a7 30 Abs. 2 Satz 3 S\u00e4chsMG).", 
+            "religionclause": "Der Weitergabe meiner Daten an \u00f6ffentlich-rechtliche Religionsgesellschaften, der mein Ehepartner / Ehepartnerin / mein minderj\u00e4hriges Kind, meine Eltern angeh\u00f6ren \u2013 w\u00e4hrend ich diesen nicht angeh\u00f6re (\u00a7 30 Abs. 2 Satz 3 S\u00e4chsMG).", 
             "jubileeclause": "Der Weitergabe meiner Daten an Presse, Rundfunk und andere Medien zum Zwecke der Ver\u00f6ffentlichung von Altersjubilaren und Ehejubilaren (\u00a7 33 Abs. 2 i.V.m. \u00a7 33 Abs. 4 S\u00e4chsMG).", 
             "miscellaneousclause": "", 
             "heading": "Widerspruch gegen die Weitergabe von Daten durch die Meldebeh\u00f6rde", 

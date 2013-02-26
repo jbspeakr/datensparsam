@@ -1,16 +1,10 @@
-from datensparsam.apps.pdfbuilder.models import Municipality
-from datensparsam.apps.pdfbuilder.models import Recordsection
-from datensparsam.apps.pdfbuilder.models import Form
+from datensparsam.apps.pdfbuilder.models import Municipality, Recordsection, Form, Zipcode
 from django.contrib import admin
 from django import forms
 
 
 class MunicipalityAdmin(admin.ModelAdmin):
     list_display = ['name', 'zipcode']
-
-admin.site.register(Municipality, MunicipalityAdmin)
-
-admin.site.register(Recordsection)
 
 
 class FormModelForm(forms.ModelForm):
@@ -27,4 +21,8 @@ class FormModelForm(forms.ModelForm):
 class FormAdmin(admin.ModelAdmin):
     form = FormModelForm
 
+
+admin.site.register(Municipality, MunicipalityAdmin)
 admin.site.register(Form, FormAdmin)
+admin.site.register(Recordsection)
+admin.site.register(Zipcode)

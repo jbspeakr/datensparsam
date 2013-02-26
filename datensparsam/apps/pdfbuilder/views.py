@@ -18,7 +18,7 @@ from datensparsam.apps.pdfbuilder.forms import requestform
 
 def index(request):
     form = requestform.RequestForm()  # An unbound form
-    return render(request, 'frontpage/index.html', {
+    return render(request, 'pdfbuilder/index.html', {
         'form': form,
     })
 
@@ -44,7 +44,7 @@ def get_pdf(request):
     else:
         form = requestform.RequestForm()  # An unbound form
 
-    return render(request, 'frontpage/index.html', {
+    return render(request, 'pdfbuilder/index.html', {
         'form': form,
     })
 
