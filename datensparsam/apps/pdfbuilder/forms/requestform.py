@@ -11,3 +11,14 @@ class RequestForm(forms.Form):
     address = forms.CharField(max_length=200)
     zipcode = forms.CharField(max_length=6)
     city = forms.CharField(max_length=32)
+
+    def clean(self):
+        if not self.is_valid_zipcode(self.cleaned_data.get("zipcode"), self.cleaned_data.get("state")):
+            raise forms.ValidationError("Invalid zipcode.")
+        return self.cleaned_data
+
+    def is_valid_zipcode(self, zipcode, state):
+        if zipcode.__len__() < 5:
+            return False
+
+        return True

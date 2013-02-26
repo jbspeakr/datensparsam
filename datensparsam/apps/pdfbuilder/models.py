@@ -29,6 +29,16 @@ class Recordsection(models.Model):
         return self.address
 
 
+class Zipcode(models.Model):
+    ''' Postleitzahl '''
+    zipcode = models.CharField(max_length=6, primary_key=True)  # PLZ
+    state = models.CharField(max_length=48)  # Bundesland
+    city = models.CharField(max_length=48)  # Ort
+
+    def __unicode__(self):
+        return self.zipcode
+
+
 class Form(models.Model):
     ''' Uebermittlungssperre Formular '''
     state = models.CharField(max_length=48)  # Bundesland
