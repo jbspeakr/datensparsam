@@ -12,7 +12,7 @@ from django.http import HttpResponse
 
 from datensparsam.apps.pdfbuilder import models
 from datensparsam.apps.pdfbuilder.helpers import user as helper
-from datensparsam.apps.pdfbuilder.helpers import pdf
+from datensparsam.libs.pdf.reportlab_adaptor import SimplePdf
 from datensparsam.apps.pdfbuilder.forms import requestform
 
 
@@ -107,7 +107,7 @@ def setup_pdf_content(buff, form, user, recordsection):
         recordsection.zipcode + ' ' + recordsection.city
     ]
 
-    doc = pdf.SimplePdf(buff)
+    doc = SimplePdf(buff)
     doc.add_address(address_sender)
     doc.add_address(address_recipient)
     doc.add_heading(form.heading)
