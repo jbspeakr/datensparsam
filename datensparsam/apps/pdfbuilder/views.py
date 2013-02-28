@@ -111,7 +111,7 @@ def setup_pdf_content(buff, form, user, recordsection):
     doc.add_address(address_sender)
     doc.add_address(address_recipient)
     doc.add_heading(form.heading)
-    doc.add_paragraph('Hiermit widerspreche ich:', 0)
+    doc.add_paragraph('Mit Bezug auf das Recht auf informationelle Selbstbestimmung widerspreche ich hiermit:', 0)
 
     doc.add_bulleted_paragraph(form.religionclause)
     doc.add_bulleted_paragraph(form.partyclause)
@@ -123,7 +123,7 @@ def setup_pdf_content(buff, form, user, recordsection):
     doc.add_bulleted_paragraph(form.miscellaneousclause)
 
     doc.add_paragraph('Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.', 36)
-    doc.add_paragraph('Unterschrift der/des Antragstellerin/-stellers', 48)
+    doc.add_paragraph(user.firstname + ' ' + user.name + ' (Unterschrift)', 48)
     doc.add_paragraph(user.city + ', den ' + now.strftime("%d.%m.%Y"), 0)
 
     return doc

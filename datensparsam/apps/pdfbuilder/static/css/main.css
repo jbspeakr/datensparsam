@@ -93,21 +93,175 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+    font-size:17px;
+    line-height:24px;
+}
 
 
+/* title headers styles */
+h1, h2, h3, h4 {
+    font-family:'Oswald', Arial, Helvetica, sans-serif;
+    font-weight:400;
+}
+h1 {
+    font-size:40px;
+    line-height:44px;
+}
+h2 {
+    font-size:36px;
+    line-height:40px;
+}
+h3 {
+    font-size:30px;
+}
+h4 {
+    font-size:26px;
+    line-height:30px;
+}
+h5 {
+    font-size:22px;
+    line-height:26px;
+    letter-spacing:-1px;
+}
+h6 {
+    font-size:19px;
+    line-height:23px;
+    letter-spacing:-1px;
+}
+input {
+    font-family:Georgia, "Times New Roman", Times, serif;
+    font-style:italic;
+}
+.clearboth {
+    clear:both;
+}
+.capitalization { /* defines a class that makes the font 13px and uppercase */
+    text-transform:uppercase;
+    font-size:13px;
+    line-height:22px;
+}
+
+/* header section styles */
+.header-wrapper {
+    height:300px;
+    text-align:center;
+}
 
 
+.title-uline {
+    display:inline-block;
+    float:none;
+    margin:0 0 20px 0;
+    padding:0 20px 12px 20px;
+}
+
+#newslettersubmit { /* newsletter button */
+    position:absolute;
+    top:3px;
+    right:3px;
+    height:36px;
+    display:block;
+    font-family:Arial, Helvetica, sans-serif;
+    text-transform:uppercase;
+    font-style:normal;
+    padding:8px 22px 8px 22px;
+    font-size:13px;
+    line-height:20px;
+    letter-spacing:2px;
+    border:0 none;
+
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    border-radius:8px;
+}
+
+/* ------------------- a couple of extra elements styles ------------------- */
+.main-content .container { /* main body top / bottom paddings */
+    padding:36px 0 44px 0;
+}
+.centerblock { /* center aligned text block */
+    float:left;
+    width:100%;
+    text-align:center;
+    margin:22px 0 10px 0;
+}
+.intro-text {
+    font-size:20px;
+    font-family:Georgia, "Times New Roman", Times, serif;
+    font-style:italic;
+    line-height:28px;
+}
+.content-line, .fline { /* line separator - for content and footer */
+    display:block;
+    margin-bottom:30px;
+    height:4px;
+    line-height:0;
+    overflow:hidden;
+}
 
 
+/* ------------------- service blocks styles ------------------- */
+.service-block {
+    float:left;
+    width:100%;
+    margin:10px 0 18px 0;
+    padding:26px 0 16px 0;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    border-radius:8px;
+}
+.service-img {
+    float:left;
+    margin:0 18px 0 20px;
+}
+.service-content {
+    float:left;
+/*  width:444px; */
+    width:414px;
+}
+.service-content h4 {
+    margin:2px 0 6px 0;
+}
+.service-block {
+    border:1px solid #d8e1e6;
+}
 
+#newsletterform ol{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
+#newsletterform li {
+  float: left;
+  padding: 10px;
+}
+#newsletterform li.last {
+  float: none;
+  clear: both;
+  text-align: right;
+}
 
-
-
-
-
-
-
+/* ------------------- clients section styles ------------------- */
+.clients-wrapper {
+    padding:20px 0 20px 0;
+}
+.clients-list, .clients-list li {
+    list-style:none;
+}
+.clients-list li {
+    float:left;
+    margin:0 0 0 50px;
+}
+.clients-list {
+    float:right;
+    margin:10px 0 10px 0;
+}
+.clients-wrapper {
+    background:#f6f8f9;
+    border-top:1px solid #d8e1e6;
+}
 
 /* ==========================================================================
    Helper classes

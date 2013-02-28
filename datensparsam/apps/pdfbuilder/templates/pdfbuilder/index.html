@@ -11,8 +11,9 @@
         <meta name="viewport" content="width=device-width">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/normalize.css">
+        <link href="http://fonts.googleapis.com/css?family=Oswald:400&subset=latin,latin-ext" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
         <script src="{{ STATIC_URL }}js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
@@ -22,16 +23,105 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <p>Hello world! This is Datensparsam.de</p>
-        <form action="/pdfbuilder/" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Submit" />
-        </form>
+        <div class="header-wrapper">
+            <div class="container">
+                <div id="logo">
+                    <a href="#"><img alt="Datensparsam: Übermittlungssperren beim Meldeamt" title="Übermittlungssperre - Datensparsam" src="{{ STATIC_URL }}img/logo.png"></a>
+                    <h1>Datensparsam</h1>
+                </div>
+                <div class="cs-title">
+                    <p class="intro-text">Deutschland's erster Generator für Übermittungssperren</p>
+                </div>
+            </div>
+        </div>
 
+        <div class="main-content">
+            <div class="container">
+                <div class="centerblock">
+                    <h2 class="title-uline">Antrag auf Übermittlungssperre</h2>
+                    <p class="intro-text">Alle reden vom Datenschutz und von der Datensparsamkeit<br />doch kaum jemand macht vom Recht auf informationelle Selbstbestimmung gebrauch.<br />
+                    Dabei ist es ganz einfach:</p>
+                </div>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="service-block">
+                            <img class="service-img" alt="" src="{{ STATIC_URL }}img/form.png">
+                            <div class="service-content">
+                                <h4>#1 Anschrift eingeben</h4>
+                                <p>Für deinen persönlichen Übermittlungssperreantrag benötigen wir deine aktuelle Wohnanschrift. Keine Angst, deine Daten werden weder gespeichert noch geben wir sie weiter.</p>
+                            </div>
+                        </div>
+                        <div class="service-block">
+                            <img class="service-img" alt="" src="{{ STATIC_URL }}img/print.png">
+                            <div class="service-content">
+                                <h4>#2 Formular ausdrucken</h4>
+                                <p>Wurde dein Antrag auf Übermittlungssperre erstellt, musst du ihn ausdrucken. Leider erlauben die Meldeämter noch keine Übermittlung per E-Mail - wir arbeiten daran ;-)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="service-block">
+                            <img class="service-img" alt="" src="{{ STATIC_URL }}img/sign.png">
+                            <div class="service-content">
+                                <h4>#3 Unterschreiben</h4>
+                                <p>Damit dein persönlicher Antrag auf Übermittlungssperre beim Amt rechtsgültig anerkannt wird, musst du ihn anschließend handschriftlich unterschreiben. </p>
+                            </div>
+                        </div>
+                        <div class="service-block">
+                            <img class="service-img" alt="" src="{{ STATIC_URL }}img/letter.png">
+                            <div class="service-content">
+                                <h4>#4 Abschicken</h4>
+                                <p>Jetzt das Schreiben einfach in einen Briefumschlag, ausreichend frankieren und ab damit in den nächsten Postkasten!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearboth"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="newsletter-wrapper">
+            <div class="container">
+                <div class="centerblock">
+                        <h3 class="title-uline">Übermittlungssperren einrichten</h3>
+                        <p class="intro-text">Datensparsamkeit fängt beim Einwohnermeldeamt an.<br />Jetzt persönliche Übermittlungssperren einrichten!</p>
+                    </div>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <h3>Formular erstellen</h3>
+                        <p>
+                            Ohne betroffene Personen darüber zu informiert geben deutsche Einwohnermeldeämter persönliche Meldedaten an bspw. Behörden, Firmen oder Adressbuchverlage weiter - ganz legal. Um ihr Recht auf informationelle Selbstbestimmung wahrnehmen zu können und den Adresshandel einzudämmen, müssen Bürgerinnen und Bürger leider noch immer selbst aktiv werden. Eine Möglichkeit dies zu tun besteht in der Beantragung von Übermittlungssperren. Wir helfen dabei, diese zu erstellen!</p>
+                    </div>
+                    <div class="span6 newsletter-parent">
+                        <form id="newsletterform" action="/pdfbuilder/" method="post">
+                            <ol>
+                            {% csrf_token %}
+                            {{ form.as_ul }}
+                            <li><input type="submit" value="Formular erstellen" /></li>
+                        </ol>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clients-wrapper">
+            <div class="container">
+                <div class="row-fluid">
+                    <div class="span2">
+                        <h3>Unterstützer</h3>
+                    </div>
+                    <div class="span10">
+                        <ul class="clients-list">
+                            <li><img alt="logo 1" src="{{ STATIC_URL }}img/open-knowledge-foundation.png"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
         <script src="{{ STATIC_URL }}js/plugins.js"></script>
-        <script src="{{ STATIC_URL }}js/main.js"></script>
+        <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
     </body>
 </html>
