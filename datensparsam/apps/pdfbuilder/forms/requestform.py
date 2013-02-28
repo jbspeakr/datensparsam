@@ -7,8 +7,8 @@ from datensparsam.apps.pdfbuilder.models import Zipcode
 
 class RequestForm(forms.Form):
     state = forms.ModelChoiceField(queryset=State.objects.all(), label='Dein Bundesland')
-    name = forms.CharField(max_length=32, label='Dein Vorname')
-    firstname = forms.CharField(max_length=32, label='Dein Nachname')
+    name = forms.CharField(max_length=32, label='Dein Nachname')
+    firstname = forms.CharField(max_length=32, label='Dein Vorname')
     address = forms.CharField(max_length=200, label='Deine Anschrift')
     zipcode = forms.IntegerField(label='Deine Postleitzahl')
     city = forms.CharField(max_length=32, label='Deine Stadt')

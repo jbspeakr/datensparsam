@@ -148,12 +148,12 @@ input {
     text-align:center;
 }
 
-
 .title-uline {
     display:inline-block;
     float:none;
     margin:0 0 20px 0;
     padding:0 20px 12px 20px;
+    border-bottom: 4px solid #ededed;
 }
 
 #newslettersubmit { /* newsletter button */
@@ -246,6 +246,9 @@ input {
 /* ------------------- clients section styles ------------------- */
 .clients-wrapper {
     padding:20px 0 20px 0;
+    background:#f6f8f9;
+    border-top:1px solid #d8e1e6;
+    margin-top: 20px;
 }
 .clients-list, .clients-list li {
     list-style:none;
@@ -257,10 +260,6 @@ input {
 .clients-list {
     float:right;
     margin:10px 0 10px 0;
-}
-.clients-wrapper {
-    background:#f6f8f9;
-    border-top:1px solid #d8e1e6;
 }
 
 /* ==========================================================================
