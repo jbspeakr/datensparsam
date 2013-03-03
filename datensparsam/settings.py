@@ -30,6 +30,10 @@ TIME_ZONE = 'Europe/Berlin'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'de-DE'
 
+LOCALE_PATHS = (
+    "/home/jbspeakr/Dev/Repos/datensparsam/locale",
+)
+
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
