@@ -227,24 +227,31 @@ input {
     border:1px solid #d8e1e6;
 }
 
-#newsletterform ol{
+#letterform ol{
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-#newsletterform li {
+#letterform li {
   float: left;
   padding: 10px;
 }
-#newsletterform li.last {
+#letterform li.last {
   float: none;
   clear: both;
   text-align: right;
 }
+ul.navi{
+    margin: 2em 0 0 0;
+}
+ul.navi li {
+    display: inline;
+    margin-right: 2em;
+}
 
 /* ------------------- clients section styles ------------------- */
-.clients-wrapper {
+#footer {
     padding:20px 0 20px 0;
     background:#f6f8f9;
     border-top:1px solid #d8e1e6;

@@ -9,6 +9,7 @@ except ImportError:
 import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.decorators.http import require_POST
 
 from datensparsam.apps.pdfbuilder import models
 from datensparsam.apps.pdfbuilder.helpers import user as helper
@@ -23,6 +24,7 @@ def index(request):
     })
 
 
+@require_POST
 def get_pdf(request):
     if request.method == 'POST':
         form = requestform.RequestForm(request.POST)
