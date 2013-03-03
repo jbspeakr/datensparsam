@@ -242,6 +242,11 @@ input {
   clear: both;
   text-align: right;
 }
+
+small.error_text{
+    color: #A10F26;
+    font-size: 0.6em;
+}
 ul.navi{
     margin: 2em 0 0 0;
 }

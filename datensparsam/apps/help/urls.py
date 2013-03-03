@@ -7,5 +7,7 @@ urlpatterns = patterns(
     # url(r'^$', 'datensparsam.views.home', name='home'),
     # url(r'^datensparsam/', include('datensparsam.foo.urls')),
     #url(r'^$', 'index', {}, name='index'),
-    #url(r'^uebermittlungssperre/', 'get_pdf', {}, name='pdfbuilder'),
+    url(r'^ueber-uns/', 'about', {}, name='help-about'),
+    url(r'^datenschutz/', 'privacy', {}, name='help-privacy'),
+    url(r'^faq/', 'faq', {}, name='help-faq'),
 )

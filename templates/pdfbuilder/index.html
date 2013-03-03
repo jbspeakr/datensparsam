@@ -1,44 +1,6 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta http-equiv="Content-Language" content="de" />
-        <meta name="language" content="de" />
-        <title>Datensparsam leben - Übermittlungssperren einrichten!</title>
-        <meta name="description" content="Einfach Datensparsam: Mit Übermittlungssperren vom Recht auf informationelle Selbstbestimmung gebrauch machen und private Daten schützen!" />
-        <meta name="viewport" content="width=device-width">
-        <link rel="shortcut icon" type="image/ico" href="{{ STATIC_URL }}favicon.ico" />
-        <link rel="apple-touch-icon" href="{{ STATIC_URL }}icon.png" />
-        <link type="text/plain" rel="author" href="{{ STATIC_URL }}humans.txt" />
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link href="http://fonts.googleapis.com/css?family=Oswald:400&subset=latin,latin-ext" type="text/css" rel="stylesheet">
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
-        <script src="{{ STATIC_URL }}js/vendor/modernizr-2.6.2.min.js"></script>
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-
-        <!-- Add your site or application content here -->
-        <header class="header-wrapper">
-            <div class="container">
-                <div id="logo">
-                    <a href="#"><img alt="Datensparsam: Übermittlungssperren beim Meldeamt" title="Übermittlungssperre - Datensparsam" src="{{ STATIC_URL }}img/logo.png"></a>
-                    <h1>Datensparsam</h1>
-                </div>
-                <div class="cs-title">
-                    <p class="intro-text">Deutschland's erster Generator für Übermittungssperren</p>
-                </div>
-            </div>
-        </header>
-
+{% extends "base.html" %}
+{% load i18n %}
+    {% block content %}
         <section class="main-content">
             <div class="container">
                 <div class="centerblock">
@@ -100,45 +62,29 @@
                         <form id="letterform" action="/form/uebermittlungssperre/" method="post">
                             <ol>
                             {% csrf_token %}
-                            {{ form.as_ul }}
-                            <li><input type="submit" value="Formular erstellen" /></li>
+                            {% if form %}
+                                {% for field in form %}
+                                     <li><label for="{{ field.auto_id }}">{{ field.label }}{% if field.field.required %}*{% endif %}</label>
+                                        {{ field }}
+                                        {% if field.errors %}
+                                            {% for error in field.errors %}
+                                                <br /><small class="error_text">{{error}}</small>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                            <li><input type="submit" value="Formular erstellen" />
+                                 {% if form.non_field_errors %}
+                                    {% for error in form.non_field_errors %}
+                                        <br /><small class="error_text">{% trans error %}</small>
+                                    {% endfor %}
+                                {% endif %}
+                            </li>
                         </ol>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
-
-        <div class="navigation">
-            <div class="container">
-                <div class="row-fluid">
-                    <ul class="span12 unstyled pagination-centered navi">
-                        <li><a href="" title="">Über uns</a></li>
-                        <li><a href="" title="">Datenschutzerklärung</a></li>
-                        <li><a href="" title="">FAQ</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <footer id="footer">
-            <div class="container">
-                <div class="row-fluid">
-                    <div class="span2">
-                        <h3>Unterstützer</h3>
-                    </div>
-                    <div class="span10">
-                        <ul class="clients-list">
-                            <li><img alt="Openeverything.eu - Open Data Blog" src="{{ STATIC_URL }}img/openeverything.png"></li>
-                            <li><img alt="Open Knownledge Foundation, OKF" src="{{ STATIC_URL }}img/open-knowledge-foundation.png"></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
-        <script src="{{ STATIC_URL }}js/plugins.js"></script>
-        <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-    </body>
-</html>
+    {% endblock %}
