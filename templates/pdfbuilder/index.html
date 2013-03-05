@@ -64,20 +64,20 @@
                             {% csrf_token %}
                             {% if form %}
                                 {% for field in form %}
-                                     <li><label for="{{ field.auto_id }}">{{ field.label }}{% if field.field.required %}*{% endif %}</label>
+                                     <li><label class="control-label" for="{{ field.auto_id }}">{{ field.label }}{% if field.field.required %}*{% endif %}</label>
                                         {{ field }}
                                         {% if field.errors %}
                                             {% for error in field.errors %}
-                                                <br /><small class="error_text">{{error}}</small>
+                                                <br /><span class="text-error">{{error}}</span>
                                             {% endfor %}
                                         {% endif %}
                                     </li>
                                 {% endfor %}
                             {% endif %}
-                            <li><input type="submit" value="Formular erstellen" />
+                            <li><input class="btn" type="submit" value="Formular erstellen" />
                                  {% if form.non_field_errors %}
                                     {% for error in form.non_field_errors %}
-                                        <br /><small class="error_text">{% trans error %}</small>
+                                        <br /><small class="text-error">{% trans error %}</small>
                                     {% endfor %}
                                 {% endif %}
                             </li>

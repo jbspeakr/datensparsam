@@ -97,8 +97,6 @@ body {
     font-size:17px;
     line-height:24px;
 }
-
-
 /* title headers styles */
 h1, h2, h3, h4 {
     font-family:'Oswald', Arial, Helvetica, sans-serif;
@@ -200,7 +198,6 @@ input {
     overflow:hidden;
 }
 
-
 /* ------------------- service blocks styles ------------------- */
 .service-block {
     float:left;
@@ -243,8 +240,7 @@ input {
   text-align: right;
 }
 
-small.error_text{
-    color: #A10F26;
+.text-error{
     font-size: 0.6em;
 }
 ul.navi{
