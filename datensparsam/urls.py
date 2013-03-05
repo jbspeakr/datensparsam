@@ -12,8 +12,8 @@ urlpatterns = patterns(
     # url(r'^datensparsam/', include('datensparsam.foo.urls')),
     # url(r'^$', 'index', {}, name='home'),
     url(r'^$', include('datensparsam.apps.pdfbuilder.urls')),
-    url(r'^form/', include('datensparsam.apps.pdfbuilder.urls')),
-    url(r'^hilfe/', include('datensparsam.apps.help.urls')),
+    #url(r'^form/', include('datensparsam.apps.pdfbuilder.urls')),
+    url(r'^hilfe/', include('datensparsam.apps.pdfbuilder.sub_urls')),
     # url(r'^pdfbuilder/', pdfbuilder.get_pdf, {}, name='pdfbuilder'),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
