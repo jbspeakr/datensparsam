@@ -145,6 +145,9 @@ input {
     height:300px;
     text-align:center;
 }
+#logo{
+    margin-top: 3em;
+}
 
 .title-uline {
     display:inline-block;
@@ -210,12 +213,11 @@ input {
 }
 .service-img {
     float:left;
-    margin:0 18px 0 20px;
+    margin: 18px 18px 18px 0;
 }
 .service-content {
     float:left;
-/*  width:444px; */
-    width:414px;
+    padding: 0 1em;
 }
 .service-content h4 {
     margin:2px 0 6px 0;
