@@ -16,8 +16,9 @@ class RequestForm(forms.Form):
     city = forms.CharField(max_length=32, label='Deine Stadt', widget=forms.TextInput(attrs={'placeholder': 'Berlin'}))
 
     def clean(self):
-        if not self.cleaned_data.get("zipcode").__len__() == 5:
-            raise forms.ValidationError('Wrong zipcode length.')
+        if self.cleaned_data.get("zipcode"):
+            if not self.cleaned_data.get("zipcode").__len__() == 5:
+                raise forms.ValidationError('Wrong zipcode length.')
 
         if not self.is_valid_zipcode(self.cleaned_data.get("zipcode"), self.cleaned_data.get("state")):
             raise forms.ValidationError(_('Zipcode not in state.'))

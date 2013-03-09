@@ -32,9 +32,9 @@ def index(request):
                 request.POST['city']
             )
 
-            form = models.Form.objects.get(id=stateID)
-            recordsection = query_recordsection(zipcode, city, form.state)
-            return create_pdf_response(recordsection, user, form)
+            form_entry = models.Form.objects.get(id=stateID)
+            recordsection = query_recordsection(zipcode, city, form_entry.state)
+            return create_pdf_response(recordsection, user, form_entry)
     else:
         form = requestform.RequestForm()  # An unbound form
 
@@ -129,8 +129,8 @@ def setup_pdf_content(buff, form, user, recordsection):
     doc.add_bulleted_paragraph(form.militaryclause)
     doc.add_bulleted_paragraph(form.miscellaneousclause)
 
-    doc.add_paragraph('Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.', 0)
-    doc.add_paragraph('Sollte Sie nicht zuständig sein, bitte ich um Weiterleitung meines Antrags an die zuständige Stelle.', 36)
+    doc.add_paragraph('Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.', 36)
+    doc.add_paragraph('Sollte Sie nicht zuständig sein, bitte ich um Weiterleitung meines Antrags an die zuständige Stelle.', 0)
     doc.add_paragraph(user.firstname + ' ' + user.name + ' (Unterschrift)', 48)
     doc.add_paragraph(user.city + ', den ' + now.strftime("%d.%m.%Y"), 0)
 
