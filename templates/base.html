@@ -1,13 +1,10 @@
 {% load i18n %}<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html lang="de" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="de" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="de" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="de" class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta http-equiv="Content-Language" content="de" />
-        <meta name="language" content="de" />
         <title>Datensparsam leben - Übermittlungssperren einrichten!</title>
         <meta name="description" content="Einfach Datensparsam: Mit Übermittlungssperren vom Recht auf informationelle Selbstbestimmung gebrauch machen und private Daten schützen!" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +25,7 @@
         <meta property="og:image" content="{{ STATIC_URL }}img/logo.png" />
         <link rel="author" href="https://plus.google.com/u/0/114762336236844514551/posts" />
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link href="https://fonts.googleapis.com/css?family=Oswald:400&subset=latin,latin-ext" type="text/css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Oswald:400&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet">
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
@@ -85,5 +82,20 @@
         <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
         <script src="{{ STATIC_URL }}js/plugins.js"></script>
         <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.berlinpiraten.de/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "2"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
     </body>
 </html>
