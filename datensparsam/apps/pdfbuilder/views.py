@@ -66,6 +66,7 @@ def query_recordsection(zipcode, city, state):
             record_section_queryset = models.Recordsection.objects.filter(
                 city__startswith=city
             )
+            record_section_entry = None
             for entry in record_section_queryset:
                 if entry.municipality.state == state:
                     record_section_entry = entry
