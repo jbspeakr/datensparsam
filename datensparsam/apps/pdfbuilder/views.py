@@ -55,10 +55,10 @@ def query_recordsection(zipcode, city, state):
             municipality=municipality_entry.key
         )
     except models.Municipality.DoesNotExist:
+        # If there is no corresponding municipality,
+        # there seems to be one record section for a bunch of zipcodes,
+        # like for Berlin: city == state
         try:
-            # If there is no corresponding municipality,
-            # there seems to be one record section for a bunch of zipcodes,
-            # like for Berlin: city == state
             record_section_entry = models.Recordsection.objects.get(
                 city=state
             )
@@ -72,6 +72,16 @@ def query_recordsection(zipcode, city, state):
             record_section_entry = models.Recordsection.objects.filter(
                 city=state
             )[0]
+    except models.Municipality.MultipleObjectsReturned:
+        # If there are multiple municipalities, choose first one
+        municipality_entry = models.Municipality.objects.filter(
+            zipcode=zipcode,
+            state=state
+        )[0]
+        # If there is a municipality, get corresponding record section
+        record_section_entry = models.Recordsection.objects.get(
+            municipality=municipality_entry.key
+        )
     except models.Recordsection.DoesNotExist:
         # No corresponding record section could be found at all
         raise Http404
