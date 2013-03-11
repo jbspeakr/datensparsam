@@ -8,7 +8,7 @@ except ImportError:
 
 import datetime
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 
 from datensparsam.apps.pdfbuilder import models
 from datensparsam.apps.pdfbuilder.helpers import user as helper
@@ -22,6 +22,7 @@ def index(request):
         if form.is_valid():
             zipcode = request.POST['zipcode']
             stateID = request.POST['state']
+            city = request.POST['city']
 
             user = helper.User(
                 request.POST['name'],
@@ -31,9 +32,9 @@ def index(request):
                 request.POST['city']
             )
 
-            form = models.Form.objects.get(id=stateID)
-            recordsection = query_recordsection(zipcode, form.state)
-            return create_pdf_response(recordsection, user, form)
+            form_entry = models.Form.objects.get(id=stateID)
+            recordsection = query_recordsection(zipcode, city, form_entry.state)
+            return create_pdf_response(recordsection, user, form_entry)
     else:
         form = requestform.RequestForm()  # An unbound form
 
@@ -42,27 +43,40 @@ def index(request):
     })
 
 
-def query_recordsection(zipcode, state):
-    municipalityQuerySet = models.Municipality.objects.filter(
-        zipcode=zipcode,
-        state=state
-    )
-
-    if not municipalityQuerySet:
-        recordsectionuerySet = models.Recordsection.objects.filter(
-            city=state
+def query_recordsection(zipcode, city, state):
+    try:
+        # Get corresponding municipality
+        municipality_entry = models.Municipality.objects.get(
+            zipcode=zipcode,
+            state=state
         )
-
-    else:
-        recordsectionuerySet = models.Recordsection.objects.filter(
-            municipality=municipalityQuerySet[0].key
+        # If there is a municipality, get corresponding record section
+        record_section_entry = models.Recordsection.objects.get(
+            municipality=municipality_entry.key
         )
+    except models.Municipality.DoesNotExist:
+        try:
+            # If there is no corresponding municipality,
+            # there seems to be one record section for a bunch of zipcodes,
+            # like for Berlin: city == state
+            record_section_entry = models.Recordsection.objects.get(
+                city=state
+            )
+        except models.Recordsection.DoesNotExist:
+            record_section_entry = models.Recordsection.objects.filter(
+                city=city
+            )[0]
+        except models.Recordsection.MultipleObjectsReturned:
+            # If there are more than just one record section,
+            # choose the first one you can get
+            record_section_entry = models.Recordsection.objects.filter(
+                city=state
+            )[0]
+    except models.Recordsection.DoesNotExist:
+        # No corresponding record section could be found at all
+        raise Http404
 
-    if not recordsectionuerySet:
-        # return error message
-        return "No Recordsection available"
-    else:
-        return recordsectionuerySet[0]
+    return record_section_entry
 
 
 def create_pdf_response(recordsection, user, form):
@@ -116,6 +130,7 @@ def setup_pdf_content(buff, form, user, recordsection):
     doc.add_bulleted_paragraph(form.miscellaneousclause)
 
     doc.add_paragraph('Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.', 36)
+    doc.add_paragraph('Sollte Sie nicht zuständig sein, bitte ich um Weiterleitung meines Antrags an die zuständige Stelle.', 0)
     doc.add_paragraph(user.firstname + ' ' + user.name + ' (Unterschrift)', 48)
     doc.add_paragraph(user.city + ', den ' + now.strftime("%d.%m.%Y"), 0)
 

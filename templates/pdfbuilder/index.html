@@ -61,7 +61,7 @@
                     <div class="span6">
                         <form id="letterform" action="/" method="post">
                             <ol>
-                            {% csrf_token %}
+                            
                             {% if form %}
                                 {% for field in form %}
                                      <li><label class="control-label" for="{{ field.auto_id }}">{{ field.label }}{% if field.field.required %}*{% endif %}</label>
@@ -81,6 +81,7 @@
                                     {% endfor %}
                                 {% endif %}
                             </li>
+				<li>{% csrf_token %}</li>
                         </ol>
                         </form>
                     </div>

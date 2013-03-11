@@ -31,7 +31,7 @@ class Recordsection(models.Model):
 
 class Zipcode(models.Model):
     ''' Postleitzahl '''
-    zipcode = models.CharField(max_length=6, primary_key=True)  # PLZ
+    zipcode = models.CharField(max_length=6)  # PLZ
     state = models.CharField(max_length=48)  # Bundesland
     city = models.CharField(max_length=128)  # Ort
 
