@@ -1,4 +1,8 @@
-datensparsam
+Datensparsam.de
 ============
 
-Übermittlungssperre tool
+Datensparsam.de is a tool for German citizen allowing them to create personal application forms 
+for opt-out their private and personal data at governmental record sections.
+
+This Python- and Django-based civic app was mainly planned and implemented by Jan Brennenstuhl 
+during the international Open-Data-Day 2013 in Berlin.
