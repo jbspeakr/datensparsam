@@ -82,21 +82,19 @@
         <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
         <script src="{{ STATIC_URL }}js/plugins.js"></script>
         <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(["setDoNotTrack", true]);
-  _paq.push(["trackPageView"]);
-  _paq.push(["enableLinkTracking"]);
+        <script type="text/javascript">
+          var _paq = _paq || [];
+          _paq.push(["setDoNotTrack", true]);
+          _paq.push(["trackPageView"]);
+          _paq.push(["enableLinkTracking"]);
 
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://jbr.norma.uberspace.de/piwik/";
-    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-    _paq.push(["setSiteId", "2"]);
-    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<!-- End Piwik Code -->
+          (function() {
+            var u=(("https:" == document.location.protocol) ? "https" : "http") + "://jbr.norma.uberspace.de/piwik/";
+            _paq.push(["setTrackerUrl", u+"piwik.php"]);
+            _paq.push(["setSiteId", "2"]);
+            var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+            g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+          })();
+        </script>
     </body>
 </html>

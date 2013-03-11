@@ -50,20 +50,20 @@
             <div class="container">
                 <div class="centerblock">
                         <h3 class="title-uline">Übermittlungssperren einrichten</h3>
-                        <p class="intro-text">Datensparsamkeit fängt beim Einwohnermeldeamt an.<br />Jetzt persönliche Übermittlungssperren einrichten!</p>             
-</div>
+                        <p class="intro-text">Datensparsamkeit fängt beim Einwohnermeldeamt an.<br />Jetzt persönliche Übermittlungssperren einrichten!</p>
+                </div>
                 <div class="row-fluid">
                     <div class="span6">
                         <h3>Formular erstellen</h3>
                         <p>
                             Ohne betroffene Personen darüber zu informiert geben deutsche Einwohnermeldeämter persönliche Meldedaten an bspw. Behörden, Firmen oder Adressbuchverlage weiter - ganz legal. Um ihr <a href="http://de.wikipedia.org/wiki/Informationelle_Selbstbestimmung" title="Informationen zur informationellen Selbstbestimmung">Recht auf informationelle Selbstbestimmung</a> wahrnehmen zu können und den Adresshandel einzudämmen, müssen Bürgerinnen und Bürger leider noch immer selbst aktiv werden. Eine Möglichkeit dies zu tun, besteht in der Beantragung von Übermittlungssperren. Wir helfen dabei, diese zu erstellen!</p>
-<p><a href="https://flattr.com/thing/1170647/Datensparsam-de" target="_blank">
-<img src="https://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></p>
+                            <p><a href="https://flattr.com/thing/1170647/Datensparsam-de" target="_blank">
+                            <img src="https://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></p>
                     </div>
                     <div class="span6">
                         <form id="letterform" action="https://www.datensparsam.de/" method="post">
                             <ol>
-                            
+
                             {% if form %}
                                 {% for field in form %}
                                      <li><label class="control-label" for="{{ field.auto_id }}">{{ field.label }}{% if field.field.required %}*{% endif %}</label>
