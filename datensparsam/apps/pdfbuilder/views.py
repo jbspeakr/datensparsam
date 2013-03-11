@@ -63,9 +63,18 @@ def query_recordsection(zipcode, city, state):
                 city=state
             )
         except models.Recordsection.DoesNotExist:
-            record_section_entry = models.Recordsection.objects.filter(
-                city=city
-            )[0]
+            record_section_queryset = models.Recordsection.objects.filter(
+                city__icontains=city
+            )
+            for entry in record_section_queryset:
+                if entry.municipality.state == state:
+                    record_section_entry = entry
+                    break
+
+            if not record_section_entry:
+                record_section_entry = record_section_queryset = models.Recordsection.objects.filter(
+                    city__icontains=city
+                )[0]
         except models.Recordsection.MultipleObjectsReturned:
             # If there are more than just one record section,
             # choose the first one you can get
