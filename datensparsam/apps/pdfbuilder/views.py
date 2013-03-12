@@ -9,6 +9,7 @@ except ImportError:
 import datetime
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
+from django.utils.translation import ugettext_lazy as _
 
 from datensparsam.apps.pdfbuilder import models
 from datensparsam.apps.pdfbuilder.helpers import user as helper
@@ -138,7 +139,7 @@ def setup_pdf_content(buff, form, user, recordsection):
     doc.add_address(address_sender)
     doc.add_address(address_recipient)
     doc.add_heading(form.heading)
-    doc.add_paragraph('Mit Bezug auf das Recht auf informationelle Selbstbestimmung widerspreche ich hiermit:', 0)
+    doc.add_paragraph(_(u'Contradiction intro'), 0)
 
     doc.add_bulleted_paragraph(form.religionclause)
     doc.add_bulleted_paragraph(form.partyclause)
@@ -149,9 +150,9 @@ def setup_pdf_content(buff, form, user, recordsection):
     doc.add_bulleted_paragraph(form.militaryclause)
     doc.add_bulleted_paragraph(form.miscellaneousclause)
 
-    doc.add_paragraph('Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist.', 36)
-    doc.add_paragraph('Sollte Sie nicht zuständig sein, bitte ich um Weiterleitung meines Antrags an die zuständige Stelle.', 0)
-    doc.add_paragraph(user.firstname + ' ' + user.name + ' (Unterschrift)', 48)
-    doc.add_paragraph(user.city + ', den ' + now.strftime("%d.%m.%Y"), 0)
+    doc.add_paragraph(_(u'Request for Confirmation'), 36)
+    doc.add_paragraph(_(u'Request for Corwarding'), 0)
+    doc.add_paragraph(('%s %s (%s)') % (user.firstname, user.name, _(u'Signature')), 48)
+    doc.add_paragraph(('%s, %s') % (user.city, now.strftime("%d.%m.%Y")), 0)
 
     return doc

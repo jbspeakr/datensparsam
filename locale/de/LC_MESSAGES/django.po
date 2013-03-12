@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-03 15:17+0100\n"
+"POT-Creation-Date: 2013-03-12 14:04+0100\n"
 "PO-Revision-Date: 2013-03-03 14:56+0100\n"
 "Last-Translator: Jan Brennenstuhl <jan.brennenstuhl@okfn.org>\n"
 "Language-Team: OKF-DE <postmaster@datensparsam.de>\n"
@@ -18,6 +18,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: datensparsam/apps/pdfbuilder/forms/requestform.py:20
+#: datensparsam/apps/pdfbuilder/views.py:142
+msgid "Contradiction intro"
+msgstr "Mit Bezug auf das Recht auf informationelle Selbstbestimmung widerspreche ich hiermit:"
+
+#: datensparsam/apps/pdfbuilder/views.py:153
+msgid "Request for Confirmation"
+msgstr "Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist."
+
+#: datensparsam/apps/pdfbuilder/views.py:154
+msgid "Request for Corwarding"
+msgstr "Sollten Sie nicht zuständig sein, bitte ich um Weiterleitung meines Antrags an die zuständige Stelle."
+
+#: datensparsam/apps/pdfbuilder/views.py:155
+msgid "Signature"
+msgstr "Unterschrift"
+
+#: datensparsam/apps/pdfbuilder/forms/requestform.py:21
+msgid "Wrong zipcode length."
+msgstr "Postleitzahl ist zu kurz."
+
+#: datensparsam/apps/pdfbuilder/forms/requestform.py:24
 msgid "Zipcode not in state."
 msgstr "Die Postleitzahl liegt nicht im angegebenen Bundesland."
