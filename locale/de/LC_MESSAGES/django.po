@@ -20,7 +20,7 @@ msgstr ""
 
 #: datensparsam/apps/pdfbuilder/views.py:142
 msgid "Contradiction intro"
-msgstr "Mit Bezug auf das Recht auf informationelle Selbstbestimmung widerspreche ich hiermit:"
+msgstr "Mit Bezug auf mein Recht auf informationelle Selbstbestimmung widerspreche ich hiermit:"
 
 #: datensparsam/apps/pdfbuilder/views.py:153
 msgid "Request for Confirmation"
