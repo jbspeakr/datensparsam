@@ -76,8 +76,6 @@ class PdfCreationTest(TestCase):
         }
         self.POST('/', params)
 
-
-
     def test_non_existing_city(self):
         params = {
             'zipcode': '45529',
