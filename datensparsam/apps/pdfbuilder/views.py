@@ -55,6 +55,7 @@ def query_record_section(zipcode, state):
         # Get all zipcodes for corresponding city
         zip_key = models.Zipcode.objects.filter(zipcode=zipcode, state=state)[0].key
         zipcodes = models.Zipcode.objects.filter(key=zip_key, state=state)
+        municipality_key = ''
 
         for code in zipcodes:
             # Check if zipcode matches municipality zipcode
@@ -63,9 +64,14 @@ def query_record_section(zipcode, state):
                 state=state
             )
             if municipality_entry.__len__() > 0:
+                municipality_key = municipality_entry[0].key
                 break
 
-        municipality_key = municipality_entry[0].key
+        if not municipality_key:
+            municipality_key = models.Municipality.objects.filter(
+                pk__startswith=zip_key
+            )[0].key
+
     except models.Municipality.MultipleObjectsReturned:
         # If there are multiple municipalities, choose first one
         municipality_key = models.Municipality.objects.filter(
