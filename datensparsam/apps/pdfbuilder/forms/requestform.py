@@ -20,11 +20,12 @@ class RequestForm(forms.Form):
             if not self.cleaned_data.get("zipcode").__len__() == 5:
                 raise forms.ValidationError(_('Wrong zipcode length.'))
 
-        if not self.is_valid_zipcode(self.cleaned_data.get("zipcode"), self.cleaned_data.get("state")):
+        if not self.zipcode_in_state(self.cleaned_data.get("zipcode"), self.cleaned_data.get("state")):
             raise forms.ValidationError(_('Zipcode not in state.'))
+
         return self.cleaned_data
 
-    def is_valid_zipcode(self, zipcode, state):
+    def zipcode_in_state(self, zipcode, state):
         try:
             Zipcode.objects.get(zipcode=zipcode, state=state)
             return True

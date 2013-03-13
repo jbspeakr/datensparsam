@@ -54,72 +54,50 @@ class PdfCreationTest(TestCase):
         # self.failUnless(response.headers['Content-Type'].startswith(mimetype))
         return response
 
-    def test_city_equals_state(self):
-        params = {
-            'zipcode': '12051',
-            'state': '3',
-            'city': 'Berlin',
-            'name': 'One',
-            'firstname': 'Testuser',
-            'address': 'Teststreet 1'
-        }
-        self.POST('/', params)
-
-    def test_multiple_cities(self):
-        params = {
-            'zipcode': '60318',
-            'state': '7',
-            'city': 'Frankfurt',
-            'name': 'One',
-            'firstname': 'Testuser',
-            'address': 'Teststreet 1'
-        }
-        self.POST('/', params)
-
-    def test_non_existing_city(self):
-        params = {
+    def test_former_errors(self):
+        params = [{
             'zipcode': '45529',
             'state': '10',
-            'city': 'Test',
-            'name': 'One',
-            'firstname': 'Testuser',
-            'address': 'Teststreet 1'
-        }
-        self.POST('/', params, status=404)
-
-# class FixtureTest(TestCase):
-#     def test_query_recordsection(self):
-#         create_recordsection()
-#         queryset = Recordsection.objects.filter(municipality='6531013')
-
-#         for recordsection in queryset:
-#             self.assertEqual(recordsection.zipcode, '35457')
-
-
-# def create_recordsection():
-#     """
-#     Creates a municipality and the corresponding recordsection with ...
-#     """
-#     municipality = create_municipality()
-#     return Recordsection.objects.create(
-#         municipality=municipality,
-#         address=u'Magistrat der Stadt Lollar',
-#         city=u'Lollar',
-#         zipcode=u'35457',
-#         street=u'Holzmühler Weg 76'
-#     )
-
-
-# def create_municipality():
-#     """
-#     Creates a municipality with ...
-#     """
-#     return Municipality.objects.create(
-#         key=u'6531013',
-#         kind=u'Stadt',
-#         district=u'Reg.-Bez. Gießen',
-#         zipcode=u'35457',
-#         state=u'Hessen',
-#         name=u'Lollar, Stadt',
-#         county=u'Gießen'
-#     )
+        }, {
+            'zipcode': '66123',
+            'state': '12',
+        }, {
+            'zipcode': '80634',
+            'state': '2',
+        }, {
+            'zipcode': '70178',
+            'state': '1',
+        }, {
+            'zipcode': '01465',
+            'state': '14',
+        }, {
+            'zipcode': '40489',
+            'state': '10',
+        }, {
+            'zipcode': '40235',
+            'state': '10',
+        }, {
+            'zipcode': '24111',
+            'state': '15',
+        }, {
+            'zipcode': '70439',
+            'state': '1',
+        }, {
+            'zipcode': '60318',
+            'state': '7',
+        }, {
+            'zipcode': '12051',
+            'state': '3',
+        }, {
+            'zipcode': '65187',
+            'state': '7',
+        }, {
+            'zipcode': '53115',
+            'state': '10',
+        }, {
+            'zipcode': '38448',
+            'state': '9',
+        }]
+        for param in params:
+            param['city'] = param['name'] = param['firstname'] = param['address'] = 'Test'
+            self.POST('/', param)

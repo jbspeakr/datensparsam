@@ -34,6 +34,7 @@ class Zipcode(models.Model):
     zipcode = models.CharField(max_length=6)  # PLZ
     state = models.CharField(max_length=48)  # Bundesland
     city = models.CharField(max_length=128)  # Ort
+    key = models.CharField(max_length=10)
 
     def __unicode__(self):
         return self.zipcode

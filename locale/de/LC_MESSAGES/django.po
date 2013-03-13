@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-12 14:04+0100\n"
+"POT-Creation-Date: 2013-03-12 17:45+0100\n"
 "PO-Revision-Date: 2013-03-03 14:56+0100\n"
 "Last-Translator: Jan Brennenstuhl <jan.brennenstuhl@okfn.org>\n"
 "Language-Team: OKF-DE <postmaster@datensparsam.de>\n"
@@ -18,19 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: datensparsam/apps/pdfbuilder/views.py:142
+#: datensparsam/apps/pdfbuilder/views.py:146
 msgid "Contradiction intro"
 msgstr "Mit Bezug auf mein Recht auf informationelle Selbstbestimmung widerspreche ich hiermit:"
 
-#: datensparsam/apps/pdfbuilder/views.py:153
+#: datensparsam/apps/pdfbuilder/views.py:157
 msgid "Request for Confirmation"
 msgstr "Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert worden ist."
 
-#: datensparsam/apps/pdfbuilder/views.py:154
-msgid "Request for Corwarding"
+#: datensparsam/apps/pdfbuilder/views.py:158
+msgid "Request for Forwarding"
 msgstr "Sollten Sie nicht zuständig sein, bitte ich um Weiterleitung meines Antrags an die zuständige Stelle."
 
-#: datensparsam/apps/pdfbuilder/views.py:155
+#: datensparsam/apps/pdfbuilder/views.py:159
 msgid "Signature"
 msgstr "Unterschrift"
 

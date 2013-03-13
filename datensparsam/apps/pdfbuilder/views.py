@@ -23,7 +23,6 @@ def index(request):
         if form.is_valid():
             zipcode = request.POST['zipcode']
             stateID = request.POST['state']
-            city = request.POST['city']
 
             user = helper.User(
                 request.POST['name'],
@@ -34,8 +33,9 @@ def index(request):
             )
 
             form_entry = models.Form.objects.get(id=stateID)
-            recordsection = query_recordsection(zipcode, city, form_entry.state)
-            return create_pdf_response(recordsection, user, form_entry)
+            recordsection = query_record_section(zipcode, form_entry.state)
+            response = create_pdf_response(recordsection, user, form_entry)
+            return response
     else:
         form = requestform.RequestForm()  # An unbound form
 
@@ -44,60 +44,39 @@ def index(request):
     })
 
 
-def query_recordsection(zipcode, city, state):
+def query_record_section(zipcode, state):
     try:
-        # Get corresponding municipality
-        municipality_entry = models.Municipality.objects.get(
+        # Get corresponding municipality key
+        municipality_key = models.Municipality.objects.get(
             zipcode=zipcode,
             state=state
-        )
-        # If there is a municipality, get corresponding record section
-        record_section_entry = models.Recordsection.objects.get(
-            municipality=municipality_entry.key
-        )
+        ).key
     except models.Municipality.DoesNotExist:
-        # If there is no corresponding municipality,
-        # there seems to be one record section for a bunch of zipcodes,
-        # like for Berlin: city == state
-        try:
-            record_section_entry = models.Recordsection.objects.get(
-                city=state
-            )
-        except models.Recordsection.DoesNotExist:
-            record_section_queryset = models.Recordsection.objects.filter(
-                city__startswith=city
-            )
-            record_section_entry = None
-            for entry in record_section_queryset:
-                if entry.municipality.state == state:
-                    record_section_entry = entry
-                    break
+        # Get all zipcodes for corresponding city
+        zip_key = models.Zipcode.objects.filter(zipcode=zipcode, state=state)[0].key
+        zipcodes = models.Zipcode.objects.filter(key=zip_key, state=state)
 
-            if not record_section_entry:
-                record_section_entry = record_section_queryset = models.Recordsection.objects.filter(
-                    city__icontains=city
-                )[0]
-        except models.Recordsection.MultipleObjectsReturned:
-            # If there are more than just one record section,
-            # choose the first one you can get
-            record_section_entry = models.Recordsection.objects.filter(
-                city=state
-            )[0]
+        for code in zipcodes:
+            # Check if zipcode matches municipality zipcode
+            municipality_entry = models.Municipality.objects.filter(
+                zipcode=code.zipcode,
+                state=state
+            )
+            if municipality_entry.__len__() > 0:
+                break
+
+        municipality_key = municipality_entry[0].key
     except models.Municipality.MultipleObjectsReturned:
         # If there are multiple municipalities, choose first one
-        municipality_entry = models.Municipality.objects.filter(
+        municipality_key = models.Municipality.objects.filter(
             zipcode=zipcode,
             state=state
-        )[0]
-        # If there is a municipality, get corresponding record section
-        record_section_entry = models.Recordsection.objects.get(
-            municipality=municipality_entry.key
-        )
-    except models.Recordsection.DoesNotExist:
-        # No corresponding record section could be found at all
-        raise Http404
+        )[0].key
 
-    return record_section_entry
+    # If there is a municipality, get corresponding record section
+    return models.Recordsection.objects.get(
+        municipality=municipality_key
+    )
 
 
 def create_pdf_response(recordsection, user, form):
@@ -151,7 +130,7 @@ def setup_pdf_content(buff, form, user, recordsection):
     doc.add_bulleted_paragraph(form.miscellaneousclause)
 
     doc.add_paragraph(_(u'Request for Confirmation'), 36)
-    doc.add_paragraph(_(u'Request for Corwarding'), 0)
+    doc.add_paragraph(_(u'Request for Forwarding'), 0)
     doc.add_paragraph(('%s %s (%s)') % (user.firstname, user.name, _(u'Signature')), 48)
     doc.add_paragraph(('%s, %s') % (user.city, now.strftime("%d.%m.%Y")), 0)
 
