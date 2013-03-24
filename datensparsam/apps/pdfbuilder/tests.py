@@ -100,6 +100,9 @@ class PdfCreationTest(TestCase):
         }, {
             'zipcode': '22765',
             'state': '6',
+        }, {
+            'zipcode': '14482',
+            'state': '4',
         }]
         for param in params:
             param['city'] = param['name'] = param['firstname'] = param['address'] = 'Test'
