@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'datensparsam.apps.pdfbuilder',
     'datensparsam.libs.pdf',
+    'tastypie'
 )
 
 # A sample logging configuration. The only tangible logging
