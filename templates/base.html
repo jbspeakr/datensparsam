@@ -27,8 +27,10 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link href="https://fonts.googleapis.com/css?family=Oswald:400&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet">
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/normalize.css">
         <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Oswald:400&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet">
         <script src="{{ STATIC_URL }}js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
@@ -36,65 +38,55 @@
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <header class="header-wrapper">
-            <div class="container">
-                <div id="logo">
-                    <a href="/"><img alt="Datensparsam: Übermittlungssperren beim Meldeamt" title="Übermittlungssperre - Datensparsam" src="{{ STATIC_URL }}img/logo.png"></a>
-                    <h1>Datensparsam</h1>
+        <div class="container">
+          <header class="masthead">
+            <h2>Datensparsam.de <span class="muted">- Generator für Übermittlungssperren</span></h2>
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="container">
+                  <ul class="nav">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="generator.html">Generator</a></li>
+                    <li><a href="#">Informationen</a></li>
+                    <li><a href="#">Über uns</a></li>
+                  </ul>
                 </div>
-                <div class="cs-title">
-                    <p class="intro-text">Deutschlands erster Generator für Übermittlungssperren</p>
-                </div>
-            </div>
-        </header>
+              </div>
+            </div><!-- /.navbar -->
+          </header>
+
 
         {% block content %}{% endblock %}
 
-        <div class="navigation">
-            <div class="container">
-                <div class="row-fluid">
-                    <ul class="span12 unstyled pagination-centered navi">
-                        <li><a href="/hilfe/ueber-uns/" title="">Über uns</a></li>
-                        <li><a href="/hilfe/datenschutz/" title="">Datenschutzerklärung</a></li>
-                        <li><a href="/hilfe/faq/" title="">FAQ</a></li>
+        <hr>
+
+        </div> <!-- /container -->
+        <footer id="footer" class="container">
+            <div class="row-fluid">
+
+                <div class="span9">
+                    <p>
+                      Datensparsam.de ist ein gemeinnütziges Projekt des <a href="http://okfn.de">Open Knowledge Foundation Deutschland e.V.</a><br>Wenn Sie Datensparsam.de unterstützen möchten, <a href="#">freuen wir uns über Ihre Spende!</a>
+                    </p>
+                    <ul class="nav nav-pills">
+                        <li><a href="#">Über uns</a></li>
+                        <li><a href="#">Impressum</a></li>
+                        <li><a href="#">Nutzungsbedingungen</a></li>
+                        <li><a href="#">Datenschutzerklärung</a></li>
                     </ul>
                 </div>
-            </div>
-        </div>
-
-        <footer id="footer">
-            <div class="container">
-                <div class="row-fluid">
-                    <div class="span2">
-                        <h3>Unterstützer</h3>
-                    </div>
-                    <div class="span10">
-                        <ul class="clients-list">
-                            <li><a href="http://www.openeverything.eu/" title="OpenEverything: Open-Data, Open-Access &amp; Open-Design"><img alt="Openeverything.eu - Open Data Blog" src="{{ STATIC_URL }}img/openeverything.png"></a></li>
-                            <li><a href="http://okfn.de" title="Open Knowledge Foundation Deutschland"><img alt="Open Knownledge Foundation, OKF" src="{{ STATIC_URL }}img/open-knowledge-foundation.png"></a></li>
-                        </ul>
-                    </div>
+                <div class="span3">
+                    <p><a href="http://www.okfn.de">
+                      <img src="img/open-knowledge-foundation.png" />
+                    </a></p>
                 </div>
             </div>
         </footer>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
-        <script src="{{ STATIC_URL }}js/plugins.js"></script>
-        <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-        <script type="text/javascript">
-          var _paq = _paq || [];
-          _paq.push(["setDoNotTrack", true]);
-          _paq.push(["trackPageView"]);
-          _paq.push(["enableLinkTracking"]);
 
-          (function() {
-            var u=(("https:" == document.location.protocol) ? "https" : "http") + "://jbr.norma.uberspace.de/piwik/";
-            _paq.push(["setTrackerUrl", u+"piwik.php"]);
-            _paq.push(["setSiteId", "2"]);
-            var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-            g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-          })();
-        </script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

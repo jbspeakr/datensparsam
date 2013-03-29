@@ -94,182 +94,86 @@ textarea {
    ========================================================================== */
 
 body {
-    font-size:17px;
-    line-height:24px;
-}
-/* title headers styles */
-h1, h2, h3, h4 {
-    font-family:'Oswald', Arial, Helvetica, sans-serif;
-    font-weight:400;
-}
-h1 {
-    font-size:40px;
-    line-height:44px;
-}
-h2 {
-    font-size:36px;
-    line-height:40px;
-}
-h3 {
-    font-size:30px;
-}
-h4 {
-    font-size:26px;
-    line-height:30px;
-}
-h5 {
-    font-size:22px;
-    line-height:26px;
-    letter-spacing:-1px;
-}
-h6 {
-    font-size:19px;
-    line-height:23px;
-    letter-spacing:-1px;
-}
-input {
-    font-family:Georgia, "Times New Roman", Times, serif;
-    font-style:italic;
-}
-.clearboth {
-    clear:both;
-}
-.capitalization { /* defines a class that makes the font 13px and uppercase */
-    text-transform:uppercase;
-    font-size:13px;
-    line-height:22px;
+padding-top: 20px;
+padding-bottom: 60px;
 }
 
-/* header section styles */
-.header-wrapper {
-    height:300px;
-    text-align:center;
+/* Custom container */
+.container {
+margin: 0 auto;
+max-width: 1000px;
 }
-#logo{
-    margin-top: 3em;
-}
-
-.title-uline {
-    display:inline-block;
-    float:none;
-    margin:0 0 20px 0;
-    padding:0 20px 12px 20px;
-    border-bottom: 4px solid #ededed;
+.container > hr {
+margin: 60px 0;
 }
 
-#newslettersubmit { /* newsletter button */
-    position:absolute;
-    top:3px;
-    right:3px;
-    height:36px;
-    display:block;
-    font-family:Arial, Helvetica, sans-serif;
-    text-transform:uppercase;
-    font-style:normal;
-    padding:8px 22px 8px 22px;
-    font-size:13px;
-    line-height:20px;
-    letter-spacing:2px;
-    border:0 none;
-
-    -moz-border-radius:8px;
-    -webkit-border-radius:8px;
-    border-radius:8px;
+h1, h2, h3 {
+    font-family: 'Oswald', Arial, Helvetica, sans-serif;
+    font-weight: 400;
 }
 
-/* ------------------- a couple of extra elements styles ------------------- */
-.main-content .container { /* main body top / bottom paddings */
-    padding:36px 0 44px 0;
+/* Main marketing message and sign up button */
+.jumbotron {
+padding: 20px;
+text-align: center;
+margin: 0;
+background-image: url("../img/Einwohnermeldeamt-Berlin.jpg");
 }
-.centerblock { /* center aligned text block */
-    float:left;
-    width:100%;
-    text-align:center;
-    margin:22px 0 10px 0;
+.jumbotron h1 {
+font-size: 3.5em;
+line-height: 1;
+color: #fff;
 }
-.intro-text {
-    font-size:20px;
-    font-family:Georgia, "Times New Roman", Times, serif;
-    font-style:italic;
-    line-height:28px;
+.jumbotron .lead {
+font-size: 24px;
+line-height: 1.25;
+color: #fff;
 }
-.content-line, .fline { /* line separator - for content and footer */
-    display:block;
-    margin-bottom:30px;
-    height:4px;
-    line-height:0;
-    overflow:hidden;
+.jumbotron .btn {
+font-size: 21px;
+padding: 14px 24px;
 }
 
-/* ------------------- service blocks styles ------------------- */
-.service-block {
-    float:left;
-    width:100%;
-    margin:10px 0 18px 0;
-    padding:26px 0 16px 0;
-    -moz-border-radius:8px;
-    -webkit-border-radius:8px;
-    border-radius:8px;
+/* Supporting marketing content */
+.marketing {
+margin: 60px 0;
 }
-.service-img {
-    float:left;
-    margin: 18px 18px 18px 0;
-}
-.service-content {
-    float:left;
-    padding: 0 1em;
-}
-.service-content h4 {
-    margin:2px 0 6px 0;
-}
-.service-block {
-    border:1px solid #d8e1e6;
+.marketing p + h4 {
+margin-top: 28px;
 }
 
-#letterform ol{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
 
-#letterform li {
-  float: left;
-  padding: 10px;
+/* Customize the navbar links to be fill the entire space of the .navbar */
+.navbar .navbar-inner {
+padding: 0;
 }
-#letterform li.last {
-  float: none;
-  clear: both;
-  text-align: right;
+.navbar .nav {
+margin: 0;
+display: table;
+width: 100%;
+padding-left: 0;
 }
-
-.text-error{
-    font-size: 0.6em;
+.navbar .nav li {
+display: table-cell;
+width: 1%;
+float: none;
 }
-ul.navi{
-    margin: 2em 0 0 0;
+.navbar .nav li a {
+font-weight: bold;
+text-align: center;
+border-left: 1px solid rgba(255,255,255,.75);
+border-right: 1px solid rgba(0,0,0,.1);
 }
-ul.navi li {
-    display: inline;
-    margin-right: 2em;
+.navbar .nav li:first-child a {
+border-left: 0;
+border-radius: 3px 0 0 3px;
 }
-
-/* ------------------- clients section styles ------------------- */
-#footer {
-    padding:20px 0 20px 0;
-    background:#f6f8f9;
-    border-top:1px solid #d8e1e6;
-    margin-top: 20px;
+.navbar .nav li:last-child a {
+border-right: 0;
+border-radius: 0 3px 3px 0;
 }
-.clients-list, .clients-list li {
-    list-style:none;
-}
-.clients-list li {
-    float:left;
-    margin:0 0 0 50px;
-}
-.clients-list {
-    float:right;
-    margin:10px 0 10px 0;
+footer .nav {
+    padding: 0;
 }
 
 /* ==========================================================================

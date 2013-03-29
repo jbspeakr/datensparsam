@@ -8,4 +8,5 @@ urlpatterns = patterns(
     # url(r'^datensparsam/', include('datensparsam.foo.urls')),
     # url(r'^$', 'index', {}, name='index'),
     url(r'^pdf/$', 'pdf', {}, name='pdf'),
+    url(r'^$', 'index', {}, name='index'),
 )
