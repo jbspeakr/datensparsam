@@ -4,11 +4,12 @@ from django.db import models
 class Municipality(models.Model):
     ''' Gemeinde '''
     key = models.CharField(max_length=8)  # Gemeindeschluessel
-    kind = models.CharField(max_length=48)  # Gemeindetyp
-    district = models.CharField(max_length=48)  # Regierungsbezirk
-    state = models.CharField(max_length=48)  # Bundesland
-    name = models.CharField(max_length=48)  # Gemeindenamen
-    county = models.CharField(max_length=48)  # Kreisname
+    name = models.CharField(max_length=200)  # Anschrift
+    city = models.CharField(max_length=200)  # Ort
+    zipcode = models.CharField(max_length=5)  # PLZ
+    street = models.CharField(max_length=200)
+    lat = models.CharField(max_length=32)  # Breitengrad
+    lng = models.CharField(max_length=32)  # Laengengrad
 
     def __unicode__(self):
         return self.name
@@ -21,7 +22,7 @@ class RegistrationOffice(models.Model):
     ''' Einwohnermeldeamt '''
     name = models.CharField(max_length=200)  # Anschrift
     city = models.CharField(max_length=200)  # Ort
-    code = models.CharField(max_length=5)  # PLZ
+    zipcode = models.CharField(max_length=5)  # PLZ
     street = models.CharField(max_length=200)
     lat = models.CharField(max_length=32)  # Breitengrad
     lng = models.CharField(max_length=32)  # Laengengrad
@@ -36,8 +37,10 @@ class RegistrationOffice(models.Model):
 class Zipcode(models.Model):
     ''' Postleitzahl '''
     zipcode = models.CharField(max_length=5)
-    municipalities = models.ManyToManyField(Municipality)
-    registration_offices = models.ManyToManyField(RegistrationOffice)
+    municipalities = models.ManyToManyField(
+        Municipality, related_name='zipcode_municipalities')
+    registration_offices = models.ManyToManyField(
+        RegistrationOffice, related_name='zipcode_registration_offices')
 
     def __unicode__(self):
         return self.zipcode
