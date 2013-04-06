@@ -38,9 +38,9 @@ class Zipcode(models.Model):
     ''' Postleitzahl '''
     zipcode = models.CharField(max_length=5)
     municipalities = models.ManyToManyField(
-        Municipality, related_name='zipcode_municipalities')
+        Municipality, related_name='zipcodes')
     registration_offices = models.ManyToManyField(
-        RegistrationOffice, related_name='zipcode_registration_offices')
+        RegistrationOffice, related_name='zipcodes')
 
     def __unicode__(self):
         return self.zipcode
