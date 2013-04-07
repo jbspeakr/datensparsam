@@ -35,6 +35,7 @@ class ApiTest(TestCase):
 
         self.assertTrue(municipalities)
         self.assertTrue(registration_offices)
+        print registration_offices
 
     def test_json_api_access(self):
         url = '/api/v1/zipcode/?format=json'
