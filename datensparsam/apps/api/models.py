@@ -39,7 +39,7 @@ class Zipcode(models.Model):
     zipcode = models.CharField(max_length=5)
     municipalities = models.ManyToManyField(
         Municipality, related_name='zipcodes')
-    registration_offices = models.ManyToManyField(
+    registrationoffices = models.ManyToManyField(
         RegistrationOffice, related_name='zipcodes')
 
     def __unicode__(self):

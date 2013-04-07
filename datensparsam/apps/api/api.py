@@ -16,11 +16,7 @@ class MunicipalityResource(ModelResource):
 class RegistrationOfficeResource(ModelResource):
     class Meta:
         queryset = models.RegistrationOffice.objects.all()
-        resource_name = 'registration_office'
-        filtering = {
-            "zipcode": ('exact', 'startswith',),
-        }
-        include_resource_uri = False
+        resource_name = 'registration-office'
 
 
 class ZipcodeResource(ModelResource):
@@ -30,7 +26,7 @@ class ZipcodeResource(ModelResource):
         related_name='zipcodes',
         full=True)
 
-    registration_offices = fields.ToManyField(
+    registrationoffices = fields.ToManyField(
         'datensparsam.apps.api.api.RegistrationOfficeResource',
         'registrationoffices',
         related_name='zipcodes',
