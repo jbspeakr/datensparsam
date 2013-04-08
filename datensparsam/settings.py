@@ -2,6 +2,7 @@
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+TASTYPIE_FULL_DEBUG = DEBUG
 
 ADMINS = (
     ('Jan Brennenstuhl', 'jan.brennenstuhl@okfn.org'),
@@ -126,7 +127,9 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'datensparsam.apps.pdfbuilder',
+    'datensparsam.apps.api',
     'datensparsam.libs.pdf',
+    'tastypie',
 )
 
 # A sample logging configuration. The only tangible logging
