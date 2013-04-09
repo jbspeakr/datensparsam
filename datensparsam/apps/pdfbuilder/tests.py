@@ -29,6 +29,13 @@ from django.test.client import Client
 
 
 class PdfBuilderTest(TestCase):
+
+    fixtures = [
+        'pdfbuilder-form.json',
+        'api-municipality.json',
+        'api-registrationoffice.json',
+    ]
+
     def setUp(self):
         """This method is automatically called by the Django test framework."""
         self.client = Client()
@@ -42,9 +49,19 @@ class PdfBuilderTest(TestCase):
     def test_pdf_creation(self):
         '''  '''
         params = {
-            'test': 'test',
+            'name': 'Nachname',
+            'firstname': 'Vorname',
+            'address': 'Teststr. 1',
+            'zipcode': '12345',
+            'city': 'Stadt',
+            'registrationoffice': '1629',
+            'municipality': '15',
         }
-        self.POST('/pdf/', params)
+        response = self.POST('/pdf/', params)
+
+        f = open('testfile.pdf', 'w')
+        f.write(response.content)
+
 
 # class PdfCreationTest(TestCase):
 #     fixtures = [
