@@ -28,82 +28,100 @@ from django.test.client import Client
 '''
 
 
-class PdfCreationTest(TestCase):
-    fixtures = [
-        'pdfbuilder-form.json',
-        'pdfbuilder-municipality.json',
-        'pdfbuilder-recordsection.json',
-        'pdfbuilder-zipcode.json'
-    ]
-
+class PdfBuilderTest(TestCase):
     def setUp(self):
         """This method is automatically called by the Django test framework."""
         self.client = Client()
 
-    def POST(self, url, params, status=200, mimetype="application/pdf"):
+    def POST(self, url, params, status=200):
         """Make a POST and require a specific status code before proceeding"""
         response = self.client.post(url, params)
         self.failUnlessEqual(response.status_code, status)
-        # self.failUnless(response.headers['Content-Type'].startswith(mimetype))
         return response
 
-    def GET(self, url, status=200, mimetype="text/html"):
-        """Get a URL and require a specific status code before proceeding"""
-        response = self.client.get(url)
-        self.failUnlessEqual(response.status_code, status)
-        # self.failUnless(response.headers['Content-Type'].startswith(mimetype))
-        return response
+    def test_pdf_creation(self):
+        '''  '''
+        params = {
+            'test': 'test',
+        }
+        self.POST('/pdf/', params)
 
-    def test_former_errors(self):
-        params = [{
-            'zipcode': '45529',
-            'state': '10',
-        }, {
-            'zipcode': '66123',
-            'state': '12',
-        }, {
-            'zipcode': '80634',
-            'state': '2',
-        }, {
-            'zipcode': '70178',
-            'state': '1',
-        }, {
-            'zipcode': '01465',
-            'state': '14',
-        }, {
-            'zipcode': '40489',
-            'state': '10',
-        }, {
-            'zipcode': '40235',
-            'state': '10',
-        }, {
-            'zipcode': '24111',
-            'state': '15',
-        }, {
-            'zipcode': '70439',
-            'state': '1',
-        }, {
-            'zipcode': '60318',
-            'state': '7',
-        }, {
-            'zipcode': '12051',
-            'state': '3',
-        }, {
-            'zipcode': '65187',
-            'state': '7',
-        }, {
-            'zipcode': '53115',
-            'state': '10',
-        }, {
-            'zipcode': '38448',
-            'state': '9',
-        }, {
-            'zipcode': '22765',
-            'state': '6',
-        }, {
-            'zipcode': '14482',
-            'state': '4',
-        }]
-        for param in params:
-            param['city'] = param['name'] = param['firstname'] = param['address'] = 'Test'
-            self.POST('/', param)
+# class PdfCreationTest(TestCase):
+#     fixtures = [
+#         'pdfbuilder-form.json',
+#         'pdfbuilder-municipality.json',
+#         'pdfbuilder-recordsection.json',
+#         'pdfbuilder-zipcode.json'
+#     ]
+
+#     def setUp(self):
+#         """This method is automatically called by the Django test framework."""
+#         self.client = Client()
+
+#     def POST(self, url, params, status=200, mimetype="application/pdf"):
+#         """Make a POST and require a specific status code before proceeding"""
+#         response = self.client.post(url, params)
+#         self.failUnlessEqual(response.status_code, status)
+#         # self.failUnless(response.headers['Content-Type'].startswith(mimetype))
+#         return response
+
+#     def GET(self, url, status=200, mimetype="text/html"):
+#         """Get a URL and require a specific status code before proceeding"""
+#         response = self.client.get(url)
+#         self.failUnlessEqual(response.status_code, status)
+#         # self.failUnless(response.headers['Content-Type'].startswith(mimetype))
+#         return response
+
+#     def test_former_errors(self):
+#         params = [{
+#             'zipcode': '45529',
+#             'state': '10',
+#         }, {
+#             'zipcode': '66123',
+#             'state': '12',
+#         }, {
+#             'zipcode': '80634',
+#             'state': '2',
+#         }, {
+#             'zipcode': '70178',
+#             'state': '1',
+#         }, {
+#             'zipcode': '01465',
+#             'state': '14',
+#         }, {
+#             'zipcode': '40489',
+#             'state': '10',
+#         }, {
+#             'zipcode': '40235',
+#             'state': '10',
+#         }, {
+#             'zipcode': '24111',
+#             'state': '15',
+#         }, {
+#             'zipcode': '70439',
+#             'state': '1',
+#         }, {
+#             'zipcode': '60318',
+#             'state': '7',
+#         }, {
+#             'zipcode': '12051',
+#             'state': '3',
+#         }, {
+#             'zipcode': '65187',
+#             'state': '7',
+#         }, {
+#             'zipcode': '53115',
+#             'state': '10',
+#         }, {
+#             'zipcode': '38448',
+#             'state': '9',
+#         }, {
+#             'zipcode': '22765',
+#             'state': '6',
+#         }, {
+#             'zipcode': '14482',
+#             'state': '4',
+#         }]
+#         for param in params:
+#             param['city'] = param['name'] = param['firstname'] = param['address'] = 'Test'
+#             self.POST('/', param)
