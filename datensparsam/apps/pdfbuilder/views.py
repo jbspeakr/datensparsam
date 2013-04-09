@@ -1,24 +1,16 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-# Fall back to StringIO in environments where cStringIO is not available
 from io import BytesIO
 
 import datetime
-# from django.shortcuts import render
 from django.http import HttpResponse
 from django.utils.translation import ugettext_lazy as _
 
 from datensparsam.apps.pdfbuilder import models as pdfmodels
 from datensparsam.apps.api import models as apimodels
-# from datensparsam.apps.pdfbuilder.helpers import user
-# from datensparsam.libs.pdf.reportlab_adaptor import SimplePdf
-# from datensparsam.apps.pdfbuilder.forms import requestform
 
 from dinbrief.document import Document
 from dinbrief.template import BriefTemplate
 from dinbrief.styles import styles
 from reportlab.platypus import Paragraph
-# from reportlab.platypus.flowables import Spacer
 
 
 def pdf(request):
