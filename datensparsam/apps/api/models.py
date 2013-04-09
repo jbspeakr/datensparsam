@@ -10,6 +10,7 @@ class Municipality(models.Model):
     street = models.CharField(max_length=200)
     lat = models.CharField(max_length=32)  # Breitengrad
     lng = models.CharField(max_length=32)  # Laengengrad
+    state = models.CharField(max_length=32)  # Bundesland
 
     def __unicode__(self):
         return self.name
@@ -26,6 +27,7 @@ class RegistrationOffice(models.Model):
     street = models.CharField(max_length=200)
     lat = models.CharField(max_length=32)  # Breitengrad
     lng = models.CharField(max_length=32)  # Laengengrad
+    state = models.CharField(max_length=32)  # Bundesland
 
     def __unicode__(self):
         return self.name

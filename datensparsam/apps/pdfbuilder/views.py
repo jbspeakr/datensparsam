@@ -1,17 +1,15 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 # Fall back to StringIO in environments where cStringIO is not available
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from StringIO import StringIO
+from io import BytesIO
 
 import datetime
 # from django.shortcuts import render
 from django.http import HttpResponse
 from django.utils.translation import ugettext_lazy as _
 
-# from datensparsam.apps.pdfbuilder import models
+from datensparsam.apps.pdfbuilder import models as pdfmodels
+from datensparsam.apps.api import models as apimodels
 # from datensparsam.apps.pdfbuilder.helpers import user
 # from datensparsam.libs.pdf.reportlab_adaptor import SimplePdf
 # from datensparsam.apps.pdfbuilder.forms import requestform
@@ -27,56 +25,66 @@ def pdf(request):
     ''' Returns PDF Response. '''
     if request.method == 'POST':
         date = datetime.datetime.now().strftime("%d.%m.%Y")
-        sender = [
-            request.POST['name'] + request.POST['firstname'],
+
+        sender_address = [
+            request.POST['name'] + ', ' + request.POST['firstname'],
             request.POST['address'],
-            request.POST['zipcode'] + request.POST['city']
+            request.POST['zipcode'] + ' ' + request.POST['city']
         ]
 
-        recipient = [
+        if request.POST['registrationoffice']:
+            pk = request.POST['registrationoffice']
+            recipient = apimodels.RegistrationOffice.objects.get(
+                pk=pk)
+        elif request.POST['municipality']:
+            pk = request.POST['municipality']
+            recipient = apimodels.Municipality.objects.get(
+                pk=pk)
+        else:
+            raise Exception('no receipient')
 
+        recipient_address = [
+            recipient.name,
+            recipient.street,
+            recipient.zipcode + ' ' + recipient.city,
         ]
 
-        paragraphs = models.Form.objects.get(id=stateID)
-        content = [
-            Paragraph(paragraphs.heading, styles['Subject']),
-            Paragraph(_(u'Contradiction intro'), styles['Greeting']),
-            Paragraph(paragraphs.partyclause, styles['Normal']),
-            Paragraph(paragraphs.autoqueryclause, styles['Normal']),
-            Paragraph(paragraphs.jubileeclause, styles['Normal']),
-            Paragraph(paragraphs.directoryclause, styles['Normal']),
-            Paragraph(paragraphs.directmarketingclause, styles['Normal']),
-            Paragraph(paragraphs.religionclause, styles['Normal']),
-            Paragraph(paragraphs.militaryclause, styles['Normal']),
-            Paragraph(paragraphs.miscellaneousclause, styles['Normal']),
-            Paragraph(_(u'Request for Confirmation'), styles['Normal']),
-            Paragraph(_(u'Request for Forwarding'), styles['Normal']),
-            Paragraph('%s %s (%s)' %
-                      request.POST['firstname'],
-                      request.POST['name'],
-                      _(u'Signature'),
-                      styles['Closing']),
-            Paragraph('%s, %s' %
-                      request.POST['city'],
-                      date,
-                      styles['Signature']),
-        ]
+        paragraphs = pdfmodels.Form.objects.get(state=recipient.state)
 
-        #     doc.add_paragraph(_(u'Request for Confirmation'), 36)
-#     doc.add_paragraph(_(u'Request for Forwarding'), 0)
-#     doc.add_paragraph(('%s %s (%s)') % (user.firstname, user.name, _(u'Signature')), 48)
-#     doc.add_paragraph(('%s, %s') % (user.city, now.strftime("%d.%m.%Y")), 0)
+        content = []
+        content.append(Paragraph(
+            paragraphs.heading, styles['Subject']))
+        content.append(Paragraph(
+            _(u'Dear Sir or Madam'), styles['Greeting']))
+        content.append(Paragraph(
+            _(u'Contradiction intro'), styles['Greeting']))
 
-        # Create Buffer
-        buff = StringIO()
+        for paragraph in paragraphs.get_content():
+            content.append(Paragraph('- ' + paragraph, styles['Message']))
+
+        content.append(Paragraph(
+            _(u'Request for Confirmation'), styles['Message']))
+        content.append(Paragraph(
+            _(u'Request for Forwarding'), styles['Normal']))
+        content.append(Paragraph(_(u'Greetings'), styles['Closing']))
+        content.append(Paragraph(
+            '%s %s (%s)' % (request.POST['firstname'], request.POST['name'],
+            _(u'Signature')), styles['Normal']))
+        content.append(Paragraph(
+            '%s, den %s' % (request.POST['city'], date), styles['Normal']))
 
         # Setup PDF
         document = Document(
-            sender=sender,
-            recipient=recipient,
+            sender=sender_address,
+            recipient=recipient_address,
             date=date,
             content=content
         )
+
+        # Create Buffer
+        buff = BytesIO()
+
+        # Build template
         template = BriefTemplate(buff, document)
         template.build(document.content)
 
@@ -84,8 +92,10 @@ def pdf(request):
         response = HttpResponse(mimetype='application/pdf')
         response['Content-Disposition'] = \
             'attachment; filename="uebermittlungssperre.pdf"'
-        response.write(template)
+        pdf = buff.getvalue()
         buff.close()
+
+        response.write(pdf)
         return response
 
 
