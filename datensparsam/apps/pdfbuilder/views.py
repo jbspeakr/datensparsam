@@ -26,8 +26,8 @@ def pdf(request):
     if request.method == 'POST':
         sender_address = create_sender_address(request)
         recipient = get_recipient(request)
-        content = create_content(recipient)
         recipient_address = create_recipient_address(recipient)
+        content = create_content(request, recipient)
 
         date = datetime.datetime.now().strftime("%d.%m.%Y")
 
