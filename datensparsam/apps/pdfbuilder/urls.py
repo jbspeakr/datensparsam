@@ -6,5 +6,6 @@ urlpatterns = patterns(
     # Examples:
     # url(r'^$', 'datensparsam.views.home', name='home'),
     # url(r'^datensparsam/', include('datensparsam.foo.urls')),
-    url(r'^$', 'index', {}, name='index'),
+    # url(r'^$', 'index', {}, name='index'),
+    url(r'^pdf/$', 'pdf', {}, name='pdf'),
 )
