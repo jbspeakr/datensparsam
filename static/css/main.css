@@ -104,7 +104,10 @@ margin: 0 auto;
 max-width: 1000px;
 }
 .container > hr {
-margin: 60px 0;
+    margin: 40px 0;
+}
+footer.container > hr {
+margin: 40px 0 20px;
 }
 
 h1, h2, h3 {
@@ -172,10 +175,19 @@ border-radius: 3px 0 0 3px;
 border-right: 0;
 border-radius: 0 3px 3px 0;
 }
-footer .nav {
-    padding: 0;
+ul.navi li {
+display: inline;
+margin-right: 2em;
 }
-
+#map{
+height: 180px;
+}
+.info{
+    font-size: 0.8em;
+}
+.js-hidden {
+display: none;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */
