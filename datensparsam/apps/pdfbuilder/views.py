@@ -105,6 +105,7 @@ def create_response(document):
     response = HttpResponse(mimetype='application/pdf')
     response['Content-Disposition'] = \
         'attachment; filename="uebermittlungssperre.pdf"'
+
     pdf = buff.getvalue()
     buff.close()
     response.write(pdf)
