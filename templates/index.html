@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% block nav_index %}active{% endblock %}
 {% block content %}
     <div class="jumbotron img-rounded">
         <h1>Datensparsamkeit, jetzt!</h1>
@@ -14,12 +15,13 @@
             <p><b>Datensparsamkeit fängt beim Einwohnermeldeamt an.</b> Um dir bei der
                 Einrichtung einer persönliche Übermittlungssperre zu helfen, brauchen
                 wir nichts weiter als deine Postleitzahl!</p>
-            <p class="input-prepend input-append">
+            <form action="{% url 'pdfbuilder-generator' %}" method="POST" class="input-prepend input-append">
                 <span class="add-on">Deine Postleitzahl:</span>
-                <input class="input-medium" id="appendedInputButton" type="text">
-                <button class="btn btn-primary" type="button"><i class="icon-white icon-search"></i></button>
-            </p>
-        </div>
+                <input class="input-medium" id="appendedInputButton" type="text" name="zipcode">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary" type="button"><i class="icon-white icon-search"></i></button>
+            </form
+>        </div>
         <div class="span4">
             <br />
             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo.</p>
@@ -29,17 +31,17 @@
     <div class="row-fluid">
         <div class="span4">
             <h2>Meldewesen</h2>
-            <p><span class="label label-info">Grundlagen</span> Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><span class="label label-info">Grundlagen</span> Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
             <p><a class="btn" href="#">Weitere Infos &raquo;</a></p>
         </div>
         <div class="span4">
             <h2>Übermittlungssperre</h2>
-            <p><span class="label label-info">Wissenswert</span> Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><span class="label label-info">Wissenswert</span> Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
             <p><a class="btn" href="#">Weitere Infos &raquo;</a></p>
         </div>
         <div class="span4">
             <h2>Datensparsamkeit</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
+            <p><span class="label label-info">Weiterführendes</span> Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
             <p><a class="btn" href="#">Weitere Infos &raquo;</a></p>
         </div>
     </div>

@@ -1,11 +1,7 @@
 from django.conf.urls import patterns, url
 
-
 urlpatterns = patterns(
     'datensparsam.apps.pdfbuilder.views',
-    # Examples:
-    # url(r'^$', 'datensparsam.views.home', name='home'),
-    # url(r'^datensparsam/', include('datensparsam.foo.urls')),
-    # url(r'^$', 'index', {}, name='index'),
-    url(r'^', 'pdf', {}, name='pdf'),
+    url(r'^$', 'generator', {}, name='pdfbuilder-generator'),
+    url(r'^pdf/$', 'pdf', {}, name='pdfbuilder-pdf'),
 )

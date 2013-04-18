@@ -43,10 +43,10 @@
                 <div class="navbar-inner">
                     <div class="container">
                         <ul class="nav">
-                            <li class="active"><a href="/">Home</a></li>
-                            <li><a href="/generator/">Generator</a></li>
-                            <li><a href="/informationen/">Informationen</a></li>
-                            <li><a href="/ueber-uns/">Über uns</a></li>
+                            <li class="{% block nav_index %}{% endblock %}"><a href="/">Home</a></li>
+                            <li class="{% block nav_generator %}{% endblock %}"><a href="/generator/">Generator</a></li>
+                            <li class="{% block nav_information %}{% endblock %}"><a href="/informationen/">Informationen</a></li>
+                            <li class="{% block nav_about %}{% endblock %}"><a href="/ueber-uns/">Über uns</a></li>
                         </ul>
                     </div>
                 </div>

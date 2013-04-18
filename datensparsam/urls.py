@@ -10,15 +10,14 @@ def TV(template):
 
 urlpatterns = patterns(
     '',
-    (r'^$', TV('index.html'), {}, 'index'),
-    (r'^generator/', TV('generator.html'), {}, 'generator'),
-    (r'^informationen/', TV('information.html'), {}, 'informationen'),
-    (r'^ueber-uns/', TV('about.html'), {}, 'about'),
-    (r'^impressum/', TV('imprint.html'), {}, 'imprint'),
-    (r'^nutzungsbedingungen/', TV('tos.html'), {}, 'tos'),
-    (r'^datenschutz/', TV('privacy.html'), {}, 'privacy'),
+    url(r'^$', TV('index.html'), {}, 'index'),
+    url(r'^informationen/$', TV('information.html'), {}, name='informationen'),
+    url(r'^ueber-uns/$', TV('about.html'), {}, name='about'),
+    url(r'^impressum/$', TV('imprint.html'), {}, name='imprint'),
+    url(r'^nutzungsbedingungen/$', TV('tos.html'), {}, name='tos'),
+    url(r'^datenschutz/$', TV('privacy.html'), {}, name='privacy'),
 
-    url(r'^pdf/', include('datensparsam.apps.pdfbuilder.urls')),
+    url(r'^generator/', include('datensparsam.apps.pdfbuilder.urls')),
     url(r'^api/', include('datensparsam.apps.api.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
