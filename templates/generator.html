@@ -11,6 +11,8 @@
     <div class="row-fluid">
         <div class="span8">
             <h1>Übermittlungssperre-Generator</h1>
+            <p class="lead">Ohne betroffene Personen darüber zu informieren, geben deutsche Einwohnermeldeämter persönliche Meldedaten an Behörden, Firmen oder Adressbuchverlage weiter - ganz legal.</p>
+            <p>Um ihr <a href="http://de.wikipedia.org/wiki/Informationelle_Selbstbestimmung" title="Informationen zur informationellen Selbstbestimmung">Recht auf informationelle Selbstbestimmung</a> wahrnehmen zu können und den Adresshandel einzudämmen, müssen Bürgerinnen und Bürger leider noch immer selbst aktiv werden. Eine Möglichkeit dies zu tun, besteht in der Beantragung von Übermittlungssperren. Dieser Generator hilft dabei, diese zu erstellen!</p>
             <form class="form-horizontal" action="{% url 'pdfbuilder-pdf' %}" method="POST">
                 <fieldset>
                     <legend><b>Schritt 1</b> Postleitzahl</legend>
@@ -30,7 +32,7 @@
                     </div>
                     <div class="control-group">
                         <div class="controls">
-                            <button id="zipcodeSubmit" type="submit" class="btn"><i class="icon-arrow-right"></i> Nächster Schritt</button>
+                            <button id="zipcodeSubmit" type="submit" class="btn" data-loading-text="Laden..."><i class="icon-arrow-right"></i> Nächster Schritt</button>
                         </div>
                     </div>
                 </fieldset>

@@ -7,7 +7,7 @@
         <p class="lead">Einwohnermeldeämter geben ohne deine Zustimmung persönliche
             Daten an Adresshändler, Parteien und andere Interessenten weiter.<br />
             Wir zeigen dir, wie du dem widersprechen kannst:</p>
-        <a class="btn btn-large btn-success" href="#">Weitere Informationen</a>
+        <a class="btn btn-large btn-success" href="{% url 'information' %}" title="Meldewesen in Deutschland, Übermittlungssperren &amp; Datensparsamkeit">Weitere Informationen</a>
     </div>
     <hr />
     <div class="row-fluid">
@@ -32,17 +32,17 @@
         <div class="span4">
             <h2>Meldewesen</h2>
             <p><span class="label label-info">Grundlagen</span> Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-            <p><a class="btn" href="#">Weitere Infos &raquo;</a></p>
+            <p><a class="btn" href="{% url 'information' %}#Meldewesen" title="Informationen zum Meldewesen in Deutschland">Weitere Infos &raquo;</a></p>
         </div>
         <div class="span4">
-            <h2>Übermittlungssperre</h2>
+            <h2>Übermittlungssperren</h2>
             <p><span class="label label-info">Wissenswert</span> Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-            <p><a class="btn" href="#">Weitere Infos &raquo;</a></p>
+            <p><a class="btn" href="{% url 'information' %}#Uebermittlungssperren" title="Informationen zu Übermittlungssperren">Weitere Infos &raquo;</a></p>
         </div>
         <div class="span4">
             <h2>Datensparsamkeit</h2>
             <p><span class="label label-info">Weiterführendes</span> Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-            <p><a class="btn" href="#">Weitere Infos &raquo;</a></p>
+            <p><a class="btn" href="{% url 'information' %}#Datensparsamkeit" title="Informationen zur Datensparsamkeit">Weitere Infos &raquo;</a></p>
         </div>
     </div>
 {% endblock %}

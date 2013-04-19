@@ -5,29 +5,6 @@ from django.test import TestCase
 from django.test.client import Client
 from django.core.urlresolvers import reverse
 
-# from datensparsam.apps.pdfbuilder.models import Municipality
-# from datensparsam.apps.pdfbuilder.models import Recordsection
-
-
-'''
-<option value="1">Baden-Württemberg</option>
-<option value="2">Bayern</option>
-<option value="3">Berlin</option>
-<option value="4">Brandenburg</option>
-<option value="5">Bremen</option>
-<option value="6">Hamburg</option>
-<option value="7">Hessen</option>
-<option value="8">Mecklenburg-Vorpommern</option>
-<option value="9">Niedersachsen</option>
-<option value="10">Nordrhein-Westfalen</option>
-<option value="11">Rheinland-Pfalz</option>
-<option value="12">Saarland</option>
-<option value="13">Sachsen-Anhalt</option>
-<option value="14">Sachsen</option>
-<option value="15">Schleswig-Holstein</option>
-<option value="16">Thüringen</option>
-'''
-
 
 class PdfBuilderTest(TestCase):
 

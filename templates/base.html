@@ -43,10 +43,10 @@
                 <div class="navbar-inner">
                     <div class="container">
                         <ul class="nav">
-                            <li class="{% block nav_index %}{% endblock %}"><a href="/">Home</a></li>
-                            <li class="{% block nav_generator %}{% endblock %}"><a href="/generator/">Generator</a></li>
-                            <li class="{% block nav_information %}{% endblock %}"><a href="/informationen/">Informationen</a></li>
-                            <li class="{% block nav_about %}{% endblock %}"><a href="/ueber-uns/">Über uns</a></li>
+                            <li class="{% block nav_index %}{% endblock %}"><a href="{% url 'index' %}">Home</a></li>
+                            <li class="{% block nav_generator %}{% endblock %}"><a href="{% url 'pdfbuilder-generator' %}" title="Übermittlungssperren generieren">Generator</a></li>
+                            <li class="{% block nav_information %}{% endblock %}"><a href="{% url 'information' %}" title="Meldewesen, Übermittlungssperren, Datensparsamkeit">Informationen</a></li>
+                            <li class="{% block nav_about %}{% endblock %}"><a href="{% url 'about' %}" title="Was ist Datensparsam.de?">Über uns</a></li>
                         </ul>
                     </div>
                 </div>
@@ -70,10 +70,10 @@
         </div>
         <hr>
         <ul class="unstyled pagination-centered navi">
-            <li><a href="/ueber-uns/">Über uns</a></li>
-            <li><a href="/impressum/">Impressum</a></li>
-            <li><a href="/nutzungsbedingungen/">Nutzungsbedingungen</a></li>
-            <li><a href="/datenschutz/">Datenschutzerklärung</a></li>
+            <li><a href="{% url 'about' %}" title="Was ist Datensparsam.de?">Über uns</a></li>
+            <li><a rel ="nofollow" href="{% url 'imprint' %}" title="Wer betreibt Datensparsam.de?">Impressum</a></li>
+            <li><a rel ="nofollow" href="{% url 'tos' %}" title="Datensparsam.de - Nutzungsbedingungen">Nutzungsbedingungen</a></li>
+            <li><a rel ="nofollow" href="{% url 'privacy' %}" title="Datensparsam.de - Datenschutzerklärung">Datenschutzerklärung</a></li>
         </ul>
     </footer>
 
