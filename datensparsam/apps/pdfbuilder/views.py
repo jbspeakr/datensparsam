@@ -1,8 +1,12 @@
 from io import BytesIO
 
 import datetime
+import logging
+
 from django.http import HttpResponse
 from django.utils.translation import ugettext_lazy as _
+from django.shortcuts import render
+from django.views.decorators.http import require_POST
 
 from datensparsam.apps.pdfbuilder import models as pdfmodels
 from datensparsam.apps.api import models as apimodels
@@ -12,27 +16,42 @@ from dinbrief.template import BriefTemplate
 from dinbrief.styles import styles
 from reportlab.platypus import Paragraph
 
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
+
+@require_POST
 def pdf(request):
     ''' Returns PDF Response. '''
+    sender_address = create_sender_address(request)
+    recipient = get_recipient(request)
+    recipient_address = create_recipient_address(recipient)
+    content = create_content(request, recipient)
+
+    date = datetime.datetime.now().strftime("%d.%m.%Y")
+
+    # Setup PDF
+    document = Document(
+        sender=sender_address,
+        recipient=recipient_address,
+        date=date,
+        content=content
+    )
+
+    response = create_pdf_response(document)
+    return response
+
+
+def generator(request):
+    context = {}
     if request.method == 'POST':
-        sender_address = create_sender_address(request)
-        recipient = get_recipient(request)
-        recipient_address = create_recipient_address(recipient)
-        content = create_content(request, recipient)
+        zipcode = request.POST['zipcode']
 
-        date = datetime.datetime.now().strftime("%d.%m.%Y")
+        context = {
+            "zipcode": zipcode,
 
-        # Setup PDF
-        document = Document(
-            sender=sender_address,
-            recipient=recipient_address,
-            date=date,
-            content=content
-        )
-
-        response = create_response(document)
-        return response
+        }
+    return render(request, "generator.html", context)
 
 
 def get_recipient(request):
@@ -44,6 +63,7 @@ def get_recipient(request):
         pk = request.POST['municipality']
         recipient = apimodels.Municipality.objects.get(pk=pk)
     else:
+        # TODO return proper Error Page
         raise Exception('no receipient')
 
     return recipient
@@ -93,7 +113,7 @@ def create_sender_address(request):
     return sender_address
 
 
-def create_response(document):
+def create_pdf_response(document):
     # Create Buffer
     buff = BytesIO()
 
@@ -109,4 +129,5 @@ def create_response(document):
     pdf = buff.getvalue()
     buff.close()
     response.write(pdf)
+
     return response
