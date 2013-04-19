@@ -1,23 +1,24 @@
 from django.conf.urls import patterns, include, url
-
-# from datensparsam.apps.pdfbuilder import views as pdfbuilder
-
 from django.contrib import admin
+from django.views.generic import TemplateView
+
 admin.autodiscover()
+
+
+def TV(template):
+    return TemplateView.as_view(template_name=template)
 
 urlpatterns = patterns(
     '',
-    # Examples:
-    # url(r'^$', 'datensparsam.views.home', name='home'),
-    # url(r'^datensparsam/', include('datensparsam.foo.urls')),
-    # url(r'^$', 'index', {}, name='home'),
-    url(r'^$', include('datensparsam.apps.pdfbuilder.urls')),
-    #url(r'^form/', include('datensparsam.apps.pdfbuilder.urls')),
-    url(r'^hilfe/', include('datensparsam.apps.pdfbuilder.sub_urls')),
-    # url(r'^pdfbuilder/', pdfbuilder.get_pdf, {}, name='pdfbuilder'),
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^$', TV('index.html'), {}, 'index'),
+    url(r'^informationen/$', TV('information.html'), {}, name='informationen'),
+    url(r'^ueber-uns/$', TV('about.html'), {}, name='about'),
+    url(r'^impressum/$', TV('imprint.html'), {}, name='imprint'),
+    url(r'^nutzungsbedingungen/$', TV('tos.html'), {}, name='tos'),
+    url(r'^datenschutz/$', TV('privacy.html'), {}, name='privacy'),
 
-    # Uncomment the next line to enable the admin:
+    url(r'^generator/', include('datensparsam.apps.pdfbuilder.urls')),
+
+    url(r'^api/', include('datensparsam.apps.api.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

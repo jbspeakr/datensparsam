@@ -2,6 +2,7 @@
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+TASTYPIE_FULL_DEBUG = DEBUG
 
 ADMINS = (
     ('Jan Brennenstuhl', 'jan.brennenstuhl@okfn.org'),
@@ -126,7 +127,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'datensparsam.apps.pdfbuilder',
-    'datensparsam.libs.pdf',
+    'datensparsam.apps.api',
+    'tastypie',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -137,6 +139,14 @@ INSTALLED_APPS = (
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
@@ -147,7 +157,12 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
     },
     'loggers': {
         'django.request': {
@@ -155,5 +170,9 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+        'datensparsam.apps.pdfbuilder': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        }
     }
 }
