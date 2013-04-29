@@ -186,7 +186,10 @@ height: 180px;
     font-size: 0.8em;
 }
 .js-hidden {
-display: none;
+    display: none;
+}
+legend {
+    border-bottom: 1px solid #e5e5e5;
 }
 /* ==========================================================================
    Helper classes

@@ -11,7 +11,7 @@ def TV(template):
 urlpatterns = patterns(
     '',
     url(r'^$', TV('index.html'), {}, 'index'),
-    url(r'^informationen/$', TV('information.html'), {}, name='informationen'),
+    url(r'^informationen/$', TV('information.html'), {}, name='information'),
     url(r'^ueber-uns/$', TV('about.html'), {}, name='about'),
     url(r'^impressum/$', TV('imprint.html'), {}, name='imprint'),
     url(r'^nutzungsbedingungen/$', TV('tos.html'), {}, name='tos'),
