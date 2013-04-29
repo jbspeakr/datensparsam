@@ -21,14 +21,12 @@ $(document).ready(function(){
             $("#zipcodeInfo").fadeOut();
             $("#zipcodeError").fadeOut();
 
-            /*  */
+            /* Handle API call */
             $.getJSON("/api/v1/zipcode/?format=json&zipcode="+ zipcode,
                 function(data){
                     if(data.meta.total_count > 0){
                         var registrationoffices = data.objects[0].registrationoffices;
                         var municipalities = data.objects[0].municipalities;
-
-
 
                         if(registrationoffices.length > 0){
                             $.each(registrationoffices, function() {
@@ -55,6 +53,7 @@ $(document).ready(function(){
                     }
                 }
             );
+
         } else {
             $("#inputZipcode").parents("div[class='control-group']").addClass(errorClass);
             $("#municipality").fadeOut();
@@ -68,12 +67,15 @@ $(document).ready(function(){
         }
     });
 
+    $("#municipalitySubmit").button();
     $("#municipalitySubmit").click(function(e){
         e.preventDefault();
         $("#address").fadeIn();
         $("#address").siblings("legend").removeClass(mutedClass);
+
     });
 
+    $("#registrationOfficeSubmit").button();
     $("#registrationOfficeSubmit").click(function(e){
         e.preventDefault();
         $("#address").fadeIn();
