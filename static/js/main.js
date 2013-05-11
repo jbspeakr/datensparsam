@@ -5,7 +5,7 @@ $(document).ready(function(){
 
     $("#zipcodeSubmit").click(function(e){
         e.preventDefault();
-        var zipcode = $("#inputZipcode").val();
+        var zipcode = $("#id_zipcode").val();
         var isnum = /^\d+$/.test(zipcode);
         if(zipcode.length == 5 && isnum){
             /* Clean up */
@@ -30,7 +30,7 @@ $(document).ready(function(){
 
                         if(registrationoffices.length > 0){
                             $.each(registrationoffices, function() {
-                                $("#registrationoffice-id")
+                                $("#id_registrationoffice")
                                  .append($("<option></option>")
                                  .attr("value",this.id)
                                  .text(this.name));
@@ -40,7 +40,7 @@ $(document).ready(function(){
                         } else {
 
                             $.each(municipalities, function() {
-                                $("#municipality-id")
+                                $("#id_municipality")
                                  .append($("<option></option>")
                                  .attr("value",this.id)
                                  .text(this.name));

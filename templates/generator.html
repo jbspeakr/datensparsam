@@ -13,7 +13,8 @@
             <h1>Übermittlungssperre-Generator</h1>
             <p class="lead">Ohne betroffene Personen darüber zu informieren, geben deutsche Einwohnermeldeämter persönliche Meldedaten an Behörden, Firmen oder Adressbuchverlage weiter - ganz legal.</p>
             <p>Um ihr <a href="http://de.wikipedia.org/wiki/Informationelle_Selbstbestimmung" title="Informationen zur informationellen Selbstbestimmung">Recht auf informationelle Selbstbestimmung</a> wahrnehmen zu können und den Adresshandel einzudämmen, müssen Bürgerinnen und Bürger leider noch immer selbst aktiv werden. Eine Möglichkeit dies zu tun, besteht in der Beantragung von Übermittlungssperren. Dieser Generator hilft dabei, diese zu erstellen!</p>
-            <form class="form-horizontal" action="{% url 'pdfbuilder-pdf' %}" method="POST">
+            <form class="form-horizontal" action="{% url 'pdfbuilder-generator' %}" method="POST">
+                {{ form.non_field_errors }}
                 <fieldset>
                     <legend><b>Schritt 1</b> Postleitzahl</legend>
                     <p>Anhand von Postleitzahlen ermittelt der Formular-Generator zuständige Meldestelle. Bitte tragen Sie deshalb Ihre Postleitzahl in das nachstehende Feld ein.</p>
@@ -24,10 +25,11 @@
                         <b>Achtung</b> - Die von Ihnen eingegebene Postleitzahl kann von unserem Formular-Generator nicht verarbeitet werden. Bitte beachten Sie, dass deutsche Postleitzahlen fünfstellig sind und nur aus Ziffern bestehen.
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="inputZipcode">Ihre Postleitzahl:</label>
+                        <label class="control-label" for="id_zipcode">Ihre Postleitzahl:</label>
                         <div class="controls">
-                            <input type="text" id="inputZipcode" name="zipcode" placeholder="12051" value="{{ zipcode }}" />
+                            {{ form.zipcode }}
                             <span class="help-block info">Bspw. 12051, 15344 oder 54450</span>
+                            <span class="help-block warning">{{ form.zipcode.errors }}</span>
                         </div>
                     </div>
                     <div class="control-group">
@@ -41,9 +43,10 @@
                     <div id="municipality" class="js-hidden">
                         <p>Bitte wählen Sie ihre Gemeinde aus.</p>
                         <div class="control-group">
-                            <label class="control-label" for="municipality-id">Ihre Gemeinde:</label>
+                            <label class="control-label" for="id_municipality">Ihre Gemeinde:</label>
                             <div class="controls">
-                                <select class="input-xlarge" name="municipality" id="municipality-id"></select>
+                                <select class="input-xlarge" name="municipality" id="id_municipality"></select>
+                                <span class="help-block warning">{{ form.municipality.errors }}</span>
                             </div>
                         </div>
                         <div class="control-group">
@@ -55,9 +58,10 @@
                     <div id="registrationOffice" class="js-hidden">
                         <p>Bitte wählen Sie das Amt aus, an das Ihr Antrag auf Übermittlungssperre adressiert werden soll.</p>
                         <div class="control-group">
-                            <label class="control-label" for="registrationoffice-id">Ihr Einwohnermeldeamt:</label>
+                            <label class="control-label" for="id_registrationoffice">Ihr Einwohnermeldeamt:</label>
                             <div class="controls">
-                                <select class="input-xlarge" name="registrationoffice" id="registrationoffice-id"></select>
+                                <select class="input-xlarge" name="registrationoffice" id="id_registrationoffice"></select>
+                                <span class="help-block warning">{{ form.registrationoffice.errors }}</span>
                             </div>
                         </div>
                         <div class="control-group">
@@ -72,27 +76,31 @@
                     <div id="address" class="js-hidden">
                         <p>Damit Ihr Antrag auf Übermittlungssperre Ihnen vom Einwohnermeldeamt eindeutig zugeordnet werden kann, ist ihre komplette Anschrift notwendig. Bitte überprüfen Sie Ihre Angaben, bevor Sie ihr Formular generieren lassen.</p>
                         <div class="control-group">
-                            <label class="control-label" for="firstname">Vorname</label>
+                            <label class="control-label" for="id_firstname">Vorname</label>
                             <div class="controls">
-                                <input type="text" id="firstname" name="firstname" placeholder="Maxi">
+                                {{ form.firstname }}
+                                <span class="help-block warning">{{ form.firstname.errors }}</span>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="name">Nachname</label>
+                            <label class="control-label" for="id_name">Nachname</label>
                             <div class="controls">
-                                <input type="text" id="name" name="name" placeholder="Mustermann">
+                                {{ form.name }}
+                                <span class="help-block warning">{{ form.name.errors }}</span>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="address">Straße/ Hausnummer</label>
+                            <label class="control-label" for="id_address">Straße/ Hausnummer</label>
                             <div class="controls">
-                                <input type="text" id="address" name="address" placeholder="Lindenstr. 6">
+                                {{ form.address }}
+                                <span class="help-block warning">{{ form.address.errors }}</span>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="city">Stadt</label>
+                            <label class="control-label" for="id_city">Stadt</label>
                             <div class="controls">
-                                <input type="text" id="city" name="city" placeholder="Berlin">
+                                {{ form.city }}
+                                <span class="help-block warning">{{ form.city.errors }}</span>
                             </div>
                         </div>
                         <div class="form-actions">

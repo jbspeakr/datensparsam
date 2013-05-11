@@ -3,12 +3,14 @@ from io import BytesIO
 import datetime
 import logging
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render
-from django.views.decorators.http import require_POST
+from django.core.urlresolvers import reverse
+#from django.views.decorators.http import require_POST
 
 from datensparsam.apps.pdfbuilder import models as pdfmodels
+from datensparsam.apps.pdfbuilder.forms import generatorform as forms
 from datensparsam.apps.api import models as apimodels
 
 from dinbrief.document import Document
@@ -20,47 +22,56 @@ from reportlab.platypus import Paragraph
 logger = logging.getLogger(__name__)
 
 
-@require_POST
+def download(request):
+    return render(request, 'download.html')
+
+
 def pdf(request):
     ''' Returns PDF Response. '''
-    sender_address = create_sender_address(request)
-    recipient = get_recipient(request)
-    recipient_address = create_recipient_address(recipient)
-    content = create_content(request, recipient)
+    form = forms.GeneratorForm(request.session.get('form_data'))
+    if form.is_valid():
+        sender_address = create_sender_address(form)
+        recipient = get_recipient(form)
+        recipient_address = create_recipient_address(recipient)
+        content = create_content(form, recipient)
 
-    date = datetime.datetime.now().strftime("%d.%m.%Y")
+        date = datetime.datetime.now().strftime("%d.%m.%Y")
 
-    # Setup PDF
-    document = Document(
-        sender=sender_address,
-        recipient=recipient_address,
-        date=date,
-        content=content
-    )
+        # Setup PDF
+        document = Document(
+            sender=sender_address,
+            recipient=recipient_address,
+            date=date,
+            content=content
+        )
 
-    response = create_pdf_response(document)
-    return response
+        response = create_pdf_response(document)
+        return response
+    else:
+        return HttpResponseRedirect(reverse('pdfbuilder-generator'))
 
 
 def generator(request):
-    context = {}
-    if request.method == 'POST':
-        zipcode = request.POST['zipcode']
+    if request.method == 'POST':  # If the form has been submitted...
+        form = forms.GeneratorForm(request.POST)  # A form bound to POST data
+        if form.is_valid():  # All validation rules pass
+            request.session['form_data'] = form.cleaned_data
+            return HttpResponseRedirect(reverse('pdfbuilder-download'))
+    else:
+        form = forms.GeneratorForm()  # An unbound form
 
-        context = {
-            "zipcode": zipcode,
-
-        }
-    return render(request, "generator.html", context)
+    return render(request, 'generator.html', {
+        'form': form,
+    })
 
 
-def get_recipient(request):
+def get_recipient(form):
     recipient = ""
-    if request.POST['registrationoffice']:
-        pk = request.POST['registrationoffice']
+    if form.cleaned_data['registrationoffice']:
+        pk = form.cleaned_data['registrationoffice']
         recipient = apimodels.RegistrationOffice.objects.get(pk=pk)
-    elif request.POST['municipality']:
-        pk = request.POST['municipality']
+    elif form.cleaned_data['municipality']:
+        pk = form.cleaned_data['municipality']
         recipient = apimodels.Municipality.objects.get(pk=pk)
     else:
         # TODO return proper Error Page
@@ -69,7 +80,7 @@ def get_recipient(request):
     return recipient
 
 
-def create_content(request, recipient):
+def create_content(form, recipient):
     paragraphs = pdfmodels.Form.objects.get(state=recipient.state)
 
     content = []
@@ -89,7 +100,7 @@ def create_content(request, recipient):
         _(u'Request for Forwarding'), styles['Normal']))
     content.append(Paragraph(_(u'Greetings'), styles['Closing']))
     content.append(Paragraph(
-        '%s %s (%s)' % (request.POST['firstname'], request.POST['name'],
+        '%s %s (%s)' % (form.cleaned_data['firstname'], form.cleaned_data['name'],
         _(u'Signature')), styles['Normal']))
 
     return content
@@ -104,11 +115,11 @@ def create_recipient_address(recipient):
     return recipient_address
 
 
-def create_sender_address(request):
+def create_sender_address(form):
     sender_address = [
-        request.POST['name'] + ', ' + request.POST['firstname'],
-        request.POST['address'],
-        request.POST['zipcode'] + ' ' + request.POST['city']
+        form.cleaned_data['name'] + ', ' + form.cleaned_data['firstname'],
+        form.cleaned_data['address'],
+        form.cleaned_data['zipcode'] + ' ' + form.cleaned_data['city']
     ]
     return sender_address
 
