@@ -16,3 +16,7 @@ during the international Open-Data-Day 2013 in Berlin.
     python manage.py loaddata api-municipality
     python manage.py loaddata api-registrationoffice
     python manage.py loaddata api-zipcode
+
+### Load PDF-Builder Fixture
+
+    python manage.py loaddata pdfbuilder-form
