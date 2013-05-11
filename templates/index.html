@@ -15,13 +15,8 @@
             <p><b>Datensparsamkeit fängt beim Einwohnermeldeamt an.</b> Um dir bei der
                 Einrichtung einer persönliche Übermittlungssperre zu helfen, brauchen
                 wir nichts weiter als deine Postleitzahl!</p>
-            <form action="{% url 'pdfbuilder-generator' %}" method="POST" class="input-prepend input-append">
-                <span class="add-on">Deine Postleitzahl:</span>
-                <input class="input-medium" id="appendedInputButton" type="text" name="zipcode">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-primary" type="button"><i class="icon-white icon-search"></i></button>
-            </form
->        </div>
+                <a class="btn btn-primary" href="{% url 'pdfbuilder-generator' %}" title="Jetzt Übermittlungssperre erstellen!"><i class="icon-hand-right icon-white"></i> Jetzt Übermittlungssperre erstellen!</a>
+        </div>
         <div class="span4">
             <p><b>Datensparsam.de</b> ist ein Projekt der Open Knowledge Foundation Deutschland mit dem sich Anträge für Übermittlungssperren erstellen lassen.</p>
             <p><a class="btn btn-info" href="{% url 'about' %}">Mehr erfahren &raquo;</a></p>
