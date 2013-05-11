@@ -53,15 +53,18 @@ def pdf(request):
 
 def generator(request):
     if request.method == 'POST':  # If the form has been submitted...
+        zipcode = request.POST['zipcode']
         form = forms.GeneratorForm(request.POST)  # A form bound to POST data
         if form.is_valid():  # All validation rules pass
             request.session['form_data'] = form.cleaned_data
             return HttpResponseRedirect(reverse('pdfbuilder-download'))
     else:
         form = forms.GeneratorForm()  # An unbound form
+        zipcode = ''
 
     return render(request, 'generator.html', {
         'form': form,
+        'zipcode': zipcode
     })
 
 
