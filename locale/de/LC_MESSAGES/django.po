@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-11 15:30+0200\n"
+"POT-Creation-Date: 2013-05-13 09:20+0200\n"
 "PO-Revision-Date: 2013-03-03 14:56+0100\n"
 "Last-Translator: Jan Brennenstuhl <jan.brennenstuhl@okfn.org>\n"
 "Language-Team: OKF-DE <postmaster@datensparsam.de>\n"
@@ -48,8 +48,12 @@ msgstr "Mit freundlichem Gruß,"
 msgid "Signature"
 msgstr "Unterschrift"
 
+#: datensparsam/apps/pdfbuilder/forms/generatorform.py:32
+msgid "No recipient found."
+msgstr "Bitte wählen Sie einen Empfänger."
+
 #~ msgid "Wrong zipcode length."
-#~ msgstr "Postleitzahl ist zu kurz."
+#~ msgstr "Die angegebene Postleitzahl ist zu kurz."
 
 #~ msgid "Zipcode not in state."
 #~ msgstr "Die Postleitzahl liegt nicht im angegebenen Bundesland."

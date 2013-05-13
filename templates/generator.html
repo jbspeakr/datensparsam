@@ -23,7 +23,7 @@
                         <div class="controls">
                             {{ form.zipcode }}
                             <span class="help-block info">Bspw. 12051, 15344 oder 54450</span>
-                            <span class="help-block warning">{{ form.zipcode.errors }}</span>
+                            <span class="text-warning">{{ form.zipcode.errors.as_text }}</span>
                         </div>
                     </div>
                     <div class="control-group">
@@ -40,7 +40,7 @@
                             <label class="control-label" for="id_municipality">Ihre Gemeinde:</label>
                             <div class="controls">
                                 <select class="input-xlarge" name="municipality" id="id_municipality"></select>
-                                <span class="help-block warning">{{ form.municipality.errors }}</span>
+                                <span class="text-warning">{{ form.municipality.errors.as_text }}</span>
                             </div>
                         </div>
                         <div class="control-group">
@@ -55,7 +55,7 @@
                             <label class="control-label" for="id_registrationoffice">Ihr Einwohnermeldeamt:</label>
                             <div class="controls">
                                 <select class="input-xlarge" name="registrationoffice" id="id_registrationoffice"></select>
-                                <span class="help-block warning">{{ form.registrationoffice.errors }}</span>
+                                <span class="text-warning">{{ form.registrationoffice.errors.as_text }}</span>
                             </div>
                         </div>
                         <div class="control-group">
@@ -73,28 +73,28 @@
                             <label class="control-label" for="id_firstname">Vorname</label>
                             <div class="controls">
                                 {{ form.firstname }}
-                                <span class="help-block warning">{{ form.firstname.errors }}</span>
+                                <span class="text-warning">{{ form.firstname.errors.as_text }}</span>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="id_name">Nachname</label>
                             <div class="controls">
                                 {{ form.name }}
-                                <span class="help-block warning">{{ form.name.errors }}</span>
+                                <span class="text-warning">{{ form.name.errors.as_text }}</span>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="id_address">Straße/ Hausnummer</label>
                             <div class="controls">
                                 {{ form.address }}
-                                <span class="help-block warning">{{ form.address.errors }}</span>
+                                <span class="text-warning">{{ form.address.errors.as_text }}</span>
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="id_city">Stadt</label>
                             <div class="controls">
                                 {{ form.city }}
-                                <span class="help-block warning">{{ form.city.errors }}</span>
+                                <span class="text-warning">{{ form.city.errors.as_text }}</span>
                             </div>
                         </div>
                         <div class="form-actions">
