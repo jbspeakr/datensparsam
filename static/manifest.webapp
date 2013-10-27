@@ -20,8 +20,5 @@
       }
     }
   },
-  "default_locale": "de",
-  "permissions": {
-    "systemXHR": {}
-  }
+  "default_locale": "de"
 }
