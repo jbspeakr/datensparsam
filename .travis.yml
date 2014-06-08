@@ -7,8 +7,8 @@ env:
   - DJANGO_VERSION=Django==1.6.5
 # command to install dependencies
 install:
-  - pip install . --use-mirrors
-  - pip install -r requirements.txt --use-mirrors
+  - pip install .
+  - pip install -r requirements.txt
 # command to run tests
 script:
   - python manage.py test
