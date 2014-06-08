@@ -1,6 +1,6 @@
 # Datensparsam.de
 
-[![Build Status](https://api.travis-ci.org/jbspeakr/datensparsam.png?branch=master)](https://travis-ci.org/datensparsam/datensparsam)
+[![Build Status](https://api.travis-ci.org/jbspeakr/datensparsam.png?branch=master)](https://travis-ci.org/jbspeakr/datensparsam)
 
 Datensparsam.de is a tool for German citizen providing a simple way for German citizen
 to opt-out from governmental record sections by generating personal application forms
