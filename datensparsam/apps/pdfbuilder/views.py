@@ -7,7 +7,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
-#from django.views.decorators.http import require_POST
 
 from datensparsam.apps.pdfbuilder import models as pdfmodels
 from datensparsam.apps.pdfbuilder.forms import generatorform as forms
@@ -27,7 +26,7 @@ def download(request):
 
 
 def pdf(request):
-    ''' Returns PDF Response. '''
+    """ Returns PDF Response. """
     form = forms.GeneratorForm(request.session.get('form_data'))
     if form.is_valid():
         sender_address = create_sender_address(form)
@@ -66,7 +65,6 @@ def generator(request):
 
 
 def get_recipient(form):
-    recipient = ""
     if form.cleaned_data['registrationoffice']:
         pk = form.cleaned_data['registrationoffice']
         recipient = apimodels.RegistrationOffice.objects.get(pk=pk)
@@ -75,7 +73,7 @@ def get_recipient(form):
         recipient = apimodels.Municipality.objects.get(pk=pk)
     else:
         # TODO return proper Error Page
-        raise Exception('no receipient')
+        raise Exception('no recipient')
 
     return recipient
 
@@ -83,13 +81,10 @@ def get_recipient(form):
 def create_content(form, recipient):
     paragraphs = pdfmodels.Form.objects.get(state=recipient.state)
 
-    content = []
-    content.append(Paragraph(
-        paragraphs.heading, styles['Subject']))
-    content.append(Paragraph(
-        _(u'Dear Sir or Madam'), styles['Greeting']))
-    content.append(Paragraph(
-        _(u'Contradiction intro'), styles['Greeting']))
+    content = [Paragraph(
+        paragraphs.heading, styles['Subject']), Paragraph(
+        _(u'Dear Sir or Madam'), styles['Greeting']), Paragraph(
+        _(u'Contradiction intro'), styles['Greeting'])]
 
     for paragraph in paragraphs.get_content():
         content.append(Paragraph('- ' + paragraph, styles['Message']))
@@ -101,7 +96,7 @@ def create_content(form, recipient):
     content.append(Paragraph(_(u'Greetings'), styles['Closing']))
     content.append(Paragraph(
         '%s %s (%s)' % (form.cleaned_data['firstname'], form.cleaned_data['name'],
-        _(u'Signature')), styles['Normal']))
+                        _(u'Signature')), styles['Normal']))
 
     return content
 
@@ -133,12 +128,12 @@ def create_pdf_response(document):
     template.build(document.content)
 
     # Create Response and close Buffer
-    response = HttpResponse(mimetype='application/pdf')
+    response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = \
         'attachment; filename="uebermittlungssperre.pdf"'
 
-    pdf = buff.getvalue()
+    pdf_response = buff.getvalue()
     buff.close()
-    response.write(pdf)
+    response.write(pdf_response)
 
     return response

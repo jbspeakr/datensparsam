@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Form(models.Model):
-    ''' Uebermittlungssperre Formular '''
+    """ Uebermittlungssperre Formular """
     state = models.CharField(max_length=48)  # Bundesland
     heading = models.CharField(max_length=200)
     religionclause = models.CharField(max_length=512, null=True, blank=True)
