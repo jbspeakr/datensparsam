@@ -15,18 +15,9 @@ def read(*parts):
     file_path = path.join(path.dirname(__file__), *parts)
     return codecs.open(file_path).read()
 
-
-def find_version(*file_paths):
-    version_file = read(*file_paths)
-    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
-                              version_file, re.M)
-    if version_match:
-        return version_match.group(1)
-    raise RuntimeError("Unable to find version string.")
-
 setup(
     name='datensparsam',
-    version=find_version("datensparsam", "__init__.py"),
+    version='0.3',
     packages=['datensparsam'],
     license='MIT License',
     description='Django-based civic app to opt-out at governmental record sections',
