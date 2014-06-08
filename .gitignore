@@ -1,4 +1,5 @@
 django_db
+.idea/
 
 *.py[cod]
 *.pyc
