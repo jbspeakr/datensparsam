@@ -12,10 +12,8 @@ class GeneratorForm(forms.Form):
                 'placeholder': '12051',
                 'required': 'true'
             }))
-    registrationoffice = forms.CharField(
-        required=False)
-    municipality = forms.CharField(
-        required=False)
+    registrationoffice = forms.CharField(required=False)
+    municipality = forms.CharField(required=False)
     name = forms.CharField(
         max_length=32,
         widget=forms.TextInput(
@@ -58,7 +56,7 @@ class GeneratorForm(forms.Form):
                 return False
             apimodels.RegistrationOffice.objects.get(id=data)
             return True
-        except:
+        except apimodels.Municipality.DoesNotExist:
             return False
 
     def has_municipality(self):

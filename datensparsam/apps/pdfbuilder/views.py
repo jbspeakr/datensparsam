@@ -21,6 +21,20 @@ from reportlab.platypus import Paragraph
 logger = logging.getLogger(__name__)
 
 
+def generator(request):
+    if request.method == 'POST':  # If the form has been submitted...
+        form = forms.GeneratorForm(request.POST)  # A form bound to POST data
+        if form.is_valid():  # All validation rules pass
+            request.session['form_data'] = form.cleaned_data
+            return HttpResponseRedirect(reverse('pdfbuilder-download'))
+    else:
+        form = forms.GeneratorForm()  # An unbound form
+
+    return render(request, 'generator.html', {
+        'form': form,
+    })
+
+
 def download(request):
     return render(request, 'download.html')
 
@@ -48,20 +62,6 @@ def pdf(request):
         return response
     else:
         return HttpResponseRedirect(reverse('pdfbuilder-generator'))
-
-
-def generator(request):
-    if request.method == 'POST':  # If the form has been submitted...
-        form = forms.GeneratorForm(request.POST)  # A form bound to POST data
-        if form.is_valid():  # All validation rules pass
-            request.session['form_data'] = form.cleaned_data
-            return HttpResponseRedirect(reverse('pdfbuilder-download'))
-    else:
-        form = forms.GeneratorForm()  # An unbound form
-
-    return render(request, 'generator.html', {
-        'form': form,
-    })
 
 
 def get_recipient(form):

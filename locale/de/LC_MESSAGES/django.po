@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-08 15:56+0200\n"
+"POT-Creation-Date: 2014-06-08 17:28+0200\n"
 "PO-Revision-Date: 2013-03-03 14:56+0100\n"
 "Last-Translator: Jan Brennenstuhl <jan@brennenstuhl.me>\n"
 "Language-Team: OKF-DE <postmaster@datensparsam.de>\n"
@@ -48,7 +48,7 @@ msgstr "Mit freundlichem Gruß,"
 msgid "Signature"
 msgstr "Unterschrift"
 
-#: datensparsam/apps/pdfbuilder/forms/generatorform.py:52
+#: datensparsam/apps/pdfbuilder/forms/generatorform.py:50
 msgid "No recipient found."
 msgstr "Bitte wählen Sie einen Empfänger."
 

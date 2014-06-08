@@ -18,14 +18,13 @@ class PdfBuilderTest(TestCase):
         """This method is automatically called by the Django test framework."""
         self.client = Client()
 
-    def POST(self, url, params, status=200):
+    def post(self, url, params, status=200):
         """Make a POST and require a specific status code before proceeding"""
         response = self.client.post(url, params)
-        self.failUnlessEqual(response.status_code, status)
+        self.assertEqual(response.status_code, status)
         return response
 
     def test_pdf_creation(self):
-        '''  '''
         params = {
             'name': 'Nachname',
             'firstname': 'Vorname',
@@ -33,6 +32,7 @@ class PdfBuilderTest(TestCase):
             'zipcode': '12345',
             'city': 'Stadt',
             'registrationoffice': '1629',
-            'municipality': '15',
+            'municipality': '15'
         }
-        self.POST(reverse('pdfbuilder-pdf'), params)
+
+        self.post(reverse('pdfbuilder-generator'), params, 302)
