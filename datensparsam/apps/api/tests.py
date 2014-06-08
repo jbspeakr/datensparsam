@@ -21,6 +21,11 @@ class ApiTest(TestCase):
         self.assertEqual(response.status_code, status)
         return response
 
+    def get_json(self, url):
+        response = self.get(url).content
+        new_json = json.loads(response.decode('utf8'))
+        return new_json
+
     def test_m2m_sql_access(self):
         zipcode = models.Zipcode.objects.get(id=1)
         municipalities = zipcode.municipalities.all()
@@ -30,10 +35,7 @@ class ApiTest(TestCase):
         self.assertTrue(registration_offices)
 
     def test_m2m_api_access(self):
-        url = '/api/v1/zipcode/?format=json'
-        response = self.get(url).content
-        new_json = json.loads(response.decode('utf8'))
-
+        new_json = self.get_json('/api/v1/zipcode/?format=json')
         self.assertTrue(new_json)
 
         zipcode = new_json['objects'][0]
@@ -42,10 +44,7 @@ class ApiTest(TestCase):
         self.assertTrue('municipalities' in zipcode)
 
     def test_municipality_api_access(self):
-        url = '/api/v1/municipality/?format=json'
-        response = self.get(url).content
-        new_json = json.loads(response.decode('utf8'))
-
+        new_json = self.get_json('/api/v1/municipality/?format=json')
         self.assertTrue(new_json)
 
         municipality = new_json['objects'][0]
@@ -59,11 +58,8 @@ class ApiTest(TestCase):
         self.assertTrue('street' in municipality)
         self.assertTrue('zipcode' in municipality)
 
-    def test_registrationoffice_api_access(self):
-        url = '/api/v1/registration-office/?format=json'
-        response = self.get(url).content
-        new_json = json.loads(response.decode('utf8'))
-
+    def test_registration_office_api_access(self):
+        new_json = self.get_json('/api/v1/registration-office/?format=json')
         self.assertTrue(new_json)
 
         municipality = new_json['objects'][0]

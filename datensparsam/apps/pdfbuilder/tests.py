@@ -4,6 +4,7 @@
 from django.test import TestCase
 from django.test.client import Client
 from django.core.urlresolvers import reverse
+from datensparsam.apps.pdfbuilder.models import Form
 
 
 class PdfBuilderTest(TestCase):
@@ -24,7 +25,7 @@ class PdfBuilderTest(TestCase):
         self.assertEqual(response.status_code, status)
         return response
 
-    def test_pdf_creation(self):
+    def test_post_bound_pdf_request(self):
         params = {
             'name': 'Nachname',
             'firstname': 'Vorname',
@@ -36,3 +37,9 @@ class PdfBuilderTest(TestCase):
         }
 
         self.post(reverse('pdfbuilder-generator'), params, 302)
+
+    def test_empty_content(self):
+        self.form = Form.objects.create(
+            state='Berlin',
+            heading='Widerspruch zur Daten\u00fcbermittlung')
+        self.assertFalse(self.form.get_content())
