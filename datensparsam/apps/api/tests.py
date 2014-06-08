@@ -1,10 +1,3 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
 import json
 from django.test import TestCase
 from django.test.client import Client
@@ -22,10 +15,10 @@ class ApiTest(TestCase):
         """This method is automatically called by the Django test framework."""
         self.client = Client()
 
-    def GET(self, url, status=200, mimetype="application/json"):
+    def get(self, url, status=200):
         """Get a URL and require a specific status code before proceeding"""
         response = self.client.get(url)
-        self.failUnlessEqual(response.status_code, status)
+        self.assertEqual(response.status_code, status)
         return response
 
     def test_m2m_sql_access(self):
@@ -38,24 +31,24 @@ class ApiTest(TestCase):
 
     def test_m2m_api_access(self):
         url = '/api/v1/zipcode/?format=json'
-        response = self.GET(url)
-        newJson = json.loads(response.content, encoding='utf-8')
+        response = self.get(url).content
+        new_json = json.loads(response.decode('utf8'))
 
-        self.assertTrue(newJson)
+        self.assertTrue(new_json)
 
-        zipcode = newJson['objects'][0]
+        zipcode = new_json['objects'][0]
 
         self.assertTrue('zipcode' in zipcode)
         self.assertTrue('municipalities' in zipcode)
 
     def test_municipality_api_access(self):
         url = '/api/v1/municipality/?format=json'
-        response = self.GET(url)
-        newJson = json.loads(response.content, encoding='utf-8')
+        response = self.get(url).content
+        new_json = json.loads(response.decode('utf8'))
 
-        self.assertTrue(newJson)
+        self.assertTrue(new_json)
 
-        municipality = newJson['objects'][0]
+        municipality = new_json['objects'][0]
 
         self.assertTrue('city' in municipality)
         self.assertTrue('id' in municipality)
@@ -68,12 +61,12 @@ class ApiTest(TestCase):
 
     def test_registrationoffice_api_access(self):
         url = '/api/v1/registration-office/?format=json'
-        response = self.GET(url)
-        newJson = json.loads(response.content, encoding='utf-8')
+        response = self.get(url).content
+        new_json = json.loads(response.decode('utf8'))
 
-        self.assertTrue(newJson)
+        self.assertTrue(new_json)
 
-        municipality = newJson['objects'][0]
+        municipality = new_json['objects'][0]
 
         self.assertTrue('city' in municipality)
         self.assertTrue('id' in municipality)
