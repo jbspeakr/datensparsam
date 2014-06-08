@@ -33,7 +33,7 @@ setup(
     long_description=read('README.md'),
     url='https://www.datensparsam.de',
     author='Jan Brennenstuhl',
-    author_email='jan.brennenstuhl@okfn.org',
+    author_email='jan@brennenstuhl.me',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Framework :: Django',
