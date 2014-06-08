@@ -32,7 +32,7 @@ TIME_ZONE = 'Europe/Berlin'
 LANGUAGE_CODE = 'de-DE'
 
 LOCALE_PATHS = (
-    "/home/jbspeakr/Dev/Repos/datensparsam/locale",
+    "/Users/brenna/Projects/datensparsam/locale",
 )
 
 SITE_ID = 1
