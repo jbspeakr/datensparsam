@@ -1,4 +1,3 @@
-from unittest import TestCase
 from django.db import models
 
 
