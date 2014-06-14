@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='datensparsam',
-    version='0.3',
+    version='0.4',
     packages=['datensparsam', 'datensparsam.apps', 'datensparsam.apps.api', 'datensparsam.apps.pdfbuilder',
               'datensparsam.apps.pdfbuilder.forms'],
     url='https://www.datensparsam.de',
