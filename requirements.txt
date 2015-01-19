@@ -1,9 +1,9 @@
-Django==1.6.5
-Pillow==2.4.0
-PyHamcrest==1.8.0
-dinbrief==0.3.2
-django-tastypie==0.11.1
-python-dateutil==2.2
+dinbrief==0.3.4
+Django==1.7.3
+django-tastypie==0.12.1
+Pillow==2.7.0
+PyHamcrest==1.8.1
+python-dateutil==2.4.0
 python-mimeparse==0.1.4
-reportlab==3.1.8
-six==1.7.0
+reportlab==3.1.44
+six==1.9.0
