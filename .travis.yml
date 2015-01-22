@@ -1,6 +1,9 @@
 language: python
 python:
-  - "3.4"
+  - '3.4'
+before_install:
+  - openssl aes-256-cbc -K $encrypted_ddca671ad439_key -iv $encrypted_ddca671ad439_iv
+    -in ssh-key.enc -out ssh-key -d
 install:
   - pip install -q -r requirements.txt
   - pip install -q coveralls
@@ -9,3 +12,7 @@ script:
 after_success:
   - coverage run --source=datensparsam setup.py -q nosetests
   - coveralls
+  - chmod 600 .travis/ssh-key
+  - ssh-add .travis/ssh-key
+  - git remote add deploy ssh://dsafe@sculptor.uberspace.de/datensparsam.git
+  - git push deploy
