@@ -1,1 +1,1 @@
-__author__ = 'brenna'
+__author__ = 'Jan Brennenstuhl'
