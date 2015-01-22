@@ -1,9 +1,10 @@
 dinbrief==0.3.4
-Django==1.7.3
-django-tastypie==0.12.1
+Flask==0.10.1
+itsdangerous==0.24
+Jinja2==2.7.3
+MarkupSafe==0.23
+mongoengine==0.8.7
 Pillow==2.7.0
-PyHamcrest==1.8.1
-python-dateutil==2.4.0
-python-mimeparse==0.1.4
+pymongo==2.7.2
 reportlab==3.1.44
-six==1.9.0
+Werkzeug==0.9.6
