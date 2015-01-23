@@ -3,8 +3,10 @@ python:
   - '3.4'
 before_install:
   - openssl aes-256-cbc -K $encrypted_ddca671ad439_key -iv $encrypted_ddca671ad439_iv
-    -in ssh-key.enc -out ssh-key -d
+    -in .travis/ssh-key.enc -out .travis/ssh-key -d
   - echo -e "Host sculptor.uberspace.de\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - git config --global user.email "dsafe@sculptor.uberspace.de"
+  - git config --global user.name "Travis the Build Bot"
 install:
   - pip install -q -r requirements.txt
   - pip install -q coveralls
