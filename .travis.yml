@@ -6,6 +6,8 @@ before_install:
 install:
   - pip install -q -r requirements.txt
   - pip install -q coveralls
+before_script:
+  - echo -e "Host sculptor.uberspace.de\n\tStrictHostKeyChecking no\n\tCheckHostIP no\n" >> ~/.ssh/config
 script:
   - python setup.py -q nosetests
 after_success:
@@ -19,5 +21,5 @@ after_success:
   - git config --global user.email "dsafe@sculptor.uberspace.de"
   - git config --global user.name "Travis the Build Bot"
   - git config --global push.default matching
-  - yes | git remote add deploy ssh://dsafe@sculptor.uberspace.de/datensparsam.git
-  - yes | git push deploy
+  - git remote add deploy ssh://dsafe@sculptor.uberspace.de/datensparsam.git
+  - git push deploy
