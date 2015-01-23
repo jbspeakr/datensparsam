@@ -3,14 +3,20 @@ python:
   - '3.4'
 before_install:
   - openssl aes-256-cbc -K $encrypted_ddca671ad439_key -iv $encrypted_ddca671ad439_iv -in .travis/key.pem.enc -out .travis/key.pem -d
-  - echo -e "Host sculptor.uberspace.de\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-  - git config --global user.email "dsafe@sculptor.uberspace.de"
-  - git config --global user.name "Travis the Build Bot"
 install:
   - pip install -q -r requirements.txt
   - pip install -q coveralls
 script:
   - python setup.py -q nosetests
+after_script:
+  # Turn off warnings about SSH keys:
+  - echo "Host sculptor.uberspace.de" >> ~/.ssh/config
+  - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
+  - echo "   CheckHostIP no" >> ~/.ssh/config
+  - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+  # Git Setup
+  - git config --global user.email "dsafe@sculptor.uberspace.de"
+  - git config --global user.name "Travis the Build Bot"
 after_success:
   - coverage run --source=datensparsam setup.py -q nosetests
   - coveralls
