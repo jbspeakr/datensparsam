@@ -6,7 +6,7 @@ before_install:
   - chmod 600 .travis/key.pem
   - ssh-add .travis/key.pem
   # Turn off warnings about SSH keys:
-  - echo -e "Host sculptor.uberspace.de\n\tStrictHostKeyChecking no\n\tCheckHostIP no\n\tUserKnownHostsFile=/dev/null" >> ~/.ssh/config
+  # - echo -e "Host sculptor.uberspace.de\n\tStrictHostKeyChecking no\n\tCheckHostIP no\n" >> ~/.ssh/config
   # Git Setup
   - git config --global user.email "dsafe@sculptor.uberspace.de"
   - git config --global user.name "Travis the Build Bot"
@@ -18,5 +18,5 @@ script:
 after_success:
   - coverage run --source=datensparsam setup.py -q nosetests
   - coveralls
-  - git remote add deploy ssh://dsafe@sculptor.uberspace.de/datensparsam.git
+  - yes | git remote add deploy ssh://dsafe@sculptor.uberspace.de/datensparsam.git
   - git push deploy
