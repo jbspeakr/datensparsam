@@ -7,7 +7,7 @@ install:
   - pip install -q -r requirements.txt
   - pip install -q coveralls
 before_script:
-  - echo -e "Host sculptor.uberspace.de\n\tStrictHostKeyChecking no\n\tCheckHostIP no\n" >> ~/.ssh/config
+  - echo -e "Host sculptor.uberspace.de\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 script:
   - python setup.py -q nosetests
 after_success:
