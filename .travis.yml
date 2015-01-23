@@ -3,6 +3,7 @@ python:
   - '3.4'
 before_install:
   - openssl aes-256-cbc -K $encrypted_ddca671ad439_key -iv $encrypted_ddca671ad439_iv -in .travis/key.pem.enc -out .travis/key.pem -d
+  - eval 'ssh-agent -s'
   - chmod 600 .travis/key.pem
   - ssh-add .travis/key.pem
   # Turn off warnings about SSH keys:
