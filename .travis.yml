@@ -10,10 +10,7 @@ script:
   - python setup.py -q nosetests
 after_script:
   # Turn off warnings about SSH keys:
-  - echo "Host sculptor.uberspace.de" >> ~/.ssh/config
-  - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
-  - echo "   CheckHostIP no" >> ~/.ssh/config
-  - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+  - echo -e "Host sculptor.uberspace.de\n\tStrictHostKeyChecking no\n\tCheckHostIP no\n\tUserKnownHostsFile=/dev/null" >> ~/.ssh/config
   # Git Setup
   - git config --global user.email "dsafe@sculptor.uberspace.de"
   - git config --global user.name "Travis the Build Bot"
