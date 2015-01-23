@@ -3,13 +3,7 @@ python:
   - '3.4'
 before_install:
   - openssl aes-256-cbc -K $encrypted_ddca671ad439_key -iv $encrypted_ddca671ad439_iv -in .travis/key.enc -out .travis/key -d
-  - eval 'ssh-agent -s'
-  - chmod 600 .travis/key
-  - cat .travis/key
-  - ssh-add .travis/key
-  # Turn off warnings about SSH keys:
-  # - echo -e "Host sculptor.uberspace.de\n\tStrictHostKeyChecking no\n\tCheckHostIP no\n" >> ~/.ssh/config
-  # Git Setup
+  - echo -e "Host sculptor.uberspace.de\n\tStrictHostKeyChecking no\n\tCheckHostIP no\n" >> ~/.ssh/config
   - git config --global user.email "dsafe@sculptor.uberspace.de"
   - git config --global user.name "Travis the Build Bot"
 install:
@@ -20,5 +14,7 @@ script:
 after_success:
   - coverage run --source=datensparsam setup.py -q nosetests
   - coveralls
+  - chmod 600 .travis/key
+  - ssh-add .travis/key
   - yes | git remote add deploy ssh://dsafe@sculptor.uberspace.de/datensparsam.git
   - git push deploy
