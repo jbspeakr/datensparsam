@@ -13,7 +13,6 @@ after_success:
   - coverage run --source=datensparsam setup.py -q nosetests
   - coveralls
   # SSH Setup
-  - echo -e "Host sculptor.uberspace.de\n\tStrictHostKeyChecking no\n\tCheckHostIP no\n" >> ~/.ssh/config
   - chmod 600 .travis/key
   - ssh-add .travis/key
   # Git Config
@@ -21,4 +20,4 @@ after_success:
   - git config --global user.name "Travis the Build Bot"
   - git config --global push.default matching
   - yes | git remote add deploy ssh://dsafe@sculptor.uberspace.de/datensparsam.git
-  - git push deploy
+  - yes | git push deploy
