@@ -20,4 +20,4 @@ after_success:
   - git config --global user.name "Travis the Build Bot"
   - git config --global push.default matching
   - yes | git remote add deploy ssh://dsafe@sculptor.uberspace.de/datensparsam.git
-  - git push deploy
+  - yes | git push deploy
