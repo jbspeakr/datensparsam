@@ -6,6 +6,7 @@ install:
   - pip install -q coveralls
 script:
   - python setup.py -q nosetests
+  - echo $DPLOY_HOOK
 after_success:
   - coverage run --source=datensparsam setup.py -q nosetests
   - coveralls
