@@ -1,6 +1,5 @@
 django_db
 .idea/
-.ssh/
 
 *.py[cod]
 *.pyc
