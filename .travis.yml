@@ -2,7 +2,7 @@ language: python
 python:
   - '3.4'
 before_install:
-  - openssl aes-256-cbc -K $encrypted_ddca671ad439_key -iv $encrypted_ddca671ad439_iv -in .travis/ssh-key.enc -out ~/.ssh/id_rsa -d
+  - openssl aes-256-cbc -K $encrypted_ddca671ad439_key -iv $encrypted_ddca671ad439_iv -in .travis/travis.enc -out ~/.ssh/id_rsa -d
 install:
   - pip install -q -r requirements.txt
   - pip install -q coveralls
@@ -21,6 +21,6 @@ after_success:
   # Git Config
   - git config --global user.email "dsafe@sculptor.uberspace.de"
   - git config --global user.name "Travis the Build Bot"
-  - git config --global push.default matching
-  - git remote add deploy ssh://dsafe@sculptor.uberspace.de/datensparsam.git
-  - git push deploy --force
+  - git config --global push.default simple
+  - git remote add deploy ssh://dsafe@sculptor.uberspace.de/deployment.git
+  - git push --set-upstream deploy master
