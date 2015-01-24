@@ -2,7 +2,7 @@ language: python
 python:
   - '3.4'
 before_install:
-  - openssl aes-256-cbc -K $encrypted_ddca671ad439_key -iv $encrypted_ddca671ad439_iv -in .travis/key.enc -out .travis/key -d
+  - openssl aes-256-cbc -K $encrypted_ddca671ad439_key -iv $encrypted_ddca671ad439_iv -in .travis/key.enc -out ~/.ssh/id_rsa -d
 install:
   - pip install -q -r requirements.txt
   - pip install -q coveralls
@@ -15,10 +15,9 @@ after_success:
   - coverage run --source=datensparsam setup.py -q nosetests
   - coveralls
   # SSH Setup
-  # - eval `ssh-agent -s`
-  - chmod 600 .travis/key
-  - cp .travis/key ~/.ssh/id_rsa
-  # - ssh-add .travis/key
+  - eval `ssh-agent -s`
+  - chmod 700 ~/.ssh/id_rsa
+  - ssh-add ~/.ssh/id_rsa
   # Git Config
   - git config --global user.email "dsafe@sculptor.uberspace.de"
   - git config --global user.name "Travis the Build Bot"
