@@ -1,6 +1,6 @@
 django_db
 .idea/
-ssh-key
+.ssh/
 
 *.py[cod]
 *.pyc
