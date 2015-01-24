@@ -15,6 +15,7 @@ after_success:
   - coverage run --source=datensparsam setup.py -q nosetests
   - coveralls
   # SSH Setup
+  - eval `ssh-agent -s`
   - chmod 600 .travis/key
   - ssh-add .travis/key
   # Git Config
