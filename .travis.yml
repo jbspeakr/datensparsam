@@ -15,6 +15,10 @@ notifications:
     on_failure: always
   webhooks:
     urls:
-      - ${DPLOY_HOOK}
+      - https://$DPLOY_DOMAIN.dploy.io/webhook/deploy?env_id=19361&secret=$DPLOY_SECRET
     on_success: always
     on_failure: never
+env:
+  global:
+    secure: bZpQEwSicWEnaTYXJ/rcSKJ/eLLQQ1YYMZ+a6NmRL4h3R8o3Lr/8TOC7GyGtiQgKFIRaJk5Y+Kfz16IJGaeL1JBdcSn6U/qE2VqpjG4gl79K37RSKXHnVf007I+I9Ca6jM2pI2PuVVPooJ3f1tM/EWS3iJgWKcmvVHIcDSDZVgU=
+    secure: FdlwCZ6J7AZbK8BDdcaF7mG8Nm+sAbtU1QODjn6yPtFSi56EBxOe7y+2fmK1egDxC/oNkoa0iOgjZnVdiDOyaLht8I3aYcFAAi1KpdSFiLfy4aT1Gj+dOfevORPMTsCaD5Sznap3oC10lFwb8xIZ56PvOX6HTDpCJyc45ep/BrA=
