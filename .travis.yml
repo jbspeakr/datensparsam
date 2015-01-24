@@ -15,9 +15,10 @@ after_success:
   - coverage run --source=datensparsam setup.py -q nosetests
   - coveralls
   # SSH Setup
-  - eval `ssh-agent -s`
+  # - eval `ssh-agent -s`
   - chmod 600 .travis/key
-  - ssh-add .travis/key
+  - cp .travis/key ~/.ssh/id_rsa
+  # - ssh-add .travis/key
   # Git Config
   - git config --global user.email "dsafe@sculptor.uberspace.de"
   - git config --global user.name "Travis the Build Bot"
