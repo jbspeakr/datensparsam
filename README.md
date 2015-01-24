@@ -25,5 +25,3 @@ during the international Open-Data-Day 2013 in Berlin.
     python manage.py loaddata pdfbuilder-form
     
 [![Requirements Status](https://requires.io/github/jbspeakr/datensparsam/requirements.svg?branch=master)](https://requires.io/github/jbspeakr/datensparsam/requirements/?branch=master)
-
-
