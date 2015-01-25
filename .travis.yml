@@ -6,7 +6,6 @@ install:
   - pip install -q coveralls
 script:
   - nosetests --with-coverage --cover-package=datensparsam
-  # - coverage run --source=datensparsam nosetests
 after_success:
   - coveralls
 notifications:
