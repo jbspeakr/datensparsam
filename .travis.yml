@@ -5,9 +5,8 @@ install:
   - pip install -q -r requirements.txt
   - pip install -q coveralls
 script:
-  - python setup.py -q nosetests
+  - coverage run --source=datensparsam -q nosetests
 after_success:
-  - coverage run --source=datensparsam setup.py -q nosetests
   - coveralls
 notifications:
   email:
