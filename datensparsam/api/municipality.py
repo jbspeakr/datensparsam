@@ -2,9 +2,9 @@
 from flask import Blueprint, jsonify
 
 
-municipality = Blueprint('municipality', __name__, url_prefix='/municipality')
+blueprint = Blueprint('municipality', __name__, url_prefix='/municipality')
 
 
-@municipality.route('/ping', methods=['GET'])
+@blueprint.route('/ping', methods=['GET'])
 def ping():
     return jsonify(ping='pong')
