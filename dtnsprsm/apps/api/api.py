@@ -5,7 +5,7 @@ from dtnsprsm.apps.api import models
 
 
 class MunicipalityResource(ModelResource):
-    class Meta:
+    class Meta(object):
         queryset = models.Municipality.objects.all()
         resource_name = 'municipality'
         filtering = {
@@ -15,7 +15,7 @@ class MunicipalityResource(ModelResource):
 
 
 class RegistrationOfficeResource(ModelResource):
-    class Meta:
+    class Meta(object):
         queryset = models.RegistrationOffice.objects.all()
         resource_name = 'registration-office'
 
@@ -34,7 +34,7 @@ class ZipcodeResource(ModelResource):
         null=True, blank=True,
         full=True)
 
-    class Meta:
+    class Meta(object):
         queryset = models.Zipcode.objects.all()
         resource_name = 'zipcode'
         filtering = {
