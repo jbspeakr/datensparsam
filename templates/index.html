@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block nav_index %}active{% endblock %}
+{% block content %}
+    <div class="jumbotron img-rounded">
+        <h1>Datensparsamkeit, jetzt!</h1>
+        <p class="lead">Einwohnermeldeämter geben ohne Ihre Zustimmung persönliche
+            Daten<br />an Adresshändler, Parteien und andere Interessenten weiter.<br />
+            Wir zeigen Ihnen, wie Sie dem widersprechen können:</p>
+        <a class="btn btn-large btn-success" href="{% url 'information' %}" title="Meldewesen in Deutschland, Übermittlungssperren &amp; Datensparsamkeit">Weitere Informationen</a>
+    </div>
+    <hr />
+    <div class="row-fluid">
+        <div class="span8 well">
+            <p><b>Datensparsamkeit fängt beim Einwohnermeldeamt an.</b> Um dir bei der
+                Einrichtung einer persönliche Übermittlungssperre zu helfen, brauchen
+                wir nichts weiter als deine Postleitzahl!</p>
+                <a class="btn btn-primary" href="{% url 'pdfbuilder-generator' %}" title="Jetzt Übermittlungssperre erstellen!"><i class="icon-hand-right icon-white"></i> Jetzt Übermittlungssperre erstellen!</a>
+        </div>
+        <div class="span4">
+            <p><b>Datensparsam.de</b> ist ein Projekt der Open Knowledge Foundation Deutschland mit dem sich Anträge für Übermittlungssperren erstellen lassen.</p>
+            <p><a class="btn btn-info" href="{% url 'about' %}">Mehr erfahren &raquo;</a></p>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span4">
+            <h2>Meldewesen</h2>
+            <p><span class="label label-info">Grundlagen</span> Ohne betroffene Personen darüber zu informieren, geben deutsche Einwohnermeldeämter persönliche Meldedaten an Behörden, Firmen oder Adressbuchverlage weiter - ganz legal. Auch die anstehende Fortentwicklung des Meldewesens ändert daran nur wenig.</p>
+            <p><a class="btn" href="{% url 'information' %}#Meldewesen" title="Informationen zum Meldewesen in Deutschland">Weitere Infos &raquo;</a></p>
+        </div>
+        <div class="span4">
+            <h2>Übermittlungssperren</h2>
+            <p><span class="label label-info">Wissenswert</span> Um ihr Recht auf informationelle Selbstbestimmung wahrnehmen zu können und den Adresshandel einzudämmen, müssen Bürgerinnen und Bürger leider noch immer selbst aktiv werden. Eine Möglichkeit dies zu tun, besteht in der Beantragung von Übermittlungssperren.</p>
+            <p><a class="btn" href="{% url 'information' %}#Uebermittlungssperren" title="Informationen zu Übermittlungssperren">Weitere Infos &raquo;</a></p>
+        </div>
+        <div class="span4">
+            <h2>Datensparsamkeit</h2>
+            <p><span class="label label-info">Weiterführendes</span> Datensparsamkeit steht in engem Zusammenhang mit dem traditionellen datenschutzrechtlichen Grundsatz, dass nur diejenigen personenbezogenen Daten verarbeitet werden dürfen, die für die Erfüllung der jeweiligen Aufgabe benötigt werden.</p>
+            <p><a class="btn" href="{% url 'information' %}#Datensparsamkeit" title="Informationen zur Datensparsamkeit">Weitere Infos &raquo;</a></p>
+        </div>
+    </div>
+{% endblock %}

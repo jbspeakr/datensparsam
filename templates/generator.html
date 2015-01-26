@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block nav_generator %}active{% endblock %}
+{% block content %}
+    <div class="row-fluid">
+        <div class="span8">
+            <h1>Übermittlungssperre-Generator</h1>
+            <p class="lead">Ohne betroffene Personen darüber zu informieren, geben deutsche Einwohnermeldeämter persönliche Meldedaten an Behörden, Firmen oder Adressbuchverlage weiter - ganz legal.</p>
+            <p>Um ihr <a href="http://de.wikipedia.org/wiki/Informationelle_Selbstbestimmung" title="Informationen zur informationellen Selbstbestimmung">Recht auf informationelle Selbstbestimmung</a> wahrnehmen zu können und den Adresshandel einzudämmen, müssen Bürgerinnen und Bürger leider noch immer selbst aktiv werden. Eine Möglichkeit dies zu tun, besteht in der Beantragung von Übermittlungssperren. Dieser Generator hilft dabei, diese zu erstellen!</p>
+            <form class="form-horizontal" action="{% url 'pdfbuilder-generator' %}" method="POST">
+                {{ form.non_field_errors }}
+                <fieldset>
+                    <legend><b>Schritt 1</b> Postleitzahl</legend>
+                    <p>Anhand von Postleitzahlen ermittelt der Formular-Generator zuständige Meldestelle. Bitte tragen Sie deshalb Ihre Postleitzahl in das nachstehende Feld ein.</p>
+                    <div id="zipcodeInfo" class="alert alert-info js-hidden">
+                        <b>Bitte um Mithilfe</b> - Leider liegen uns zu dieser Postleitzahl (noch) keine Informationen vor. <a href="#">Bitte schreiben Sie uns doch eine E-Mail</a> und wir werden diesen Missstand beheben.
+                    </div>
+                    <div id="zipcodeError" class="alert alert-error js-hidden">
+                        <b>Achtung</b> - Die von Ihnen eingegebene Postleitzahl kann von unserem Formular-Generator nicht verarbeitet werden. Bitte beachten Sie, dass deutsche Postleitzahlen fünfstellig sind und nur aus Ziffern bestehen.
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="id_zipcode">Ihre Postleitzahl:</label>
+                        <div class="controls">
+                            {{ form.zipcode }}
+                            <span class="help-block info">Bspw. 12051, 15344 oder 54450</span>
+                            <span class="text-warning">{{ form.zipcode.errors.as_text }}</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button id="zipcodeSubmit" type="submit" class="btn" data-loading-text="Laden..."><i class="icon-arrow-right"></i> Nächster Schritt</button>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="muted"><b>Schritt 2</b> Empfänger</legend>
+                    <div id="municipality" class="js-hidden">
+                        <p>Bitte wählen Sie ihre Gemeinde aus.</p>
+                        <div class="control-group">
+                            <label class="control-label" for="id_municipality">Ihre Gemeinde:</label>
+                            <div class="controls">
+                                <select class="input-xlarge" name="municipality" id="id_municipality"></select>
+                                <span class="text-warning">{{ form.municipality.errors.as_text }}</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button id="municipalitySubmit" type="submit" class="btn"><i class="icon-arrow-right"></i> Nächster Schritt</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="registrationOffice" class="js-hidden">
+                        <p>Bitte wählen Sie das Amt aus, an das Ihr Antrag auf Übermittlungssperre adressiert werden soll.</p>
+                        <div class="control-group">
+                            <label class="control-label" for="id_registrationoffice">Ihr Einwohnermeldeamt:</label>
+                            <div class="controls">
+                                <select class="input-xlarge" name="registrationoffice" id="id_registrationoffice"></select>
+                                <span class="text-warning">{{ form.registrationoffice.errors.as_text }}</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button id="registrationOfficeSubmit" type="submit" class="btn"><i class="icon-arrow-right"></i> Nächster Schritt</button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="muted"><b>Schritt 3</b> Anschrift</legend>
+                    <div id="address" class="js-hidden">
+                        <p>Damit Ihr Antrag auf Übermittlungssperre Ihnen vom Einwohnermeldeamt eindeutig zugeordnet werden kann, ist ihre komplette Anschrift notwendig. Bitte überprüfen Sie Ihre Angaben, bevor Sie ihr Formular generieren lassen.</p>
+                        <div class="control-group">
+                            <label class="control-label" for="id_firstname">Vorname</label>
+                            <div class="controls">
+                                {{ form.firstname }}
+                                <span class="text-warning">{{ form.firstname.errors.as_text }}</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="id_name">Nachname</label>
+                            <div class="controls">
+                                {{ form.name }}
+                                <span class="text-warning">{{ form.name.errors.as_text }}</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="id_address">Straße/ Hausnummer</label>
+                            <div class="controls">
+                                {{ form.address }}
+                                <span class="text-warning">{{ form.address.errors.as_text }}</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="id_city">Stadt</label>
+                            <div class="controls">
+                                {{ form.city }}
+                                <span class="text-warning">{{ form.city.errors.as_text }}</span>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button id="formSubmit" type="submit" class="btn btn-success"><i class="icon-download icon-white"></i> Formular generieren</button>
+                        </div>
+                    </div>
+                </fieldset>
+                {% csrf_token %}
+            </form>
+        </div>
+        <div class="span4 alert alert-info">
+            <h3>Hinweise &amp; Informationen</h3>
+            <ul>
+                <li><b>Schritt 1</b> - Auf Basis Ihrer Postleitzahl versucht der Formular-Generator Einwohnermeldeämter in Ihrer Umgebung zu finden.</li>
+                <li><b>Schritt 2</b> - Wählen Sie ein Einwohnermeldeamt in ihrer Nähe aus, an das ihr Antrag auf Übermittlungssperre gerichtet sein soll. Kann für ihre Postleitzahl kein Einwohnermeldeamt ermittelt werden, wählen Sie alternativ bitte Ihre Gemeinde als Empfänger aus.</li>
+                <li><b>Schritt 3</b> - Um Ihren persönlichen Antrag auf Übermittlungssperre erstellen zu könnnen benötigen wir Ihre aktuelle Meldeanschrift. Keine Angst, Ihre Daten werden weder gespeichert noch geben wir sie weiter.</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

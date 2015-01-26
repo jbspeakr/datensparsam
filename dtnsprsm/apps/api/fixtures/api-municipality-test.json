@@ -1,0 +1,26 @@
+[
+    {
+        "pk": 1,
+        "model": "api.municipality",
+        "fields": {
+            "city": "Pr\u00fcm",
+            "name": "Verbandsgemeindeverwaltung Pr\u00fcm",
+            "zipcode": "54595",
+            "state": "Rheinland-Pfalz",
+            "street": "Tiergartenstr. 54",
+            "key": "07232227"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "api.municipality",
+        "fields": {
+            "city": "Schweina",
+            "name": "Gemeindeverwaltung Schweina",
+            "zipcode": "01067",
+            "state": "Th\u00fcringen",
+            "street": "August-Bebel-Str. 12",
+            "key": "16063069"
+        }
+    }
+]

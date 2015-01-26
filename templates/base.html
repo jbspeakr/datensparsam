@@ -1,0 +1,107 @@
+{% load i18n %}<!DOCTYPE html manifest="offline.appcache">
+<!--[if lt IE 7]>      <html lang="de" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="de" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="de" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="de" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>Datensparsam leben - Übermittlungssperren einrichten!</title>
+    <meta name="description" content="Einfach Datensparsam: Mit Übermittlungssperren vom Recht auf informationelle Selbstbestimmung gebrauch machen und private Daten schützen!" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/ico" href="{{ STATIC_URL }}favicon.ico" />
+    <link rel="apple-touch-icon" href="{{ STATIC_URL }}icon.png" />
+    <link type="text/plain" rel="author" href="{{ STATIC_URL }}humans.txt" />
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:site" content="@openevrthng" />
+    <meta property="twitter:creator" content="@jbspeakr" />
+    <meta property="twitter:image" content="{{ STATIC_URL }}img/logo.png" />
+    <meta property="twitter:description" content="Einfach Datensparsam: Mit Übermittlungssperren vom Recht auf informationelle Selbstbestimmung gebrauch machen und private Daten schützen!" />
+    <meta property="og:locale" content="de_DE"/>
+    <meta property="og:description" content="Einfach Datensparsam: Mit Übermittlungssperren vom Recht auf informationelle Selbstbestimmung gebrauch machen und private Daten schützen!" />
+    <meta property="og:title" content="Datensparsam: Deutschlands erster Generator für Übermittungssperren"/>
+    <meta property="og:url" content="http://www.datensparsam.de"/>
+    <meta property="og:site_name" content="Datensparsam"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="{{ STATIC_URL }}img/logo.png" />
+    <link rel="author" href="https://plus.google.com/u/0/114762336236844514551/posts" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400&amp;subset=latin,latin-ext" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main.css">
+    <script src="{{ STATIC_URL }}js/vendor/modernizr-2.6.2.min.js"></script>
+    {% block meta %}{% endblock %}
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="container">
+        <header class="masthead">
+            <h2>Datensparsam.de <span class="muted">- Der Generator für Übermittlungssperren</span></h2>
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <ul class="nav">
+                            <li class="{% block nav_index %}{% endblock %}"><a href="{% url 'index' %}">Home</a></li>
+                            <li class="{% block nav_generator %}{% endblock %}"><a href="{% url 'pdfbuilder-generator' %}" title="Übermittlungssperren generieren">Generator</a></li>
+                            <li class="{% block nav_information %}{% endblock %}"><a href="{% url 'information' %}" title="Meldewesen, Übermittlungssperren, Datensparsamkeit">Informationen</a></li>
+                            <li class="{% block nav_about %}{% endblock %}"><a href="{% url 'about' %}" title="Was ist Datensparsam.de?">Über uns</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- /.navbar -->
+        </header>
+        {% block content %}{% endblock %}
+        <hr />
+    </div> <!-- /container -->
+    <footer id="footer" class="container">
+        <div class="row-fluid">
+            <div class="span9">
+                <p>
+                  Datensparsam.de ist ein gemeinnütziges Projekt des <a href="http://okfn.de/" title="Open Knowledge Foundation Deutschland">Open Knowledge Foundation Deutschland e.V.</a> Wenn Sie Datensparsam.de unterstützen möchten, <a href="http://okfn.de/support/" title="Für die Open Knowledge Foundation Deutschland spenden!">freuen wir uns über Ihre Spende!</a>
+                </p>
+            </div>
+            <div class="span3">
+                <p><a href="http://www.okfn.de/">
+                  <img src="{{ STATIC_URL }}img/open-knowledge-foundation.png">
+                </a></p>
+            </div>
+        </div>
+        <hr />
+        <ul class="unstyled pagination-centered navi">
+            <li><a href="{% url 'about' %}" title="Was ist Datensparsam.de?">Über uns</a></li>
+            <li><a rel ="nofollow" href="{% url 'imprint' %}" title="Wer betreibt Datensparsam.de?">Impressum</a></li>
+            <li><a rel ="nofollow" href="{% url 'tos' %}" title="Datensparsam.de - Nutzungsbedingungen">Nutzungsbedingungen</a></li>
+            <li><a rel ="nofollow" href="{% url 'privacy' %}" title="Datensparsam.de - Datenschutzerklärung">Datenschutzerklärung</a></li>
+        </ul>
+    </footer>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="{{ STATIC_URL }}js/vendor/jquery-1.9.0.min.js"><\/script>')
+    </script>
+    <script src="{{ STATIC_URL }}js/plugins.js"></script>
+    <script src="{{ STATIC_URL }}js/main.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+        var _paq = _paq || [];
+        _paq.push(["setDoNotTrack", true]);
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function () {
+            var u = (("https:" == document.location.protocol) ? "https" : "http") + "://track.grus.uberspace.de/";
+            _paq.push(['setTrackerUrl', u + 'piwik.php']);
+            _paq.push(['setSiteId', 3]);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.type = 'text/javascript';
+            g.defer = true;
+            g.async = true;
+            g.src = u + 'piwik.js';
+            s.parentNode.insertBefore(g, s);
+        })();
+    </script>
+    <noscript><p><img src="http://track.grus.uberspace.de/piwik.php?idsite=3" style="border:0;" alt=""/></p></noscript>
+    <!-- End Piwik Code -->
+</body>
+</html>

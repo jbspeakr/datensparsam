@@ -1,0 +1,48 @@
+[
+    {
+        "pk": 1,
+        "model": "api.zipcode",
+        "fields": {
+            "municipalities": [
+                2
+            ],
+            "zipcode": "01067",
+            "registrationoffices": [
+                244,
+                245,
+                246,
+                247,
+                248,
+                249,
+                250,
+                251,
+                252,
+                253,
+                507
+            ]
+        }
+    },
+    {
+        "pk": 2,
+        "model": "api.zipcode",
+        "fields": {
+            "municipalities": [
+                1547
+            ],
+            "zipcode": "54595",
+            "registrationoffices": [
+                244,
+                245,
+                246,
+                247,
+                248,
+                249,
+                250,
+                251,
+                252,
+                253,
+                507
+            ]
+        }
+    }
+]

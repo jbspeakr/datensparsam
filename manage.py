@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
 import os
-from flask.ext.script import Manager
-from datensparsam import create_app
+import sys
 
+if __name__ == "__main__":
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dtnsprsm.settings")
 
-manager = Manager(create_app)
-manager.add_option('-c', '--config', dest='config', required=False)
+    from django.core.management import execute_from_command_line
 
-if __name__ == '__main__':
-    os.environ.setdefault('DATENSPARSAM_SETTINGS', 'settings.development')
-    manager.run()
+    execute_from_command_line(sys.argv)

@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-08 17:28+0200\n"
+"PO-Revision-Date: 2013-03-03 14:56+0100\n"
+"Last-Translator: Jan Brennenstuhl <jan@brennenstuhl.me>\n"
+"Language-Team: OKF-DE <postmaster@datensparsam.de>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: dtnsprsm/apps/pdfbuilder/views.py:86
+msgid "Dear Sir or Madam"
+msgstr "Sehr geehrte Damen und Herren,"
+
+#: dtnsprsm/apps/pdfbuilder/views.py:87
+msgid "Contradiction intro"
+msgstr ""
+"Mit Bezug auf mein Recht auf informationelle Selbstbestimmung widerspreche "
+"ich hiermit:"
+
+#: dtnsprsm/apps/pdfbuilder/views.py:93
+msgid "Request for Confirmation"
+msgstr ""
+"Ich bitte um Bestätigung, dass der Widerspruch im Melderegister gespeichert "
+"worden ist."
+
+#: dtnsprsm/apps/pdfbuilder/views.py:95
+msgid "Request for Forwarding"
+msgstr ""
+"Sollten Sie nicht zuständig sein, bitte ich um Weiterleitung meines Antrags "
+"an die zuständige Stelle."
+
+#: dtnsprsm/apps/pdfbuilder/views.py:96
+msgid "Greetings"
+msgstr "Mit freundlichem Gruß,"
+
+#: dtnsprsm/apps/pdfbuilder/views.py:99
+msgid "Signature"
+msgstr "Unterschrift"
+
+#: dtnsprsm/apps/pdfbuilder/forms/generatorform.py:50
+msgid "No recipient found."
+msgstr "Bitte wählen Sie einen Empfänger."
+
+#~ msgid "Wrong zipcode length."
+#~ msgstr "Die angegebene Postleitzahl ist zu kurz."
+
+#~ msgid "Zipcode not in state."
+#~ msgstr "Die Postleitzahl liegt nicht im angegebenen Bundesland."

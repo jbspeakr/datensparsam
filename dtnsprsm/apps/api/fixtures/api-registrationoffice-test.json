@@ -1,0 +1,28 @@
+[
+    {
+        "pk": 506,
+        "model": "api.registrationoffice",
+        "fields": {
+            "city": "Aachen",
+            "name": "Einwohnermeldeamt Aachen Brand",
+            "zipcode": "52078",
+            "state": "Nordrhein-Westfalen",
+            "street": "Paul-K\u00fcpper-Platz 1",
+            "lat": "50.7474462",
+            "lng": "6.1637174"
+        }
+    },
+    {
+        "pk": 507,
+        "model": "api.registrationoffice",
+        "fields": {
+            "city": "Aachen",
+            "name": "Einwohnermeldeamt Aachen Eilendorf",
+            "zipcode": "54595",
+            "state": "Nordrhein-Westfalen",
+            "street": "Heinrich-Thomas-Platz 1",
+            "lat": "50.78128",
+            "lng": "6.15358"
+        }
+    }
+]

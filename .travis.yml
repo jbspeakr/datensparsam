@@ -1,13 +1,13 @@
 language: python
 python:
-  - '3.4'
+  - "3.4"
 install:
-  - pip install -q -r requirements.txt
-  - pip install -q coveralls
+  - pip install -r requirements.txt
+  - pip install coveralls
 script:
-  - nosetests --with-coverage --cover-package=datensparsam
+  coverage run --source=dtnsprsm manage.py test --failfast
 after_success:
-  - coveralls
+  coveralls
 notifications:
   email:
     on_success: never

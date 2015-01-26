@@ -1,4 +1,4 @@
-django_db
+db.sqlite3
 .idea/
 
 *.py[cod]

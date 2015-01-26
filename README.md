@@ -14,17 +14,21 @@ This civic app was mainly planned and implemented by [Jan Brennenstuhl](http://j
 
 ## How do I use it?
 
-1. edit the configuration in the datensparsam.py file or 
-   export an FLASKR_SETTINGS environment variable pointing to a configuration file.
-2. initialize the database with this command:
+1. initialize the database:
         
-        tbc.
+        python manage.py migrate
 
-3. now you can run flaskr:
+2. fill database with fixtures:
+
+        python manage.py loaddata api-municipality
+        python manage.py loaddata api-registrationoffice
+        python manage.py loaddata api-zipcode
+        python manage.py loaddata pdfbuilder-form
+
+3. now you can run the server:
 
          python manage.py runserver
 
-the application will greet you on http://localhost:5000/
 ## Any Test?
 
 You betcha. Run'em using:  
@@ -35,3 +39,14 @@ You betcha. Run'em using:
     
 [![Requirements Status](https://requires.io/github/jbspeakr/datensparsam/requirements.svg?branch=master)](https://requires.io/github/jbspeakr/datensparsam/requirements/?branch=master)
 
+## Setup
+
+### Load API Fixtures
+
+    python manage.py loaddata api-municipality
+    python manage.py loaddata api-registrationoffice
+    python manage.py loaddata api-zipcode
+
+### Load PDF-Builder Fixture
+
+    python manage.py loaddata pdfbuilder-form
