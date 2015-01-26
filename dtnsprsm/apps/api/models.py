@@ -15,7 +15,7 @@ class Municipality(models.Model):
     def __unicode__(self):
         return self.name
 
-    class Meta:
+    class Meta(object):
         ordering = ('key',)
 
 
@@ -32,7 +32,7 @@ class RegistrationOffice(models.Model):
     def __unicode__(self):
         return self.name
 
-    class Meta:
+    class Meta(object):
         ordering = ('city',)
 
 
@@ -47,5 +47,5 @@ class Zipcode(models.Model):
     def __unicode__(self):
         return self.zipcode
 
-    class Meta:
+    class Meta(object):
         ordering = ('zipcode',)
