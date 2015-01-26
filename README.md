@@ -11,6 +11,10 @@ It provides a simple way for German citizen to opt-out from local residents' reg
 application forms (so-called *Anträge auf Übermittlungssperren*).
 
 This civic app was mainly planned and implemented by [Jan Brennenstuhl](http://jan.brennenstuhl.me) during the international Open-Data-Day 2013 in Berlin.
+    
+## What do I need?
+    
+[![Requirements Status](https://requires.io/github/jbspeakr/datensparsam/requirements.svg?branch=master)](https://requires.io/github/jbspeakr/datensparsam/requirements/?branch=master)
 
 ## How do I use it?
 
@@ -33,20 +37,4 @@ This civic app was mainly planned and implemented by [Jan Brennenstuhl](http://j
 
 You betcha. Run'em using:  
         
-        nosetests
-    
-## What do I need?
-    
-[![Requirements Status](https://requires.io/github/jbspeakr/datensparsam/requirements.svg?branch=master)](https://requires.io/github/jbspeakr/datensparsam/requirements/?branch=master)
-
-## Setup
-
-### Load API Fixtures
-
-    python manage.py loaddata api-municipality
-    python manage.py loaddata api-registrationoffice
-    python manage.py loaddata api-zipcode
-
-### Load PDF-Builder Fixture
-
-    python manage.py loaddata pdfbuilder-form
+        python manage.py test --failfast
