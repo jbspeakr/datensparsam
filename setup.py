@@ -1,4 +1,12 @@
 from distutils.core import setup
+import codecs
+import os
+
+
+def read(*parts):
+    filename = os.path.join(os.path.dirname(__file__), *parts)
+    with codecs.open(filename, encoding='utf-8') as fp:
+        return fp.read()
 
 setup(
     name='datensparsam',
@@ -9,5 +17,6 @@ setup(
     license='MIT License',
     author='Jan Brennenstuhl',
     author_email='jan@brennenstuhl.me',
-    description='Django-based civic app to opt-out at governmental record sections.'
+    description='A Privacy Empowerment App for German citizen written in Python using Django.',
+    long_description=read('README.md')
 )
